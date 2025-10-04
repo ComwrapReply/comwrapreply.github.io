@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2024-01-15T10:30:00.000Z",
+    "lastModified": "2024-01-15T10:30:00.000Z",
+    "totalPhases": 10,
+    "totalCategories": 30,
+    "totalItems": 120
+  },
+  "phases": {
+    "Discovery & Planning": {
+      "phaseNumber": 1,
+      "categories": {
+        "AI Planning:": {
+          "items": [
+            "ChatGPT/Claude",
+            "ClickUp Brain",
+            "Notion AI",
+            "Custom AI Tool"
+          ],
+          "itemCount": 4
+        },
+        "Project Management:": {
+          "items": [
+            "Linear",
+            "Monday.com",
+            "Asana",
+            "Jira",
+            "Custom PM Tool"
+          ],
+          "itemCount": 5
+        },
+        "Who (Roles):": {
+          "items": [
+            "Product Manager",
+            "Stakeholders",
+            "Business Analyst",
+            "Custom Role"
+          ],
+          "itemCount": 4
+        },
+        "How (Channels):": {
+          "items": [
+            "Discovery workshops",
+            "Stakeholder emails",
+            "User interviews",
+            "Custom Channel"
+          ],
+          "itemCount": 4
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Unclear requirements",
+            "Conflicting opinions",
+            "Scope creep",
+            "Custom Pain Point"
+          ],
+          "itemCount": 4
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Missing approvals",
+            "Budget uncertainty",
+            "Custom Blocker"
+          ],
+          "itemCount": 3
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Meeting scheduling",
+            "Follow-up emails",
+            "Note transcription",
+            "Custom Automation"
+          ],
+          "itemCount": 4
+        }
+      }
+    },
+    "Requirements": {
+      "phaseNumber": 2,
+      "categories": {
+        "AI Writing:": {
+          "items": [
+            "Notion AI",
+            "Grammarly",
+            "Jasper AI",
+            "Custom Writing Tool"
+          ],
+          "itemCount": 4
+        },
+        "Documentation:": {
+          "items": [
+            "Confluence",
+            "GitBook",
+            "Slite",
+            "Custom Doc Tool"
+          ],
+          "itemCount": 4
+        }
+      }
+    }
+  }
+}

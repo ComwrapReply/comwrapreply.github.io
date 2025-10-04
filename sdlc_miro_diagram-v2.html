@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Automation: Make It Painless</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            position: relative;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--section-color);
+        }
+        
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--section-color);
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        
+        .section-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--section-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+            border-color: var(--section-color);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-right: 40px;
+        }
+        
+        .category {
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .category:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        .category-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .item {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            margin: 2px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .automation-item {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+        }
+        
+        .tool-item {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .ai-tool {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+        }
+        
+        .blocker-item {
+            background: linear-gradient(135deg, #faf089 0%, #f6e05e 100%);
+            color: #744210;
+        }
+        
+        .deliverable-tag {
+            background: linear-gradient(135deg, #9f7aea 0%, #667eea 100%);
+            color: white;
+        }
+        
+        /* Section-specific colors */
+        .section:nth-child(1) { --section-color: #9f7aea; }
+        .section:nth-child(2) { --section-color: #ed8936; }
+        .section:nth-child(3) { --section-color: #38b2ac; }
+        .section:nth-child(4) { --section-color: #4299e1; }
+        .section:nth-child(5) { --section-color: #48bb78; }
+        .section:nth-child(6) { --section-color: #ed64a6; }
+        .section:nth-child(7) { --section-color: #667eea; }
+        .section:nth-child(8) { --section-color: #f56565; }
+        .section:nth-child(9) { --section-color: #38a169; }
+        .section:nth-child(10) { --section-color: #d69e2e; }
+        
+        @media (max-width: 768px) {
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI & Automation: Make It Painless</h1>
+            <p>Comprehensive guide to AI tools and automation strategies for SDLC workflows</p>
+        </div>
+        
+        <div class="workflow">
+            <!-- AI & Automation: Make It Painless -->
+            <div class="section">
+                <div class="section-number">1</div>
+                <div class="section-title">🤖 AI & Automation: Make It Painless</div>
+
+        <div class="category">
+            <div class="category-name">Where it helps:</div>
+            <span class="item automation-item">Draft ticket titles & descriptions from chat threads or emails</span>
+            <span class="item automation-item">Generate acceptance criteria from Figma frames and comments</span>
+            <span class="item automation-item">Auto-triage by component, severity, requester, and SLA</span>
+            <span class="item automation-item">Detect duplicates, merge, or cross-link related tickets</span>
+            <span class="item automation-item">Suggest estimates from historical velocity and change size</span>
+            <span class="item automation-item">Auto-assign to the right squad based on ownership rules</span>
+            <span class="item automation-item">Spin up checklists: DoR/DoD, security, accessibility</span>
+            <span class="item automation-item">Create draft test cases, edge cases, and risk notes</span>
+            <span class="item automation-item">Update status from PRs, builds, and deployments</span>
+        </div>
+
+        <div class="category">
+            <div class="category-name">Best-in-class tools (Free tiers):</div>
+            <span class="item tool-item">n8n (self-hosted workflows)</span>
+            <span class="item tool-item">Pipedream (event-driven automations)</span>
+            <span class="item tool-item">GitHub Actions + Dependabot</span>
+            <span class="item tool-item">Renovate (dependency updates)</span>
+            <span class="item tool-item">Playwright / Cypress (test automation)</span>
+            <span class="item tool-item">SonarCloud (analysis, free for OSS)</span>
+            <span class="item tool-item">Flagsmith (feature flags, OSS)</span>
+            <span class="item tool-item">Sentry (error monitoring, free tier)</span>
+        </div>
+
+        <div class="category">
+            <div class="category-name">Best-in-class tools (Paid / subscription):</div>
+            <span class="item tool-item">Jira Service Management + Automation</span>
+            <span class="item tool-item">Linear (rules, SLAs, fast triage)</span>
+            <span class="item tool-item">GitHub Copilot / CodeQL / Advanced Security</span>
+            <span class="item tool-item">Make / Zapier (integrations at scale)</span>
+            <span class="item tool-item">LaunchDarkly / Split (feature flags)</span>
+            <span class="item tool-item">Datadog / New Relic (observability)</span>
+            <span class="item tool-item">Percy / Chromatic (visual regression)</span>
+            <span class="item tool-item">ScriptRunner / JMWE for Jira (power automations)</span>
+            <span class="item tool-item">Microsoft Copilot for 365 (intake from docs/mail)</span>
+        </div>
+
+        <div class="category">
+            <div class="category-name">New ideas to consider (doesn’t exist... yet):</div>
+            <span class="item ai-tool">AC Judge: scores acceptance criteria quality and suggests improvements</span>
+            <span class="item ai-tool">ScopeDiff: compares Figma vs ticket scope to flag gaps or creep</span>
+            <span class="item ai-tool">Triage Tetris: auto-batches small issues into one composite ticket</span>
+            <span class="item ai-tool">GroomRoomba: cleans stale tickets, bumps owners, closes zombies</span>
+            <span class="item ai-tool">RetroLens: mines sprint notes and incidents to propose templates/rules</span>
+            <span class="item ai-tool">EnvOrchestrator: spins ephemeral test envs from ticket labels</span>
+            <span class="item ai-tool">FlakyFixer: detects flaky tests and submits PRs with quarantines</span>
+        </div>
+
+        <div class="category">
+            <div class="category-name">Guardrails (so automation doesn’t go feral):</div>
+            <span class="item blocker-item">Human-in-the-loop approvals for priority, scope, or assignment</span>
+            <span class="item blocker-item">Audit trail on every automated field change</span>
+            <span class="item blocker-item">Rate limits and blast-radius caps per rule</span>
+            <span class="item blocker-item">Sandbox rules before prod; timeboxed trials</span>
+            <span class="item blocker-item">Opt-out labels for sensitive tickets</span>
+        </div>
+
+        <div class="category">
+            <div class="category-name">Quick wins to enable today:</div>
+            <span class="item deliverable-tag">Issue templates with AC placeholders</span>
+            <span class="item deliverable-tag">Auto-label by component from title keywords</span>
+            <span class="item deliverable-tag">Link Figma frames via URL parse and validate</span>
+            <span class="item deliverable-tag">Duplicate detector on create/update</span>
+            <span class="item deliverable-tag">SLA timers + Slack nudges for stale tickets</span>
+            <span class="item deliverable-tag">Status sync from PR checks and deployments</span>
+        </div>
+    </div>
+            <!-- AI & Automation: Make It Painless (phase-mapped) -->
+            <div class="section">
+                <div class="section-number">2</div>
+                <div class="section-title">🔄 AI & Automation: Phase-Mapped Tools</div>
+
+        <div class="category">
+            <div class="category-name">Where it helps:</div>
+            <span class="item automation-item">Draft ticket titles & descriptions from chat threads or emails</span>
+            <span class="item automation-item">Generate acceptance criteria from Figma frames and comments</span>
+            <span class="item automation-item">Auto-triage by component, severity, requester, and SLA</span>
+            <span class="item automation-item">Detect duplicates, merge, or cross-link related tickets</span>
+            <span class="item automation-item">Suggest estimates from historical velocity and change size</span>
+            <span class="item automation-item">Auto-assign to the right squad based on ownership rules</span>
+            <span class="item automation-item">Spin up checklists: DoR/DoD, security, accessibility</span>
+            <span class="item automation-item">Create draft test cases, edge cases, and risk notes</span>
+            <span class="item automation-item">Update status from PRs, builds, and deployments</span>
+        </div>
+
+        <!-- Phase mapping: tools placed where they fit best -->
+        <div class="category">
+            <div class="category-name">Phase mapping:</div>
+
+            <!-- 1. Discovery / 2. Requirements (already exist in file) -->
+            <div class="category-name">1–2 Discovery & Requirements</div>
+            <span class="item ai-tool">ChatGPT/Claude</span>
+            <span class="item ai-tool">Notion AI</span>
+            <span class="item ai-tool">ClickUp Brain</span>
+            <span class="item tool-item">Miro</span>
+            <span class="item tool-item">Confluence</span>
+            <span class="item tool-item">Issue Templates</span>
+            <span class="item tool-item">Service Desk Portal</span>
+            <span class="item tool-item">n8n</span>
+            <span class="item tool-item">Pipedream</span>
+
+            <!-- 3. Solutions -->
+            <div class="category-name">3 Solutions</div>
+            <span class="item ai-tool">Claude/ChatGPT</span>
+            <span class="item ai-tool">GitHub Copilot</span>
+            <span class="item ai-tool">Codeium</span>
+            <span class="item tool-item">Lucidchart</span>
+            <span class="item tool-item">Draw.io</span>
+            <span class="item tool-item">Miro</span>
+
+            <!-- 4. Figma Design -->
+            <div class="category-name">4 Figma Design</div>
+            <span class="item ai-tool">Figma AI</span>
+            <span class="item ai-tool">Uizard</span>
+            <span class="item ai-tool">Galileo AI</span>
+            <span class="item ai-tool">Midjourney</span>
+            <span class="item tool-item">Framer</span>
+
+            <!-- 5. Ticket Creation (this phase) -->
+            <div class="category-name">5 Ticket Creation</div>
+            <span class="item tool-item">Jira Service Management + Automation</span>
+            <span class="item tool-item">Linear</span>
+            <span class="item tool-item">GitHub Issues</span>
+            <span class="item tool-item">Azure Boards</span>
+            <span class="item tool-item">n8n</span>
+            <span class="item tool-item">Zapier</span>
+            <span class="item tool-item">Pipedream</span>
+            <span class="item tool-item">Microsoft Copilot for 365</span>
+
+            <!-- 6. Development -->
+            <div class="category-name">6 Development</div>
+            <span class="item tool-item">GitHub Actions</span>
+            <span class="item tool-item">GitLab CI/CD</span>
+            <span class="item tool-item">Jenkins</span>
+            <span class="item tool-item">Renovate</span>
+            <span class="item tool-item">Dependabot</span>
+            <span class="item ai-tool">GitHub Copilot</span>
+            <span class="item tool-item">Feature flags: Flagsmith</span>
+            <span class="item tool-item">LaunchDarkly</span>
+            <span class="item tool-item">Split</span>
+
+            <!-- 7. Code Review -->
+            <div class="category-name">7 Code Review</div>
+            <span class="item ai-tool">CodeQL</span>
+            <span class="item ai-tool">DeepCode</span>
+            <span class="item tool-item">GitHub</span>
+            <span class="item tool-item">GitLab</span>
+            <span class="item tool-item">Crucible</span>
+            <span class="item tool-item">Sentry</span>
+
+            <!-- 8. Testing -->
+            <div class="category-name">8 Testing</div>
+            <span class="item tool-item">Playwright</span>
+            <span class="item tool-item">Cypress</span>
+            <span class="item ai-tool">Testim AI</span>
+            <span class="item ai-tool">Applitools</span>
+            <span class="item ai-tool">Mabl</span>
+            <span class="item tool-item">Percy</span>
+            <span class="item tool-item">Chromatic</span>
+
+            <!-- 9–10. Release & Deployments (10 exists in file) -->
+            <div class="category-name">9 Release & 10 Deployments</div>
+            <span class="item tool-item">GitHub Actions</span>
+            <span class="item tool-item">GitLab CI/CD</span>
+            <span class="item tool-item">Jenkins</span>
+            <span class="item tool-item">ArgoCD</span>
+            <span class="item tool-item">Datadog</span>
+            <span class="item tool-item">New Relic</span>
+            <span class="item automation-item">Zero-downtime deploys</span>
+            <span class="item automation-item">Health checks & rollback triggers</span>
+            <span class="item automation-item">Release announcements</span>
+        </div>
+
+        <div class="category">
+            <div class="category-name">New ideas to consider (doesn’t exist... yet):</div>
+            <span class="item ai-tool">AC Judge: scores acceptance criteria quality and suggests improvements</span>
+            <span class="item ai-tool">ScopeDiff: compares Figma vs ticket scope to flag gaps or creep</span>
+            <span class="item ai-tool">Triage Tetris: auto-batches small issues into one composite ticket</span>
+            <span class="item ai-tool">GroomRoomba: cleans stale tickets, bumps owners, closes zombies</span>
+            <span class="item ai-tool">RetroLens: mines sprint notes and incidents to propose templates/rules</span>
+            <span class="item ai-tool">EnvOrchestrator: spins ephemeral test envs from ticket labels</span>
+            <span class="item ai-tool">FlakyFixer: detects flaky tests and submits PRs with quarantines</span>
+        </div>
+
+        <div class="category">
+            <div class="category-name">Guardrails (so automation doesn’t go feral):</div>
+            <span class="item blocker-item">Human-in-the-loop approvals for priority, scope, or assignment</span>
+            <span class="item blocker-item">Audit trail on every automated field change</span>
+            <span class="item blocker-item">Rate limits and blast-radius caps per rule</span>
+            <span class="item blocker-item">Sandbox rules before prod; timeboxed trials</span>
+            <span class="item blocker-item">Opt-out labels for sensitive tickets</span>
+        </div>
+
+        <div class="category">
+            <div class="category-name">Quick wins to enable today:</div>
+            <span class="item deliverable-tag">Issue templates with AC placeholders</span>
+            <span class="item deliverable-tag">Auto-label by component from title keywords</span>
+            <span class="item deliverable-tag">Link Figma frames via URL parse and validate</span>
+            <span class="item deliverable-tag">Duplicate detector on create/update</span>
+            <span class="item deliverable-tag">SLA timers + Slack nudges for stale tickets</span>
+            <span class="item deliverable-tag">Status sync from PR checks and deployments</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

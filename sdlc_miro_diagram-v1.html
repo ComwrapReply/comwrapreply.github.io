@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDLC Complete Workflow Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            position: relative;
+        }
+        
+        .phase {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--phase-color);
+        }
+        
+        .phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+            border-color: var(--phase-color);
+        }
+        
+        .phase-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .phase-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+            padding-right: 40px;
+        }
+        
+        .phase-description {
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .user-story {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 12px;
+            border-left: 4px solid black;
+            margin-bottom: 15px;
+        }
+        
+        .user-story-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 6px;
+            font-size: 1rem;
+        }
+        
+        .user-story-text {
+            color: #4a5568;
+            font-style: italic;
+            font-size: 1rem;
+        }
+        
+        .section {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .category {
+            margin-bottom: 8px;
+        }
+        
+        .category-name {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        
+        .item {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin: 3px 6px 8px 0px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .deliverable-tag {
+            background: black;
+            color: white;
+        }
+        
+        .tool-item {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .tool-item:hover {
+            background: black;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .ai-tool {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+        }
+        
+        .conductor-item {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border: 1px solid #81e6d9;
+            color: #234e52;
+        }
+        
+        .pain-point-item {
+            background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+            color: #742a2a;
+        }
+        
+        .blocker-item {
+            background: linear-gradient(135deg, #faf089 0%, #f6e05e 100%);
+            color: #744210;
+        }
+        
+        .automation-item {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+        }
+        
+        .challenge-category-name {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Interactive elements */
+        .add-item-container {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .add-item-input {
+            flex: 1;
+            min-width: 120px;
+            padding: 6px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        .add-item-input:focus {
+            outline: none;
+            border-color: var(--phase-color);
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+        
+        .add-item-btn {
+            padding: 6px 12px;
+            background: var(--phase-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            margin-left: 4px;
+        }
+        
+        .add-item-btn:hover {
+            background: var(--phase-color);
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        .add-item-btn:active {
+            transform: translateY(0);
+        }
+        
+        .item-remove {
+            margin-left: 4px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+            font-size: 1rem;
+        }
+        
+        .item-remove:hover {
+            opacity: 1;
+        }
+        
+        .category-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            margin-bottom: 8px;
+        }
+        
+        .category-name {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        
+        .category-name .add-item-btn {
+            padding: 4px 8px;
+            font-size: 0.6rem;
+            background: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .category-name .add-item-btn:hover {
+            background: var(--phase-color);
+            color: white;
+            border-color: var(--phase-color);
+        }
+        
+        /* Phase-specific colors */
+        .phase:nth-child(1) { --phase-color: #9f7aea; }
+        .phase:nth-child(2) { --phase-color: #ed8936; }
+        .phase:nth-child(3) { --phase-color: #38b2ac; }
+        .phase:nth-child(4) { --phase-color: #4299e1; }
+        .phase:nth-child(5) { --phase-color: #48bb78; }
+        .phase:nth-child(6) { --phase-color: #ed64a6; }
+        .phase:nth-child(7) { --phase-color: #667eea; }
+        .phase:nth-child(8) { --phase-color: #f56565; }
+        .phase:nth-child(9) { --phase-color: #38a169; }
+        .phase:nth-child(10) { --phase-color: #d69e2e; }
+        .phase:nth-child(11) { --phase-color: #805ad5; }
+        
+        @media (max-width: 768px) {
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .phase {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Complete SDLC Workflow Guide</h1>
+            <p>Comprehensive guide with tools, conductors, and workflow optimizations</p>
+        </div>
+        
+        <div class="workflow">
+            <!-- Phase 1: Discovery & Planning -->
+            <div class="phase">
+                <div class="phase-number">1</div>
+                <h3 class="phase-title">Discovery & Planning</h3>
+                <p class="phase-description">
+                    Initial phase where we identify business needs, understand the problem space, and create a strategic roadmap for the project.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a product manager, I want to conduct discovery sessions so that we can understand user needs and define clear project objectives."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Project Charter</span>
+                    <span class="item deliverable-tag">Stakeholder Map</span>
+                    <span class="item deliverable-tag">Timeline</span>
+                    <span class="item deliverable-tag">Budget</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">AI Planning:</div>
+                        <span class="item ai-tool">ChatGPT/Claude</span>
+                        <span class="item ai-tool">ClickUp Brain</span>
+                        <span class="item ai-tool">Notion AI</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Project Management:</div>
+                        <span class="item tool-item">Linear</span>
+                        <span class="item tool-item">Monday.com</span>
+                        <span class="item tool-item">Asana</span>
+                        <span class="item tool-item">Jira</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">Product Manager</span>
+                        <span class="item conductor-item">Stakeholders</span>
+                        <span class="item conductor-item">Business Analyst</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Discovery workshops</span>
+                        <span class="item conductor-item">Stakeholder emails</span>
+                        <span class="item conductor-item">User interviews</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Unclear requirements</span>
+                        <span class="item pain-point-item">Conflicting opinions</span>
+                        <span class="item pain-point-item">Scope creep</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Missing approvals</span>
+                        <span class="item blocker-item">Budget uncertainty</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Meeting scheduling</span>
+                        <span class="item automation-item">Follow-up emails</span>
+                        <span class="item automation-item">Note transcription</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 2: Requirements -->
+            <div class="phase">
+                <div class="phase-number">2</div>
+                <h3 class="phase-title">Requirements</h3>
+                <p class="phase-description">
+                    Detailed gathering and documentation of functional and non-functional requirements, acceptance criteria, and success metrics.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a business analyst, I want to document detailed requirements so that developers understand exactly what needs to be built."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Requirements Document</span>
+                    <span class="item deliverable-tag">User Stories</span>
+                    <span class="item deliverable-tag">Acceptance Criteria</span>
+                    <span class="item deliverable-tag">API Specifications</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">AI Writing:</div>
+                        <span class="item ai-tool">Notion AI</span>
+                        <span class="item ai-tool">Grammarly</span>
+                        <span class="item ai-tool">Jasper AI</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Documentation:</div>
+                        <span class="item tool-item">Confluence</span>
+                        <span class="item tool-item">GitBook</span>
+                        <span class="item tool-item">Slite</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">Business Analyst</span>
+                        <span class="item conductor-item">Product Owner</span>
+                        <span class="item conductor-item">SMEs</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Requirement sessions</span>
+                        <span class="item conductor-item">Document reviews</span>
+                        <span class="item conductor-item">Clarification calls</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Ambiguous requirements</span>
+                        <span class="item pain-point-item">Changing priorities</span>
+                        <span class="item pain-point-item">Missing details</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Unavailable SMEs</span>
+                        <span class="item blocker-item">Conflicting business rules</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Document formatting</span>
+                        <span class="item automation-item">Story creation</span>
+                        <span class="item automation-item">Requirement tracing</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 3: Solutions -->
+            <div class="phase">
+                <div class="phase-number">3</div>
+                <h3 class="phase-title">Solutions</h3>
+                <p class="phase-description">
+                    Technical solution design including system architecture, technology stack selection, and implementation approach planning.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a solution architect, I want to design the technical architecture so that the development team has a clear implementation roadmap."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Architecture Diagram</span>
+                    <span class="item deliverable-tag">Tech Stack</span>
+                    <span class="item deliverable-tag">Database Design</span>
+                    <span class="item deliverable-tag">Integration Plan</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">AI Architecture:</div>
+                        <span class="item ai-tool">Claude/ChatGPT</span>
+                        <span class="item ai-tool">GitHub Copilot</span>
+                        <span class="item ai-tool">Codeium</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Design Tools:</div>
+                        <span class="item tool-item">Lucidchart</span>
+                        <span class="item tool-item">Draw.io</span>
+                        <span class="item tool-item">Miro</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">Solution Architect</span>
+                        <span class="item conductor-item">Tech Lead</span>
+                        <span class="item conductor-item">DevOps Engineer</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Architecture reviews</span>
+                        <span class="item conductor-item">Tech discussions</span>
+                        <span class="item conductor-item">Design sessions</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Over-engineering</span>
+                        <span class="item pain-point-item">Technology debates</span>
+                        <span class="item pain-point-item">Scalability concerns</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Infrastructure constraints</span>
+                        <span class="item blocker-item">Budget limitations</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Diagram generation</span>
+                        <span class="item automation-item">Code scaffolding</span>
+                        <span class="item automation-item">Documentation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 4: Figma Design -->
+            <div class="phase">
+                <div class="phase-number">4</div>
+                <h3 class="phase-title">Figma Design</h3>
+                <p class="phase-description">
+                    UI/UX design phase where user interfaces are designed, prototyped, and validated before development begins.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a UX designer, I want to create interactive prototypes so that stakeholders can validate the user experience before development."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Wireframes</span>
+                    <span class="item deliverable-tag">High-fidelity Mockups</span>
+                    <span class="item deliverable-tag">Interactive Prototypes</span>
+                    <span class="item deliverable-tag">Design System</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">AI Design:</div>
+                        <span class="item ai-tool">Figma AI</span>
+                        <span class="item ai-tool">Uizard</span>
+                        <span class="item ai-tool">Galileo AI</span>
+                        <span class="item ai-tool">Midjourney</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Design Tools:</div>
+                        <span class="item tool-item">Figma</span>
+                        <span class="item tool-item">Sketch</span>
+                        <span class="item tool-item">Framer</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">UX Designer</span>
+                        <span class="item conductor-item">UI Designer</span>
+                        <span class="item conductor-item">Product Manager</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Design reviews</span>
+                        <span class="item conductor-item">User testing</span>
+                        <span class="item conductor-item">Prototype demos</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Endless revisions</span>
+                        <span class="item pain-point-item">Pixel perfectionism</span>
+                        <span class="item pain-point-item">Conflicting feedback</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Missing content</span>
+                        <span class="item blocker-item">Brand guidelines delay</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Asset export</span>
+                        <span class="item automation-item">Design handoff</span>
+                        <span class="item automation-item">Version control</span>
+                    </div>
+            </div>
+        </div>
+            
+            <!-- Phase 5: Ticket Creation -->
+            <div class="phase">
+                <div class="phase-number">5</div>
+<h3 class="phase-title">Ticket Creation</h3>
+<p class="phase-description">
+    Intake and triage of work items so everything is captured, described, sized, prioritized, and linked to designs before a single line of code gets written.
+</p>
+
+<div class="user-story">
+    <div class="user-story-title">User Story:</div>
+    <div class="user-story-text">
+        "As a product owner, I want to create and triage tickets with clear acceptance criteria so the team can pick up ready work without guesswork."
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">📋 Key Deliverables</div>
+    <span class="item deliverable-tag">Intake Form (feature/bug/task)</span>
+    <span class="item deliverable-tag">Ticket with Acceptance Criteria</span>
+    <span class="item deliverable-tag">Priority & SLA</span>
+    <span class="item deliverable-tag">Definition of Ready check</span>
+    <span class="item deliverable-tag">Linked Figma/Specs</span>
+    <span class="item deliverable-tag">Estimation</span>
+    <span class="item deliverable-tag">Labels/Components</span>
+</div>
+
+<div class="section">
+    <div class="section-title">🚀 Productivity Tools</div>
+    <div class="category">
+        <div class="category-name">Ticketing:</div>
+        <span class="item tool-item">Jira</span>
+        <span class="item tool-item">Linear</span>
+        <span class="item tool-item">GitHub Issues</span>
+        <span class="item tool-item">Azure Boards</span>
+    </div>
+    <div class="category">
+        <div class="category-name">Intake & Forms:</div>
+        <span class="item tool-item">Service Desk Portal</span>
+        <span class="item tool-item">Issue Templates</span>
+        <span class="item tool-item">Email-to-ticket</span>
+        <span class="item tool-item">Slack App</span>
+    </div>
+    <div class="category">
+        <div class="category-name">Automation:</div>
+        <span class="item tool-item">Jira Automation</span>
+        <span class="item tool-item">GitHub Actions</span>
+        <span class="item tool-item">n8n</span>
+        <span class="item tool-item">Zapier</span>
+    </div>
+    <div class="category">
+        <div class="category-name">AI Assist:</div>
+        <span class="item ai-tool">AI ticket drafts</span>
+        <span class="item ai-tool">AC generation</span>
+        <span class="item ai-tool">Duplicate detection</span>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">🎭 Phase Conductors</div>
+    <div class="category">
+        <div class="category-name">Who (Roles):</div>
+        <span class="item conductor-item">Product Owner</span>
+        <span class="item conductor-item">Business Analyst</span>
+        <span class="item conductor-item">Tech Lead</span>
+        <span class="item conductor-item">QA</span>
+        <span class="item conductor-item">UX/UI Designer</span>
+    </div>
+    <div class="category">
+        <div class="category-name">How (Channels):</div>
+        <span class="item conductor-item">Backlog triage</span>
+        <span class="item conductor-item">Refinement sessions</span>
+        <span class="item conductor-item">Service desk intake</span>
+        <span class="item conductor-item">Slack notifications</span>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">⚡ Workflow Challenges</div>
+    <div class="category">
+        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+        <span class="item pain-point-item">Vague descriptions</span>
+        <span class="item pain-point-item">Missing acceptance criteria</span>
+        <span class="item pain-point-item">Duplicate tickets</span>
+        <span class="item pain-point-item">Priority churn</span>
+    </div>
+    <div class="category">
+        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+        <span class="item blocker-item">No owner/requester</span>
+        <span class="item blocker-item">No Figma/spec link</span>
+        <span class="item blocker-item">Permission limits</span>
+        <span class="item blocker-item">Unclear scope</span>
+    </div>
+    <div class="category">
+        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+        <span class="item automation-item">Template enforcement</span>
+        <span class="item automation-item">Auto-label by component</span>
+        <span class="item automation-item">Auto-link Figma/MR</span>
+        <span class="item automation-item">SLA timers & alerts</span>
+        <span class="item automation-item">Assign by team rules</span>
+    </div>
+</div>
+</div>
+
+            
+            <!-- Phase 6: Coding -->
+            <div class="phase">
+                <div class="phase-number">6</div>
+                <h3 class="phase-title">Coding</h3>
+                <p class="phase-description">
+                    Development phase where developers write code according to specifications, implement features, and build the application.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a developer, I want to implement the designed features so that users can interact with the application as specified."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Source Code</span>
+                    <span class="item deliverable-tag">Unit Tests</span>
+                    <span class="item deliverable-tag">Code Documentation</span>
+                    <span class="item deliverable-tag">Feature Implementation</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">AI Coding:</div>
+                        <span class="item ai-tool">GitHub Copilot</span>
+                        <span class="item ai-tool">Cursor Pro</span>
+                        <span class="item ai-tool">Codeium</span>
+                        <span class="item ai-tool">Tabnine</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">IDEs & Editors:</div>
+                        <span class="item tool-item">VS Code</span>
+                        <span class="item tool-item">JetBrains IDEs</span>
+                        <span class="item tool-item">Cursor</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">Senior Developer</span>
+                        <span class="item conductor-item">Frontend Developer</span>
+                        <span class="item conductor-item">Backend Developer</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Daily standups</span>
+                        <span class="item conductor-item">Code reviews</span>
+                        <span class="item conductor-item">Pair programming</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Context switching</span>
+                        <span class="item pain-point-item">Technical debt</span>
+                        <span class="item pain-point-item">Unclear specs</span>
+                        <span class="item pain-point-item">Bug fixing cycles</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">API dependencies</span>
+                        <span class="item blocker-item">Environment issues</span>
+                        <span class="item blocker-item">Missing libraries</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Code formatting</span>
+                        <span class="item automation-item">Test running</span>
+                        <span class="item automation-item">Documentation generation</span>
+                        <span class="item automation-item">Boilerplate code</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 7: Create MR -->
+            <div class="phase">
+                <div class="phase-number">7</div>
+                <h3 class="phase-title">Create MR</h3>
+                <p class="phase-description">
+                    Developers create Merge Requests (Pull Requests) to propose code changes, including detailed descriptions and testing notes.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a developer, I want to create a detailed merge request so that my code changes can be properly reviewed and integrated."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">MR Description</span>
+                    <span class="item deliverable-tag">Code Changes</span>
+                    <span class="item deliverable-tag">Testing Notes</span>
+                    <span class="item deliverable-tag">Screenshots</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">AI Assistance:</div>
+                        <span class="item ai-tool">GitHub Copilot</span>
+                        <span class="item ai-tool">Claude/ChatGPT</span>
+                        <span class="item ai-tool">PR Description AI</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Version Control:</div>
+                        <span class="item tool-item">GitHub</span>
+                        <span class="item tool-item">GitLab</span>
+                        <span class="item tool-item">Bitbucket</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">Developer</span>
+                        <span class="item conductor-item">Feature Lead</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Git commits</span>
+                        <span class="item conductor-item">MR templates</span>
+                        <span class="item conductor-item">Slack notifications</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Poor descriptions</span>
+                        <span class="item pain-point-item">Large changesets</span>
+                        <span class="item pain-point-item">Missing context</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Merge conflicts</span>
+                        <span class="item blocker-item">Failing tests</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">PR descriptions</span>
+                        <span class="item automation-item">Changelog generation</span>
+                        <span class="item automation-item">Reviewer assignment</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 8: Review MRs -->
+            <div class="phase">
+                <div class="phase-number">8</div>
+                <h3 class="phase-title">Review MRs</h3>
+                <p class="phase-description">
+                    Code review process where team members examine code changes for quality, security, performance, and adherence to standards.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a senior developer, I want to review merge requests so that code quality and standards are maintained across the project."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Code Review Comments</span>
+                    <span class="item deliverable-tag">Approval/Rejection</span>
+                    <span class="item deliverable-tag">Improvement Suggestions</span>
+                    <span class="item deliverable-tag">Security Check</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">AI Review:</div>
+                        <span class="item ai-tool">CodeRabbit</span>
+                        <span class="item ai-tool">SonarQube AI</span>
+                        <span class="item ai-tool">DeepCode</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Review Tools:</div>
+                        <span class="item tool-item">GitHub</span>
+                        <span class="item tool-item">GitLab</span>
+                        <span class="item tool-item">Crucible</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">Senior Developer</span>
+                        <span class="item conductor-item">Tech Lead</span>
+                        <span class="item conductor-item">Code Reviewer</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Code review sessions</span>
+                        <span class="item conductor-item">Review comments</span>
+                        <span class="item conductor-item">Approval workflows</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Review bottlenecks</span>
+                        <span class="item pain-point-item">Nitpicky comments</span>
+                        <span class="item pain-point-item">Delayed feedback</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Reviewer unavailable</span>
+                        <span class="item blocker-item">Complex changes</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Code quality checks</span>
+                        <span class="item automation-item">Security scanning</span>
+                        <span class="item automation-item">Style enforcement</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 9: Merge MRs -->
+            <div class="phase">
+                <div class="phase-number">9</div>
+                <h3 class="phase-title">Merge MRs</h3>
+                <p class="phase-description">
+                    Approved code changes are merged into the main branch, integrating new features or fixes into the main codebase.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a project lead, I want to merge approved changes so that new features are integrated into the main application."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Merged Code</span>
+                    <span class="item deliverable-tag">Updated Main Branch</span>
+                    <span class="item deliverable-tag">Merge Conflicts Resolution</span>
+                    <span class="item deliverable-tag">CI/CD Triggers</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">Merge Tools:</div>
+                        <span class="item tool-item">GitHub</span>
+                        <span class="item tool-item">GitLab</span>
+                        <span class="item tool-item">Git CLI</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Automation:</div>
+                        <span class="item tool-item">GitHub Actions</span>
+                        <span class="item tool-item">GitLab CI</span>
+                        <span class="item tool-item">Jenkins</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">Tech Lead</span>
+                        <span class="item conductor-item">Release Manager</span>
+                        <span class="item conductor-item">DevOps Engineer</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Merge strategies</span>
+                        <span class="item conductor-item">Automated pipelines</span>
+                        <span class="item conductor-item">Release notifications</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Merge conflicts</span>
+                        <span class="item pain-point-item">Breaking changes</span>
+                        <span class="item pain-point-item">Integration issues</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Failed CI checks</span>
+                        <span class="item blocker-item">Permission issues</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Merge execution</span>
+                        <span class="item automation-item">Conflict detection</span>
+                        <span class="item automation-item">Branch cleanup</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 10: Testing -->
+            <div class="phase">
+                <div class="phase-number">10</div>
+                <h3 class="phase-title">Testing</h3>
+                <p class="phase-description">
+                    Comprehensive testing phase including unit, integration, and user acceptance testing to ensure quality and functionality.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a QA engineer, I want to thoroughly test the application so that bugs are identified and fixed before deployment."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Test Cases</span>
+                    <span class="item deliverable-tag">Bug Reports</span>
+                    <span class="item deliverable-tag">Test Results</span>
+                    <span class="item deliverable-tag">UAT Sign-off</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">AI Testing:</div>
+                        <span class="item ai-tool">Testim AI</span>
+                        <span class="item ai-tool">Applitools</span>
+                        <span class="item ai-tool">Mabl</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Testing Tools:</div>
+                        <span class="item tool-item">Cypress</span>
+                        <span class="item tool-item">Selenium</span>
+                        <span class="item tool-item">Jest</span>
+                        <span class="item tool-item">Postman</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">QA Engineer</span>
+                        <span class="item conductor-item">Test Automation Engineer</span>
+                        <span class="item conductor-item">Business Analyst</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Test execution</span>
+                        <span class="item conductor-item">Bug tracking</span>
+                        <span class="item conductor-item">UAT sessions</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Flaky tests</span>
+                        <span class="item pain-point-item">Environment instability</span>
+                        <span class="item pain-point-item">Test data management</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Environment downtime</span>
+                        <span class="item blocker-item">Missing test data</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Test execution</span>
+                        <span class="item automation-item">Report generation</span>
+                        <span class="item automation-item">Test data creation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 11: Deployments -->
+            <div class="phase">
+                <div class="phase-number">11</div>
+                <h3 class="phase-title">Deployments</h3>
+                <p class="phase-description">
+                    Final phase where the tested application is deployed to production environments and made available to end users.
+                </p>
+                <div class="user-story">
+                    <div class="user-story-title">User Story:</div>
+                    <div class="user-story-text">
+                        "As a DevOps engineer, I want to deploy the application to production so that users can access the new features and functionality."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📋 Key Deliverables</div>
+                    <span class="item deliverable-tag">Production Release</span>
+                    <span class="item deliverable-tag">Deployment Scripts</span>
+                    <span class="item deliverable-tag">Monitoring Setup</span>
+                    <span class="item deliverable-tag">Rollback Plan</span>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🚀 Productivity Tools</div>
+                    <div class="category">
+                        <div class="category-name">Deployment:</div>
+                        <span class="item tool-item">GitHub Actions</span>
+                        <span class="item tool-item">GitLab CI/CD</span>
+                        <span class="item tool-item">Jenkins</span>
+                        <span class="item tool-item">ArgoCD</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">Infrastructure:</div>
+                        <span class="item tool-item">Kubernetes</span>
+                        <span class="item tool-item">Docker</span>
+                        <span class="item tool-item">Terraform</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎭 Phase Conductors</div>
+                    <div class="category">
+                        <div class="category-name">Who (Roles):</div>
+                        <span class="item conductor-item">DevOps Engineer</span>
+                        <span class="item conductor-item">Release Manager</span>
+                        <span class="item conductor-item">Site Reliability Engineer</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name">How (Channels):</div>
+                        <span class="item conductor-item">Deployment pipelines</span>
+                        <span class="item conductor-item">Release notifications</span>
+                        <span class="item conductor-item">Monitoring alerts</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">⚡ Workflow Challenges</div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚨 Pain Points:</div>
+                        <span class="item pain-point-item">Deployment failures</span>
+                        <span class="item pain-point-item">Downtime windows</span>
+                        <span class="item pain-point-item">Configuration drift</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🚧 Blockers:</div>
+                        <span class="item blocker-item">Environment issues</span>
+                        <span class="item blocker-item">Permission problems</span>
+                        <span class="item blocker-item">Resource constraints</span>
+                    </div>
+                    <div class="category">
+                        <div class="category-name challenge-category-name">🤖 Automate This:</div>
+                        <span class="item automation-item">Zero-downtime deployments</span>
+                        <span class="item automation-item">Health checks</span>
+                        <span class="item automation-item">Rollback triggers</span>
+                        <span class="item automation-item">Release announcements</span>
+                    </div>
+                </div>
+                </div>
+                    </div>
+                </div>
+                
+
+        <!-- AI & Automation: Make It Painless -->
+                <div class="section">
+        <div class="section-title">🤖 AI & Automation: Make It Painless</div>
+
+                    <div class="category">
+            <div class="category-name">Where it helps:</div>
+            <span class="item automation-item">Draft ticket titles & descriptions from chat threads or emails</span>
+            <span class="item automation-item">Generate acceptance criteria from Figma frames and comments</span>
+            <span class="item automation-item">Auto-triage by component, severity, requester, and SLA</span>
+            <span class="item automation-item">Detect duplicates, merge, or cross-link related tickets</span>
+            <span class="item automation-item">Suggest estimates from historical velocity and change size</span>
+            <span class="item automation-item">Auto-assign to the right squad based on ownership rules</span>
+            <span class="item automation-item">Spin up checklists: DoR/DoD, security, accessibility</span>
+            <span class="item automation-item">Create draft test cases, edge cases, and risk notes</span>
+            <span class="item automation-item">Update status from PRs, builds, and deployments</span>
+                    </div>
+
+                    <div class="category">
+            <div class="category-name">Best-in-class tools (Free tiers):</div>
+            <span class="item tool-item">n8n (self-hosted workflows)</span>
+            <span class="item tool-item">Pipedream (event-driven automations)</span>
+            <span class="item tool-item">GitHub Actions + Dependabot</span>
+            <span class="item tool-item">Renovate (dependency updates)</span>
+            <span class="item tool-item">Playwright / Cypress (test automation)</span>
+            <span class="item tool-item">SonarCloud (analysis, free for OSS)</span>
+            <span class="item tool-item">Flagsmith (feature flags, OSS)</span>
+            <span class="item tool-item">Sentry (error monitoring, free tier)</span>
+                </div>
+                
+                    <div class="category">
+            <div class="category-name">Best-in-class tools (Paid / subscription):</div>
+            <span class="item tool-item">Jira Service Management + Automation</span>
+            <span class="item tool-item">Linear (rules, SLAs, fast triage)</span>
+            <span class="item tool-item">GitHub Copilot / CodeQL / Advanced Security</span>
+            <span class="item tool-item">Make / Zapier (integrations at scale)</span>
+            <span class="item tool-item">LaunchDarkly / Split (feature flags)</span>
+            <span class="item tool-item">Datadog / New Relic (observability)</span>
+            <span class="item tool-item">Percy / Chromatic (visual regression)</span>
+            <span class="item tool-item">ScriptRunner / JMWE for Jira (power automations)</span>
+            <span class="item tool-item">Microsoft Copilot for 365 (intake from docs/mail)</span>
+                    </div>
+
+                    <div class="category">
+            <div class="category-name">New ideas to consider (doesn’t exist... yet):</div>
+            <span class="item ai-tool">AC Judge: scores acceptance criteria quality and suggests improvements</span>
+            <span class="item ai-tool">ScopeDiff: compares Figma vs ticket scope to flag gaps or creep</span>
+            <span class="item ai-tool">Triage Tetris: auto-batches small issues into one composite ticket</span>
+            <span class="item ai-tool">GroomRoomba: cleans stale tickets, bumps owners, closes zombies</span>
+            <span class="item ai-tool">RetroLens: mines sprint notes and incidents to propose templates/rules</span>
+            <span class="item ai-tool">EnvOrchestrator: spins ephemeral test envs from ticket labels</span>
+            <span class="item ai-tool">FlakyFixer: detects flaky tests and submits PRs with quarantines</span>
+                    </div>
+
+                    <div class="category">
+            <div class="category-name">Guardrails (so automation doesn’t go feral):</div>
+            <span class="item blocker-item">Human-in-the-loop approvals for priority, scope, or assignment</span>
+            <span class="item blocker-item">Audit trail on every automated field change</span>
+            <span class="item blocker-item">Rate limits and blast-radius caps per rule</span>
+            <span class="item blocker-item">Sandbox rules before prod; timeboxed trials</span>
+            <span class="item blocker-item">Opt-out labels for sensitive tickets</span>
+            </div>
+            
+        <div class="category">
+            <div class="category-name">Quick wins to enable today:</div>
+            <span class="item deliverable-tag">Issue templates with AC placeholders</span>
+            <span class="item deliverable-tag">Auto-label by component from title keywords</span>
+            <span class="item deliverable-tag">Link Figma frames via URL parse and validate</span>
+            <span class="item deliverable-tag">Duplicate detector on create/update</span>
+            <span class="item deliverable-tag">SLA timers + Slack nudges for stale tickets</span>
+            <span class="item deliverable-tag">Status sync from PR checks and deployments</span>
+                    </div>
+                </div>
+                
+    
+    <script>
+        // Initialize interactive features when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeInteractiveFeatures();
+            loadAutoSave();
+        });
+
+        function initializeInteractiveFeatures() {
+            // Add interactive functionality to all categories
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(category => {
+                addInteractiveFeatures(category);
+            });
+        }
+
+        function addInteractiveFeatures(category) {
+            const categoryName = category.querySelector('.category-name');
+            if (!categoryName) return;
+
+            // Create add button
+            const addBtn = document.createElement('button');
+            addBtn.className = 'add-item-btn';
+            addBtn.textContent = '+ Add';
+            addBtn.onclick = () => toggleAddInput(category);
+
+            // Add button to category name
+            categoryName.appendChild(addBtn);
+
+            // Create input container (initially hidden)
+            const inputContainer = document.createElement('div');
+            inputContainer.className = 'add-item-container';
+            inputContainer.style.display = 'none';
+
+            const input = document.createElement('input');
+            input.className = 'add-item-input';
+            input.placeholder = 'Enter new item...';
+            input.onkeypress = (e) => {
+                if (e.key === 'Enter') {
+                    addNewItem(category, input.value.trim());
+                    input.value = '';
+                    toggleAddInput(category);
+                }
+            };
+
+            const addItemBtn = document.createElement('button');
+            addItemBtn.className = 'add-item-btn';
+            addItemBtn.textContent = 'Add';
+            addItemBtn.onclick = () => {
+                addNewItem(category, input.value.trim());
+                input.value = '';
+                toggleAddInput(category);
+            };
+
+            const cancelBtn = document.createElement('button');
+            cancelBtn.className = 'add-item-btn';
+            cancelBtn.textContent = 'Cancel';
+            cancelBtn.style.background = '#e2e8f0';
+            cancelBtn.style.color = '#4a5568';
+            cancelBtn.onclick = () => {
+                input.value = '';
+                toggleAddInput(category);
+            };
+
+            inputContainer.appendChild(input);
+            inputContainer.appendChild(addItemBtn);
+            inputContainer.appendChild(cancelBtn);
+
+            category.appendChild(inputContainer);
+
+            // Wrap existing items in a container
+            const existingItems = Array.from(category.querySelectorAll('.item'));
+            if (existingItems.length > 0) {
+                const itemsContainer = document.createElement('div');
+                itemsContainer.className = 'category-items';
+                
+                existingItems.forEach(item => {
+                    addRemoveButton(item);
+                    itemsContainer.appendChild(item);
+                });
+                
+                // Insert items container after category name
+                categoryName.insertAdjacentElement('afterend', itemsContainer);
+            }
+        }
+
+        function toggleAddInput(category) {
+            const inputContainer = category.querySelector('.add-item-container');
+            const addBtn = category.querySelector('.category-name .add-item-btn');
+            
+            if (inputContainer.style.display === 'none') {
+                inputContainer.style.display = 'flex';
+                addBtn.textContent = '− Cancel';
+                inputContainer.querySelector('input').focus();
+            } else {
+                inputContainer.style.display = 'none';
+                addBtn.textContent = '+ Add';
+            }
+        }
+
+        function addNewItem(category, text) {
+            if (!text) return;
+
+            // Determine item class based on category
+            let itemClass = 'item tool-item'; // default
+            const categoryText = category.querySelector('.category-name').textContent.toLowerCase();
+            
+            if (categoryText.includes('ai') || categoryText.includes('automation')) {
+                itemClass = 'item ai-tool';
+            } else if (categoryText.includes('pain') || categoryText.includes('pain point')) {
+                itemClass = 'item pain-point-item';
+            } else if (categoryText.includes('blocker')) {
+                itemClass = 'item blocker-item';
+            } else if (categoryText.includes('automate')) {
+                itemClass = 'item automation-item';
+            } else if (categoryText.includes('conductor') || categoryText.includes('role') || categoryText.includes('channel')) {
+                itemClass = 'item conductor-item';
+            } else if (categoryText.includes('deliverable')) {
+                itemClass = 'item deliverable-tag';
+            }
+
+            // Create new item
+            const newItem = document.createElement('span');
+            newItem.className = itemClass;
+            newItem.textContent = text;
+            addRemoveButton(newItem);
+
+            // Add to items container or create one
+            let itemsContainer = category.querySelector('.category-items');
+            if (!itemsContainer) {
+                itemsContainer = document.createElement('div');
+                itemsContainer.className = 'category-items';
+                const categoryName = category.querySelector('.category-name');
+                categoryName.insertAdjacentElement('afterend', itemsContainer);
+            }
+
+            itemsContainer.appendChild(newItem);
+
+            // Animate the new item
+            newItem.style.opacity = '0';
+            newItem.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                newItem.style.transition = 'all 0.3s ease';
+                newItem.style.opacity = '1';
+                newItem.style.transform = 'translateY(0)';
+            }, 10);
+
+            // Auto-save after adding item
+            autoSave();
+        }
+
+        function addRemoveButton(item) {
+            const removeBtn = document.createElement('span');
+            removeBtn.className = 'item-remove';
+            removeBtn.innerHTML = '×';
+            removeBtn.onclick = (e) => {
+                e.stopPropagation();
+                removeItem(item);
+            };
+            item.appendChild(removeBtn);
+        }
+
+        function removeItem(item) {
+            // Animate removal
+            item.style.transition = 'all 0.3s ease';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(-10px)';
+            
+            setTimeout(() => {
+                item.remove();
+                // Auto-save after removing item
+                autoSave();
+            }, 300);
+        }
+
+        // Auto-save functionality
+        function autoSave() {
+            // Save to localStorage for immediate persistence
+            const data = collectAllData();
+            localStorage.setItem('sdlc-auto-save', JSON.stringify(data));
+            
+            // Show subtle auto-save indicator
+            showAutoSaveIndicator();
+        }
+
+        function collectAllData() {
+            const data = {
+                metadata: {
+                    version: "1.0",
+                    lastAutoSave: new Date().toISOString(),
+                    totalPhases: 0,
+                    totalCategories: 0,
+                    totalItems: 0
+                },
+                phases: {}
+            };
+            
+            const phases = document.querySelectorAll('.phase');
+            let totalCategories = 0;
+            let totalItems = 0;
+            
+            phases.forEach((phase, phaseIndex) => {
+                const phaseTitle = phase.querySelector('.phase-title').textContent;
+                data.phases[phaseTitle] = {
+                    phaseNumber: phaseIndex + 1,
+                    categories: {}
+                };
+                
+                const categories = phase.querySelectorAll('.category');
+                categories.forEach(category => {
+                    const categoryName = category.querySelector('.category-name').textContent.replace('+ Add', '').replace('− Cancel', '').trim();
+                    const items = Array.from(category.querySelectorAll('.item')).map(item => 
+                        item.textContent.replace('×', '').trim()
+                    );
+                    
+                    data.phases[phaseTitle].categories[categoryName] = {
+                        items: items,
+                        itemCount: items.length
+                    };
+                    
+                    totalCategories++;
+                    totalItems += items.length;
+                });
+            });
+            
+            data.metadata.totalPhases = phases.length;
+            data.metadata.totalCategories = totalCategories;
+            data.metadata.totalItems = totalItems;
+            
+            return data;
+        }
+
+        function showAutoSaveIndicator() {
+            // Remove existing indicator
+            const existingIndicator = document.querySelector('.auto-save-indicator');
+            if (existingIndicator) {
+                existingIndicator.remove();
+            }
+
+            const indicator = document.createElement('div');
+            indicator.className = 'auto-save-indicator';
+            indicator.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                background: #48bb78;
+                color: white;
+                padding: 6px 12px;
+                border-radius: 4px;
+                font-size: 12px;
+                font-weight: 500;
+                z-index: 1000;
+                opacity: 0.8;
+            `;
+            indicator.textContent = '💾 Auto-saved';
+            document.body.appendChild(indicator);
+            
+            setTimeout(() => {
+                indicator.style.transition = 'opacity 0.3s ease';
+                indicator.style.opacity = '0';
+                setTimeout(() => indicator.remove(), 300);
+            }, 1500);
+        }
+
+        // Save and load functionality with JSON file storage
+        function saveData() {
+            const data = {
+                metadata: {
+                    version: "1.0",
+                    created: new Date().toISOString(),
+                    lastModified: new Date().toISOString(),
+                    totalPhases: 0,
+                    totalCategories: 0,
+                    totalItems: 0
+                },
+                phases: {}
+            };
+            
+            const phases = document.querySelectorAll('.phase');
+            let totalCategories = 0;
+            let totalItems = 0;
+            
+            phases.forEach((phase, phaseIndex) => {
+                const phaseTitle = phase.querySelector('.phase-title').textContent;
+                data.phases[phaseTitle] = {
+                    phaseNumber: phaseIndex + 1,
+                    categories: {}
+                };
+                
+                const categories = phase.querySelectorAll('.category');
+                categories.forEach(category => {
+                    const categoryName = category.querySelector('.category-name').textContent.replace('+ Add', '').replace('− Cancel', '').trim();
+                    const items = Array.from(category.querySelectorAll('.item')).map(item => 
+                        item.textContent.replace('×', '').trim()
+                    );
+                    
+                    data.phases[phaseTitle].categories[categoryName] = {
+                        items: items,
+                        itemCount: items.length
+                    };
+                    
+                    totalCategories++;
+                    totalItems += items.length;
+                });
+            });
+            
+            // Update metadata
+            data.metadata.totalPhases = phases.length;
+            data.metadata.totalCategories = totalCategories;
+            data.metadata.totalItems = totalItems;
+            
+            // Create and download JSON file
+            downloadJSONFile(data, 'sdlc-workflow-data.json');
+            showNotification('Data saved to JSON file successfully!');
+        }
+
+        function loadData() {
+            // Create file input element
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.json';
+            fileInput.style.display = 'none';
+            
+            fileInput.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        restoreDataFromJSON(data);
+                        showNotification('Data loaded from JSON file successfully!');
+                    } catch (error) {
+                        console.error('Error parsing JSON file:', error);
+                        showNotification('Error: Invalid JSON file format!', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            
+            document.body.appendChild(fileInput);
+            fileInput.click();
+            document.body.removeChild(fileInput);
+        }
+
+        function downloadJSONFile(data, filename) {
+            const jsonString = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            URL.revokeObjectURL(url);
+        }
+
+        function restoreDataFromJSON(data) {
+            // Clear existing custom items first
+            clearAllCustomItems();
+            
+            // Restore data for each phase
+            Object.keys(data.phases).forEach(phaseTitle => {
+                const phaseData = data.phases[phaseTitle];
+                const phaseElement = findPhaseByTitle(phaseTitle);
+                
+                if (phaseElement) {
+                    Object.keys(phaseData.categories).forEach(categoryName => {
+                        const categoryData = phaseData.categories[categoryName];
+                        const categoryElement = findCategoryInPhase(phaseElement, categoryName);
+                        
+                        if (categoryElement) {
+                            // Add each item to the category
+                            categoryData.items.forEach(itemText => {
+                                if (itemText && itemText.trim()) {
+                                    addNewItem(categoryElement, itemText.trim());
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        function clearAllCustomItems() {
+            // Remove all items that have remove buttons (custom items)
+            const allItems = document.querySelectorAll('.item');
+            allItems.forEach(item => {
+                if (item.querySelector('.item-remove')) {
+                    item.remove();
+                }
+            });
+        }
+
+        function findPhaseByTitle(title) {
+            const phases = document.querySelectorAll('.phase');
+            for (let phase of phases) {
+                const phaseTitle = phase.querySelector('.phase-title').textContent;
+                if (phaseTitle === title) {
+                    return phase;
+                }
+            }
+            return null;
+        }
+
+        function findCategoryInPhase(phase, categoryName) {
+            const categories = phase.querySelectorAll('.category');
+            for (let category of categories) {
+                const catName = category.querySelector('.category-name').textContent.replace('+ Add', '').replace('− Cancel', '').trim();
+                if (catName === categoryName) {
+                    return category;
+                }
+            }
+            return null;
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            const bgColor = type === 'error' ? '#f56565' : '#48bb78';
+            const icon = type === 'error' ? '❌' : '✅';
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${bgColor};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                font-size: 14px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                max-width: 300px;
+            `;
+            notification.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, type === 'error' ? 5000 : 3000);
+        }
+
+        // Add save/load buttons to header
+        function addSaveLoadButtons() {
+            const header = document.querySelector('.header');
+            const buttonContainer = document.createElement('div');
+            buttonContainer.style.cssText = `
+                margin-top: 20px;
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+            `;
+            
+            const saveBtn = document.createElement('button');
+            saveBtn.textContent = '💾 Save Now';
+            saveBtn.style.cssText = `
+                padding: 8px 16px;
+                background: #4299e1;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s ease;
+                font-weight: 600;
+            `;
+            saveBtn.onclick = saveData;
+            saveBtn.onmouseover = () => saveBtn.style.background = '#3182ce';
+            saveBtn.onmouseout = () => saveBtn.style.background = '#4299e1';
+            
+            const exportBtn = document.createElement('button');
+            exportBtn.textContent = '📤 Export JSON';
+            exportBtn.style.cssText = `
+                padding: 8px 16px;
+                background: #ed8936;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s ease;
+            `;
+            exportBtn.onclick = saveData;
+            exportBtn.onmouseover = () => exportBtn.style.background = '#dd6b20';
+            exportBtn.onmouseout = () => exportBtn.style.background = '#ed8936';
+            
+            const loadBtn = document.createElement('button');
+            loadBtn.textContent = '📁 Import JSON';
+            loadBtn.style.cssText = `
+                padding: 8px 16px;
+                background: #48bb78;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s ease;
+            `;
+            loadBtn.onclick = loadData;
+            loadBtn.onmouseover = () => loadBtn.style.background = '#38a169';
+            loadBtn.onmouseout = () => loadBtn.style.background = '#48bb78';
+            
+            buttonContainer.appendChild(saveBtn);
+            buttonContainer.appendChild(exportBtn);
+            buttonContainer.appendChild(loadBtn);
+            header.appendChild(buttonContainer);
+        }
+
+        // Load auto-saved data on page load
+        function loadAutoSave() {
+            const savedData = localStorage.getItem('sdlc-auto-save');
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    restoreDataFromJSON(data);
+                    showNotification('Auto-saved data restored!', 'success');
+                } catch (e) {
+                    console.error('Error loading auto-save data:', e);
+                }
+            }
+        }
+
+        // Initialize save/load buttons
+        addSaveLoadButtons();
+    </script>
+</body>
+</html>
+                
