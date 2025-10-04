@@ -2050,41 +2050,36 @@
             saveBtn.onmouseover = () => saveBtn.style.background = '#3182ce';
             saveBtn.onmouseout = () => saveBtn.style.background = '#4299e1';
             
-            const exportBtn = document.createElement('button');
-            exportBtn.textContent = '📤 Export JSON';
-            exportBtn.style.cssText = `
-                padding: 8px 16px;
-                background: #ed8936;
+            // Create Miro button
+            const miroBtn = document.createElement('a');
+            miroBtn.href = 'https://miro.com/welcomeonboard/OGdUSk84VEsyUFRaTjcraW1oRytPYjBOQlVTSUZqTXg4T1Y1WVF0YWR3eTdaYTZPVVk5K05aOWRzL1ZUa3NSZ09WOEdKUlZSdE5ETFFtU01rTGptSjg0ZFpnS1gvTW1OVUN3L2NzdVBwT2Q1RkcwYWV1aU44ZGd4ZWtVQjM3Ykh3VHhHVHd5UWtSM1BidUtUYmxycDRnPT0hdjE=?share_link_id=353046060273';
+            miroBtn.target = '_blank';
+            miroBtn.textContent = '🎨 Open in Miro';
+            miroBtn.style.cssText = `
+                padding: 12px 24px;
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
                 color: white;
                 border: none;
-                border-radius: 6px;
+                border-radius: 8px;
                 cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s ease;
+                font-size: 16px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                display: inline-block;
+                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
             `;
-            exportBtn.onclick = saveData;
-            exportBtn.onmouseover = () => exportBtn.style.background = '#dd6b20';
-            exportBtn.onmouseout = () => exportBtn.style.background = '#ed8936';
-            
-            const loadBtn = document.createElement('button');
-            loadBtn.textContent = '📁 Import JSON';
-            loadBtn.style.cssText = `
-                padding: 8px 16px;
-                background: #48bb78;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s ease;
-            `;
-            loadBtn.onclick = loadData;
-            loadBtn.onmouseover = () => loadBtn.style.background = '#38a169';
-            loadBtn.onmouseout = () => loadBtn.style.background = '#48bb78';
+            miroBtn.onmouseover = () => {
+                miroBtn.style.transform = 'translateY(-2px)';
+                miroBtn.style.boxShadow = '0 6px 20px rgba(255, 107, 107, 0.4)';
+            };
+            miroBtn.onmouseout = () => {
+                miroBtn.style.transform = 'translateY(0)';
+                miroBtn.style.boxShadow = '0 4px 15px rgba(255, 107, 107, 0.3)';
+            };
             
             buttonContainer.appendChild(saveBtn);
-            buttonContainer.appendChild(exportBtn);
-            buttonContainer.appendChild(loadBtn);
+            buttonContainer.appendChild(miroBtn);
             header.appendChild(buttonContainer);
         }
 
