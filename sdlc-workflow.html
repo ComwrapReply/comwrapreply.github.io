@@ -105,6 +105,44 @@
             padding-right: 40px;
         }
         
+        .ownership-section {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 8px;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .ownership-title {
+            font-weight: 600;
+            color: #0c4a6e;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .ownership-item {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin: 3px 6px 6px 0px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 1px solid #93c5fd;
+            color: #1e40af;
+        }
+        
+        .ownership-item:hover {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
         .phase-description {
             color: #4a5568;
             line-height: 1.5;
@@ -350,6 +388,14 @@
             <div class="phase">
                 <div class="phase-number">1</div>
                 <h3 class="phase-title">Discovery & Planning</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">Product Manager</span>
+                    <span class="ownership-item">Business Analyst</span>
+                    <span class="ownership-item">Stakeholders</span>
+                </div>
+                
                 <p class="phase-description">
                     Initial phase where we identify business needs, understand the problem space, and create a strategic roadmap for the project.
                 </p>
@@ -427,6 +473,14 @@
             <div class="phase">
                 <div class="phase-number">2</div>
                 <h3 class="phase-title">Requirements</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">Business Analyst</span>
+                    <span class="ownership-item">Product Owner</span>
+                    <span class="ownership-item">SMEs</span>
+                </div>
+                
                 <p class="phase-description">
                     Detailed gathering and documentation of functional and non-functional requirements, acceptance criteria, and success metrics.
                 </p>
@@ -503,6 +557,14 @@
             <div class="phase">
                 <div class="phase-number">3</div>
                 <h3 class="phase-title">Solutions</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">Solution Architect</span>
+                    <span class="ownership-item">Tech Lead</span>
+                    <span class="ownership-item">DevOps Engineer</span>
+                </div>
+                
                 <p class="phase-description">
                     Technical solution design including system architecture, technology stack selection, and implementation approach planning.
                 </p>
@@ -579,6 +641,14 @@
             <div class="phase">
                 <div class="phase-number">4</div>
                 <h3 class="phase-title">Figma Design</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">UX Designer</span>
+                    <span class="ownership-item">UI Designer</span>
+                    <span class="ownership-item">Product Manager</span>
+                </div>
+                
                 <p class="phase-description">
                     UI/UX design phase where user interfaces are designed, prototyped, and validated before development begins.
                 </p>
@@ -656,6 +726,15 @@
             <div class="phase">
                 <div class="phase-number">5</div>
 <h3 class="phase-title">Ticket Creation</h3>
+
+<div class="ownership-section">
+    <div class="ownership-title">👥 Ownership</div>
+    <span class="ownership-item">Product Owner</span>
+    <span class="ownership-item">Business Analyst</span>
+    <span class="ownership-item">Tech Lead</span>
+    <span class="ownership-item">QA</span>
+</div>
+
 <p class="phase-description">
     Intake and triage of work items so everything is captured, described, sized, prioritized, and linked to designs before a single line of code gets written.
 </p>
@@ -760,6 +839,14 @@
             <div class="phase">
                 <div class="phase-number">6</div>
                 <h3 class="phase-title">Coding</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">Senior Developer</span>
+                    <span class="ownership-item">Frontend Developer</span>
+                    <span class="ownership-item">Backend Developer</span>
+                </div>
+                
                 <p class="phase-description">
                     Development phase where developers write code according to specifications, implement features, and build the application.
                 </p>
@@ -840,6 +927,13 @@
             <div class="phase">
                 <div class="phase-number">7</div>
                 <h3 class="phase-title">Create MR</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">Developer</span>
+                    <span class="ownership-item">Feature Lead</span>
+                </div>
+                
                 <p class="phase-description">
                     Developers create Merge Requests (Pull Requests) to propose code changes, including detailed descriptions and testing notes.
                 </p>
@@ -915,6 +1009,14 @@
             <div class="phase">
                 <div class="phase-number">8</div>
                 <h3 class="phase-title">Review MRs</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">Senior Developer</span>
+                    <span class="ownership-item">Tech Lead</span>
+                    <span class="ownership-item">Code Reviewer</span>
+                </div>
+                
                 <p class="phase-description">
                     Code review process where team members examine code changes for quality, security, performance, and adherence to standards.
                 </p>
@@ -991,6 +1093,14 @@
             <div class="phase">
                 <div class="phase-number">9</div>
                 <h3 class="phase-title">Merge MRs</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">Tech Lead</span>
+                    <span class="ownership-item">Release Manager</span>
+                    <span class="ownership-item">DevOps Engineer</span>
+                </div>
+                
                 <p class="phase-description">
                     Approved code changes are merged into the main branch, integrating new features or fixes into the main codebase.
                 </p>
@@ -1067,6 +1177,14 @@
             <div class="phase">
                 <div class="phase-number">10</div>
                 <h3 class="phase-title">Testing</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">QA Engineer</span>
+                    <span class="ownership-item">Test Automation Engineer</span>
+                    <span class="ownership-item">Business Analyst</span>
+                </div>
+                
                 <p class="phase-description">
                     Comprehensive testing phase including unit, integration, and user acceptance testing to ensure quality and functionality.
                 </p>
@@ -1144,6 +1262,14 @@
             <div class="phase">
                 <div class="phase-number">11</div>
                 <h3 class="phase-title">Deployments</h3>
+                
+                <div class="ownership-section">
+                    <div class="ownership-title">👥 Ownership</div>
+                    <span class="ownership-item">DevOps Engineer</span>
+                    <span class="ownership-item">Release Manager</span>
+                    <span class="ownership-item">Site Reliability Engineer</span>
+                </div>
+                
                 <p class="phase-description">
                     Final phase where the tested application is deployed to production environments and made available to end users.
                 </p>
@@ -1309,6 +1435,73 @@
             categories.forEach(category => {
                 addInteractiveFeatures(category);
             });
+            
+            // Add interactive functionality to all ownership sections
+            const ownershipSections = document.querySelectorAll('.ownership-section');
+            ownershipSections.forEach(section => {
+                addOwnershipInteractiveFeatures(section);
+            });
+        }
+
+        function addOwnershipInteractiveFeatures(section) {
+            const ownershipTitle = section.querySelector('.ownership-title');
+            if (!ownershipTitle) return;
+
+            // Create add button
+            const addBtn = document.createElement('button');
+            addBtn.className = 'add-item-btn';
+            addBtn.textContent = '+ Add';
+            addBtn.onclick = () => toggleOwnershipAddInput(section);
+
+            // Add button to ownership title
+            ownershipTitle.appendChild(addBtn);
+
+            // Create input container (initially hidden)
+            const inputContainer = document.createElement('div');
+            inputContainer.className = 'add-item-container';
+            inputContainer.style.display = 'none';
+
+            const input = document.createElement('input');
+            input.className = 'add-item-input';
+            input.placeholder = 'Enter role or person...';
+            input.onkeypress = (e) => {
+                if (e.key === 'Enter') {
+                    addNewOwnershipItem(section, input.value.trim());
+                    input.value = '';
+                    toggleOwnershipAddInput(section);
+                }
+            };
+
+            const addItemBtn = document.createElement('button');
+            addItemBtn.className = 'add-item-btn';
+            addItemBtn.textContent = 'Add';
+            addItemBtn.onclick = () => {
+                addNewOwnershipItem(section, input.value.trim());
+                input.value = '';
+                toggleOwnershipAddInput(section);
+            };
+
+            const cancelBtn = document.createElement('button');
+            cancelBtn.className = 'add-item-btn';
+            cancelBtn.textContent = 'Cancel';
+            cancelBtn.style.background = '#e2e8f0';
+            cancelBtn.style.color = '#4a5568';
+            cancelBtn.onclick = () => {
+                input.value = '';
+                toggleOwnershipAddInput(section);
+            };
+
+            inputContainer.appendChild(input);
+            inputContainer.appendChild(addItemBtn);
+            inputContainer.appendChild(cancelBtn);
+
+            section.appendChild(inputContainer);
+
+            // Add remove buttons to existing ownership items
+            const existingItems = Array.from(section.querySelectorAll('.ownership-item'));
+            existingItems.forEach(item => {
+                addRemoveButton(item);
+            });
         }
 
         function addInteractiveFeatures(category) {
@@ -1379,6 +1572,45 @@
                 // Insert items container after category name
                 categoryName.insertAdjacentElement('afterend', itemsContainer);
             }
+        }
+
+        function toggleOwnershipAddInput(section) {
+            const inputContainer = section.querySelector('.add-item-container');
+            const addBtn = section.querySelector('.ownership-title .add-item-btn');
+            
+            if (inputContainer.style.display === 'none') {
+                inputContainer.style.display = 'flex';
+                addBtn.textContent = '− Cancel';
+                inputContainer.querySelector('input').focus();
+            } else {
+                inputContainer.style.display = 'none';
+                addBtn.textContent = '+ Add';
+            }
+        }
+
+        function addNewOwnershipItem(section, text) {
+            if (!text) return;
+
+            // Create new ownership item
+            const newItem = document.createElement('span');
+            newItem.className = 'ownership-item';
+            newItem.textContent = text;
+            addRemoveButton(newItem);
+
+            // Add to section after existing items
+            section.appendChild(newItem);
+
+            // Animate the new item
+            newItem.style.opacity = '0';
+            newItem.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                newItem.style.transition = 'all 0.3s ease';
+                newItem.style.opacity = '1';
+                newItem.style.transform = 'translateY(0)';
+            }, 10);
+
+            // Auto-save after adding item
+            autoSave();
         }
 
         function toggleAddInput(category) {
@@ -1500,8 +1732,19 @@
                 const phaseTitle = phase.querySelector('.phase-title').textContent;
                 data.phases[phaseTitle] = {
                     phaseNumber: phaseIndex + 1,
-                    categories: {}
+                    categories: {},
+                    ownership: []
                 };
+                
+                // Collect ownership items
+                const ownershipSection = phase.querySelector('.ownership-section');
+                if (ownershipSection) {
+                    const ownershipItems = Array.from(ownershipSection.querySelectorAll('.ownership-item')).map(item => 
+                        item.textContent.replace('×', '').trim()
+                    );
+                    data.phases[phaseTitle].ownership = ownershipItems;
+                    totalItems += ownershipItems.length;
+                }
                 
                 const categories = phase.querySelectorAll('.category');
                 categories.forEach(category => {
@@ -1581,8 +1824,19 @@
                 const phaseTitle = phase.querySelector('.phase-title').textContent;
                 data.phases[phaseTitle] = {
                     phaseNumber: phaseIndex + 1,
-                    categories: {}
+                    categories: {},
+                    ownership: []
                 };
+                
+                // Collect ownership items
+                const ownershipSection = phase.querySelector('.ownership-section');
+                if (ownershipSection) {
+                    const ownershipItems = Array.from(ownershipSection.querySelectorAll('.ownership-item')).map(item => 
+                        item.textContent.replace('×', '').trim()
+                    );
+                    data.phases[phaseTitle].ownership = ownershipItems;
+                    totalItems += ownershipItems.length;
+                }
                 
                 const categories = phase.querySelectorAll('.category');
                 categories.forEach(category => {
@@ -1668,6 +1922,19 @@
                 const phaseElement = findPhaseByTitle(phaseTitle);
                 
                 if (phaseElement) {
+                    // Restore ownership items
+                    if (phaseData.ownership && Array.isArray(phaseData.ownership)) {
+                        const ownershipSection = phaseElement.querySelector('.ownership-section');
+                        if (ownershipSection) {
+                            phaseData.ownership.forEach(ownershipText => {
+                                if (ownershipText && ownershipText.trim()) {
+                                    addNewOwnershipItem(ownershipSection, ownershipText.trim());
+                                }
+                            });
+                        }
+                    }
+                    
+                    // Restore category items
                     Object.keys(phaseData.categories).forEach(categoryName => {
                         const categoryData = phaseData.categories[categoryName];
                         const categoryElement = findCategoryInPhase(phaseElement, categoryName);
@@ -1689,6 +1956,14 @@
             // Remove all items that have remove buttons (custom items)
             const allItems = document.querySelectorAll('.item');
             allItems.forEach(item => {
+                if (item.querySelector('.item-remove')) {
+                    item.remove();
+                }
+            });
+            
+            // Remove all ownership items that have remove buttons (custom items)
+            const allOwnershipItems = document.querySelectorAll('.ownership-item');
+            allOwnershipItems.forEach(item => {
                 if (item.querySelector('.item-remove')) {
                     item.remove();
                 }
