@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-05T21:49:34.198Z",
+    "lastAutoSave": "2025-10-05T21:56:16.905Z",
     "totalPhases": 11,
     "totalCategories": 112,
-    "totalItems": 319,
-    "lastModified": "2025-10-05T21:49:34.198Z"
+    "totalItems": 318,
+    "lastModified": "2025-10-05T21:56:16.903Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -94,8 +94,7 @@
       "ownership": [
         "Product Manager",
         "Business Analyst",
-        "Stakeholders",
-        "Live Test from Website"
+        "Stakeholders"
       ]
     },
     "Requirements": {
