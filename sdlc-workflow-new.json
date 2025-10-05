@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-05T22:10:39.001Z",
+    "lastAutoSave": "2025-10-05T22:29:52.487Z",
     "totalPhases": 11,
     "totalCategories": 112,
-    "totalItems": 320,
-    "lastModified": "2025-10-05T22:10:39.001Z"
+    "totalItems": 328,
+    "lastModified": "2025-10-05T22:29:52.485Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -63,9 +63,17 @@
           "items": [
             "Meeting scheduling",
             "Follow-up emails",
-            "Note transcription"
+            "Note transcription",
+            "Auto responder to clients emails",
+            "Saas for clients to log tickets service",
+            "Service Now ticket creation sasss",
+            "emails tickets integration to jira",
+            "copilot is integrated with emails to help log tieckets in jira",
+            "email responder/ai asistant",
+            "jira integration",
+            "szymon"
           ],
-          "itemCount": 3
+          "itemCount": 11
         },
         "Project Management:": {
           "items": [
