@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-05T21:57:07.501Z",
+    "lastAutoSave": "2025-10-05T21:59:21.793Z",
     "totalPhases": 11,
     "totalCategories": 112,
-    "totalItems": 318,
-    "lastModified": "2025-10-05T21:57:07.501Z"
+    "totalItems": 320,
+    "lastModified": "2025-10-05T21:59:21.793Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -94,7 +94,8 @@
       "ownership": [
         "Product Manager",
         "Business Analyst",
-        "Stakeholders"
+        "Stakeholders",
+        "Live Test from Website"
       ]
     },
     "Requirements": {
@@ -183,7 +184,8 @@
       "ownership": [
         "Business Analyst",
         "Product Owner",
-        "Solution Architect"
+        "Solution Architect",
+        "Rahul"
       ]
     },
     "Solutions": {
