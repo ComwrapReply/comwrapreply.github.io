@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-05T21:59:21.793Z",
+    "lastAutoSave": "2025-10-05T21:59:44.129Z",
     "totalPhases": 11,
     "totalCategories": 112,
-    "totalItems": 320,
-    "lastModified": "2025-10-05T21:59:21.793Z"
+    "totalItems": 294,
+    "lastModified": "2025-10-05T21:59:44.129Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -19,20 +19,12 @@
           ],
           "itemCount": 3
         },
-        "🚨 Pain Points:": {
+        "Project Management:": {
           "items": [
-            "Unclear requirements",
-            "Conflicting opinions",
-            "Scope creep"
-          ],
-          "itemCount": 3
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Project Charter",
-            "Stakeholder Map",
-            "Timeline",
-            "Budget"
+            "Linear",
+            "Monday.com",
+            "Asana",
+            "Jira"
           ],
           "itemCount": 4
         },
@@ -52,6 +44,14 @@
           ],
           "itemCount": 3
         },
+        "🚨 Pain Points:": {
+          "items": [
+            "Unclear requirements",
+            "Conflicting opinions",
+            "Scope creep"
+          ],
+          "itemCount": 3
+        },
         "🚧 Blockers:": {
           "items": [
             "Missing approvals",
@@ -67,12 +67,12 @@
           ],
           "itemCount": 3
         },
-        "Project Management:": {
+        "Key Deliverables:": {
           "items": [
-            "Linear",
-            "Monday.com",
-            "Asana",
-            "Jira"
+            "Project Charter",
+            "Stakeholder Map",
+            "Timeline",
+            "Budget"
           ],
           "itemCount": 4
         },
@@ -94,8 +94,7 @@
       "ownership": [
         "Product Manager",
         "Business Analyst",
-        "Stakeholders",
-        "Live Test from Website"
+        "Stakeholders"
       ]
     },
     "Requirements": {
@@ -117,23 +116,6 @@
           ],
           "itemCount": 3
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Conflicting business rules",
-            "Edge cases missed",
-            "Traceability gaps"
-          ],
-          "itemCount": 3
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Requirements Document",
-            "User Stories",
-            "Acceptance Criteria",
-            "API Specifications"
-          ],
-          "itemCount": 4
-        },
         "Who (Roles):": {
           "items": [
             "Business Analyst",
@@ -147,6 +129,14 @@
             "Workshops",
             "Async notes",
             "Clarification calls"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Conflicting business rules",
+            "Edge cases missed",
+            "Traceability gaps"
           ],
           "itemCount": 3
         },
@@ -166,6 +156,15 @@
           ],
           "itemCount": 3
         },
+        "Key Deliverables:": {
+          "items": [
+            "Requirements Document",
+            "User Stories",
+            "Acceptance Criteria",
+            "API Specifications"
+          ],
+          "itemCount": 4
+        },
         "Workflow Challenges:": {
           "items": [
             "Ambiguity removal",
@@ -184,8 +183,7 @@
       "ownership": [
         "Business Analyst",
         "Product Owner",
-        "Solution Architect",
-        "Rahul"
+        "Solution Architect"
       ]
     },
     "Solutions": {
@@ -206,23 +204,6 @@
           ],
           "itemCount": 3
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Architecture constraints",
-            "Integration complexity",
-            "Scope vs time"
-          ],
-          "itemCount": 3
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Architecture Diagram",
-            "Tech Stack",
-            "Database Design",
-            "Integration Plan"
-          ],
-          "itemCount": 4
-        },
         "Who (Roles):": {
           "items": [
             "Solution Architect",
@@ -236,6 +217,14 @@
             "Tech discussions",
             "Design sessions",
             "RFCs"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Architecture constraints",
+            "Integration complexity",
+            "Scope vs time"
           ],
           "itemCount": 3
         },
@@ -254,6 +243,15 @@
             "Documentation sync"
           ],
           "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Architecture Diagram",
+            "Tech Stack",
+            "Database Design",
+            "Integration Plan"
+          ],
+          "itemCount": 4
         },
         "Workflow Challenges:": {
           "items": [
@@ -293,23 +291,6 @@
           ],
           "itemCount": 2
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Asset export",
-            "Design debt",
-            "Scope churn from late feedback"
-          ],
-          "itemCount": 3
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Wireframes",
-            "High-fidelity Mockups",
-            "Interactive Prototypes",
-            "Design System"
-          ],
-          "itemCount": 4
-        },
         "Who (Roles):": {
           "items": [
             "UX/UI Designer",
@@ -322,6 +303,14 @@
             "Design reviews",
             "Handoffs",
             "User testing"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Asset export",
+            "Design debt",
+            "Scope churn from late feedback"
           ],
           "itemCount": 3
         },
@@ -339,6 +328,15 @@
             "Accessibility checks"
           ],
           "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Wireframes",
+            "High-fidelity Mockups",
+            "Interactive Prototypes",
+            "Design System"
+          ],
+          "itemCount": 4
         },
         "Workflow Challenges:": {
           "items": [
@@ -394,23 +392,6 @@
           ],
           "itemCount": 2
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Scope creep via tickets",
-            "Priority churn",
-            "Undefined scope"
-          ],
-          "itemCount": 3
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Epic/Feature backlog",
-            "Ticket with Acceptance Criteria",
-            "Priority & SLA",
-            "Definition of Ready check"
-          ],
-          "itemCount": 4
-        },
         "Who (Roles):": {
           "items": [
             "Product Owner",
@@ -423,6 +404,14 @@
             "Backlog triage",
             "Refinement sessions",
             "Slack notifications"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Scope creep via tickets",
+            "Priority churn",
+            "Undefined scope"
           ],
           "itemCount": 3
         },
@@ -441,6 +430,15 @@
             "RAG enrichment from specs"
           ],
           "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Epic/Feature backlog",
+            "Ticket with Acceptance Criteria",
+            "Priority & SLA",
+            "Definition of Ready check"
+          ],
+          "itemCount": 4
         },
         "Workflow Challenges:": {
           "items": [
@@ -481,23 +479,6 @@
           ],
           "itemCount": 2
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "API dependencies",
-            "Env issues",
-            "Missing libraries"
-          ],
-          "itemCount": 3
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Source Code",
-            "Unit Tests",
-            "Code Documentation",
-            "Code Instrumentation"
-          ],
-          "itemCount": 4
-        },
         "Who (Roles):": {
           "items": [
             "Backend Developer",
@@ -511,6 +492,14 @@
             "Code reviews"
           ],
           "itemCount": 2
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "API dependencies",
+            "Env issues",
+            "Missing libraries"
+          ],
+          "itemCount": 3
         },
         "🚧 Blockers:": {
           "items": [
@@ -527,6 +516,15 @@
             "Lint/format on CI"
           ],
           "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Source Code",
+            "Unit Tests",
+            "Code Documentation",
+            "Code Instrumentation"
+          ],
+          "itemCount": 4
         },
         "Workflow Challenges:": {
           "items": [
@@ -566,22 +564,6 @@
           ],
           "itemCount": 3
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Merge conflicts",
-            "Failing tests"
-          ],
-          "itemCount": 2
-        },
-        "Key Deliverables:": {
-          "items": [
-            "MR description",
-            "Code changes",
-            "Testing notes",
-            "Screenshots"
-          ],
-          "itemCount": 4
-        },
         "Who (Roles):": {
           "items": [
             "Developer"
@@ -592,6 +574,13 @@
           "items": [
             "Automations",
             "CI templates"
+          ],
+          "itemCount": 2
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Merge conflicts",
+            "Failing tests"
           ],
           "itemCount": 2
         },
@@ -609,6 +598,15 @@
             "Auto-assign reviewers"
           ],
           "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "MR description",
+            "Code changes",
+            "Testing notes",
+            "Screenshots"
+          ],
+          "itemCount": 4
         },
         "Workflow Challenges:": {
           "items": [
@@ -648,22 +646,6 @@
           ],
           "itemCount": 4
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Code quality checks",
-            "Style enforcement"
-          ],
-          "itemCount": 2
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Code Review Comments",
-            "Approval/Rejection",
-            "Suggestions",
-            "Security Check"
-          ],
-          "itemCount": 4
-        },
         "Who (Roles):": {
           "items": [
             "Code Reviewer",
@@ -675,6 +657,13 @@
           "items": [
             "Code review sessions",
             "Review comments"
+          ],
+          "itemCount": 2
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Code quality checks",
+            "Style enforcement"
           ],
           "itemCount": 2
         },
@@ -692,6 +681,15 @@
             "Security scanning"
           ],
           "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Code Review Comments",
+            "Approval/Rejection",
+            "Suggestions",
+            "Security Check"
+          ],
+          "itemCount": 4
         },
         "Workflow Challenges:": {
           "items": [
@@ -731,21 +729,6 @@
           ],
           "itemCount": 3
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Failed CI checks",
-            "Permission issues"
-          ],
-          "itemCount": 2
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Merged Code",
-            "Updated Main Branch",
-            "CI/CD Triggers"
-          ],
-          "itemCount": 3
-        },
         "Who (Roles):": {
           "items": [
             "Tech Lead",
@@ -757,6 +740,13 @@
           "items": [
             "Merge strategies",
             "Automated policies"
+          ],
+          "itemCount": 2
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Failed CI checks",
+            "Permission issues"
           ],
           "itemCount": 2
         },
@@ -773,6 +763,14 @@
             "Tag creation",
             "Release notes",
             "Report generation"
+          ],
+          "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Merged Code",
+            "Updated Main Branch",
+            "CI/CD Triggers"
           ],
           "itemCount": 3
         },
@@ -816,21 +814,6 @@
           ],
           "itemCount": 6
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Environment downtime",
-            "Missing test data"
-          ],
-          "itemCount": 2
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Test Cases",
-            "Bug Reports",
-            "Test Results"
-          ],
-          "itemCount": 3
-        },
         "Who (Roles):": {
           "items": [
             "QA Engineer",
@@ -846,6 +829,13 @@
           ],
           "itemCount": 2
         },
+        "🚨 Pain Points:": {
+          "items": [
+            "Environment downtime",
+            "Missing test data"
+          ],
+          "itemCount": 2
+        },
         "🚧 Blockers:": {
           "items": [
             "Test data creation",
@@ -858,6 +848,14 @@
             "Regression suites",
             "Report generation",
             "Test data creation"
+          ],
+          "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Test Cases",
+            "Bug Reports",
+            "Test Results"
           ],
           "itemCount": 3
         },
@@ -901,20 +899,6 @@
           ],
           "itemCount": 3
         },
-        "🚨 Pain Points:": {
-          "items": [
-            "Deployment freezes",
-            "Permissions problems"
-          ],
-          "itemCount": 2
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Monitoring Setup",
-            "Rollback Plan"
-          ],
-          "itemCount": 2
-        },
         "Who (Roles):": {
           "items": [
             "DevOps Engineer",
@@ -927,6 +911,13 @@
           "items": [
             "Deployment pipelines",
             "Release policies"
+          ],
+          "itemCount": 2
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Deployment freezes",
+            "Permissions problems"
           ],
           "itemCount": 2
         },
@@ -944,6 +935,13 @@
             "Release announcements"
           ],
           "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Monitoring Setup",
+            "Rollback Plan"
+          ],
+          "itemCount": 2
         },
         "Workflow Challenges:": {
           "items": [
