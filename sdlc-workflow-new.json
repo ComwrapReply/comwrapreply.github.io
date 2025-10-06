@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T09:04:33.901Z",
+    "lastAutoSave": "2025-10-06T10:49:36.470Z",
     "totalPhases": 11,
     "totalCategories": 101,
     "totalItems": 343,
-    "lastModified": "2025-10-06T09:04:33.901Z"
+    "lastModified": "2025-10-06T10:49:36.468Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -546,237 +546,8 @@
         "Tech Lead"
       ]
     },
-    "Create MR": {
-      "phaseNumber": 7,
-      "categories": {
-        "AI Assistance:": {
-          "items": [
-            "PR description helpers",
-            "LLM checklists"
-          ],
-          "itemCount": 2
-        },
-        "Version Control:": {
-          "items": [
-            "GitHub",
-            "GitLab",
-            "Bitbucket"
-          ],
-          "itemCount": 3
-        },
-        "🚨 Pain Points:": {
-          "items": [
-            "Merge conflicts",
-            "Failing tests"
-          ],
-          "itemCount": 2
-        },
-        "Key Deliverables:": {
-          "items": [
-            "MR description",
-            "Code changes",
-            "Testing notes",
-            "Screenshots"
-          ],
-          "itemCount": 4
-        },
-        "Who (Roles):": {
-          "items": [
-            "Developer"
-          ],
-          "itemCount": 1
-        },
-        "How (Channels):": {
-          "items": [
-            "Automations",
-            "CI templates"
-          ],
-          "itemCount": 2
-        },
-        "🚧 Blockers:": {
-          "items": [
-            "PR dependencies",
-            "Reviewer assignment"
-          ],
-          "itemCount": 2
-        },
-        "🤖 Automate This:": {
-          "items": [
-            "Template enforcement",
-            "Labels/rules",
-            "Auto-assign reviewers"
-          ],
-          "itemCount": 3
-        },
-        "Workflow Challenges:": {
-          "items": [
-            "Large changesets",
-            "Missing context",
-            "Scope alignment"
-          ],
-          "itemCount": 3
-        }
-      },
-      "ownership": [
-        "Developers"
-      ]
-    },
-    "Review MRs": {
-      "phaseNumber": 8,
-      "categories": {
-        "AI Review:": {
-          "items": [
-            "LLM diff reviewers",
-            "Static analyzers"
-          ],
-          "itemCount": 2
-        },
-        "Review Tools:": {
-          "items": [
-            "GitHub",
-            "GitLab",
-            "Bitbucket",
-            "SonarQube"
-          ],
-          "itemCount": 4
-        },
-        "🚨 Pain Points:": {
-          "items": [
-            "Code quality checks",
-            "Style enforcement"
-          ],
-          "itemCount": 2
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Code Review Comments",
-            "Approval/Rejection",
-            "Suggestions",
-            "Security Check"
-          ],
-          "itemCount": 4
-        },
-        "Who (Roles):": {
-          "items": [
-            "Code Reviewer",
-            "QA Engineer"
-          ],
-          "itemCount": 2
-        },
-        "How (Channels):": {
-          "items": [
-            "Code review sessions",
-            "Review comments"
-          ],
-          "itemCount": 2
-        },
-        "🚧 Blockers:": {
-          "items": [
-            "Reviewer unavailable",
-            "Permissions"
-          ],
-          "itemCount": 2
-        },
-        "🤖 Automate This:": {
-          "items": [
-            "Quality gates",
-            "Auto-format and lint",
-            "Security scanning"
-          ],
-          "itemCount": 3
-        },
-        "Workflow Challenges:": {
-          "items": [
-            "Coverage gaps",
-            "Change fatigue"
-          ],
-          "itemCount": 2
-        }
-      },
-      "ownership": [
-        "Code Reviewers",
-        "QA"
-      ]
-    },
-    "Merge MRs": {
-      "phaseNumber": 9,
-      "categories": {
-        "Merge Tools:": {
-          "items": [
-            "Git",
-            "Branch protection",
-            "CI pipelines"
-          ],
-          "itemCount": 3
-        },
-        "Automation:": {
-          "items": [
-            "Auto-merge rules",
-            "Release tagging",
-            "Backport automation"
-          ],
-          "itemCount": 3
-        },
-        "🚨 Pain Points:": {
-          "items": [
-            "Failed CI checks",
-            "Permission issues"
-          ],
-          "itemCount": 2
-        },
-        "Key Deliverables:": {
-          "items": [
-            "Merged Code",
-            "Updated Main Branch",
-            "CI/CD Triggers"
-          ],
-          "itemCount": 3
-        },
-        "Who (Roles):": {
-          "items": [
-            "Tech Lead",
-            "Release Manager"
-          ],
-          "itemCount": 2
-        },
-        "How (Channels):": {
-          "items": [
-            "Merge strategies",
-            "Automated policies"
-          ],
-          "itemCount": 2
-        },
-        "🚧 Blockers:": {
-          "items": [
-            "Merge conflicts",
-            "Conflict de-escalation",
-            "Branch cleanup"
-          ],
-          "itemCount": 3
-        },
-        "🤖 Automate This:": {
-          "items": [
-            "Tag creation",
-            "Release notes",
-            "Report generation"
-          ],
-          "itemCount": 3
-        },
-        "Workflow Challenges:": {
-          "items": [
-            "Chaining releases",
-            "Change sync"
-          ],
-          "itemCount": 2
-        }
-      },
-      "ownership": [
-        "Tech Lead",
-        "Release Manager"
-      ]
-    },
     "Testing": {
-      "phaseNumber": 10,
+      "phaseNumber": 7,
       "categories": {
         "AI Testing:": {
           "items": [
@@ -853,6 +624,235 @@
       "ownership": [
         "QA",
         "Test Automation Engineers"
+      ]
+    },
+    "Create MR": {
+      "phaseNumber": 8,
+      "categories": {
+        "AI Assistance:": {
+          "items": [
+            "PR description helpers",
+            "LLM checklists"
+          ],
+          "itemCount": 2
+        },
+        "Version Control:": {
+          "items": [
+            "GitHub",
+            "GitLab",
+            "Bitbucket"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Merge conflicts",
+            "Failing tests"
+          ],
+          "itemCount": 2
+        },
+        "Key Deliverables:": {
+          "items": [
+            "MR description",
+            "Code changes",
+            "Testing notes",
+            "Screenshots"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Developer"
+          ],
+          "itemCount": 1
+        },
+        "How (Channels):": {
+          "items": [
+            "Automations",
+            "CI templates"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "PR dependencies",
+            "Reviewer assignment"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Template enforcement",
+            "Labels/rules",
+            "Auto-assign reviewers"
+          ],
+          "itemCount": 3
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Large changesets",
+            "Missing context",
+            "Scope alignment"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "Developers"
+      ]
+    },
+    "Review MRs": {
+      "phaseNumber": 9,
+      "categories": {
+        "AI Review:": {
+          "items": [
+            "LLM diff reviewers",
+            "Static analyzers"
+          ],
+          "itemCount": 2
+        },
+        "Review Tools:": {
+          "items": [
+            "GitHub",
+            "GitLab",
+            "Bitbucket",
+            "SonarQube"
+          ],
+          "itemCount": 4
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Code quality checks",
+            "Style enforcement"
+          ],
+          "itemCount": 2
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Code Review Comments",
+            "Approval/Rejection",
+            "Suggestions",
+            "Security Check"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Code Reviewer",
+            "QA Engineer"
+          ],
+          "itemCount": 2
+        },
+        "How (Channels):": {
+          "items": [
+            "Code review sessions",
+            "Review comments"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Reviewer unavailable",
+            "Permissions"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Quality gates",
+            "Auto-format and lint",
+            "Security scanning"
+          ],
+          "itemCount": 3
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Coverage gaps",
+            "Change fatigue"
+          ],
+          "itemCount": 2
+        }
+      },
+      "ownership": [
+        "Code Reviewers",
+        "QA"
+      ]
+    },
+    "Merge MRs": {
+      "phaseNumber": 10,
+      "categories": {
+        "Merge Tools:": {
+          "items": [
+            "Git",
+            "Branch protection",
+            "CI pipelines"
+          ],
+          "itemCount": 3
+        },
+        "Automation:": {
+          "items": [
+            "Auto-merge rules",
+            "Release tagging",
+            "Backport automation"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Failed CI checks",
+            "Permission issues"
+          ],
+          "itemCount": 2
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Merged Code",
+            "Updated Main Branch",
+            "CI/CD Triggers"
+          ],
+          "itemCount": 3
+        },
+        "Who (Roles):": {
+          "items": [
+            "Tech Lead",
+            "Release Manager"
+          ],
+          "itemCount": 2
+        },
+        "How (Channels):": {
+          "items": [
+            "Merge strategies",
+            "Automated policies"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Merge conflicts",
+            "Conflict de-escalation",
+            "Branch cleanup"
+          ],
+          "itemCount": 3
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Tag creation",
+            "Release notes",
+            "Report generation"
+          ],
+          "itemCount": 3
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Chaining releases",
+            "Change sync"
+          ],
+          "itemCount": 2
+        }
+      },
+      "ownership": [
+        "Tech Lead",
+        "Release Manager"
       ]
     },
     "Deployments": {
