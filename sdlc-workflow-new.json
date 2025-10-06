@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T08:31:37.276Z",
+    "lastAutoSave": "2025-10-06T08:35:54.079Z",
     "totalPhases": 11,
     "totalCategories": 112,
-    "totalItems": 308,
-    "lastModified": "2025-10-06T08:31:37.276Z"
+    "totalItems": 312,
+    "lastModified": "2025-10-06T08:35:54.079Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -348,11 +348,15 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "Spec export",
-            "Design tokens sync",
-            "Accessibility checks"
+            "Asset export",
+            "Design handoff",
+            "Version control",
+            "Find a tool that scans the design and finds improvements",
+            "Consult the recommendation with the client on better UX/UI",
+            "Find best match of AEM components to Figma design",
+            "Devs need to be involved with designers on design creation"
           ],
-          "itemCount": 3
+          "itemCount": 7
         },
         "Workflow Challenges:": {
           "items": [
