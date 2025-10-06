@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T08:43:10.589Z",
+    "lastAutoSave": "2025-10-06T08:43:14.677Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 335,
-    "lastModified": "2025-10-06T08:43:10.589Z"
+    "totalItems": 336,
+    "lastModified": "2025-10-06T08:43:14.677Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -455,7 +455,8 @@
       "ownership": [
         "Product Owner",
         "Business Analyst",
-        "Connie"
+        "Connie",
+        "Szymon"
       ]
     },
     "Coding": {
