@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T10:53:37.760Z",
+    "lastAutoSave": "2025-10-06T10:53:57.802Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 344,
-    "lastModified": "2025-10-06T10:53:37.760Z"
+    "totalItems": 345,
+    "lastModified": "2025-10-06T10:53:57.802Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -624,7 +624,8 @@
       "ownership": [
         "QA",
         "Test Automation Engineers",
-        "Awab"
+        "Awab",
+        "Nathan"
       ]
     },
     "Create MR": {
