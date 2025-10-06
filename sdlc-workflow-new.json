@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T08:37:36.077Z",
+    "lastAutoSave": "2025-10-06T08:38:16.161Z",
     "totalPhases": 11,
-    "totalCategories": 112,
-    "totalItems": 314,
-    "lastModified": "2025-10-06T08:37:36.077Z"
+    "totalCategories": 101,
+    "totalItems": 328,
+    "lastModified": "2025-10-06T08:38:16.161Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -83,12 +83,6 @@
             "Jira"
           ],
           "itemCount": 4
-        },
-        "User Story:": {
-          "items": [
-            "As a product manager, I want to conduct discovery so that priorities are clear, risks are understood, and scope and budget are aligned."
-          ],
-          "itemCount": 1
         },
         "Workflow Challenges:": {
           "items": [
@@ -187,18 +181,13 @@
             "NFRs captured"
           ],
           "itemCount": 3
-        },
-        "User Story:": {
-          "items": [
-            "As a business analyst, I want to document clear, testable requirements so that dev and QA know exactly what needs to be built."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
         "Business Analyst",
         "Product Owner",
-        "Solution Architect"
+        "Solution Architect",
+        "Joshua"
       ]
     },
     "Solutions": {
@@ -276,12 +265,6 @@
             "Versioned decisions"
           ],
           "itemCount": 3
-        },
-        "User Story:": {
-          "items": [
-            "As a solution architect, I want to design an implementation plan so the team can deliver the right system with minimal rework."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
@@ -365,12 +348,6 @@
             "Token alignment"
           ],
           "itemCount": 3
-        },
-        "User Story:": {
-          "items": [
-            "As a designer, I want to create validated prototypes so the experience is testable before build."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
@@ -454,13 +431,11 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "Template enforcement",
-            "Auto-label by component",
-            "Auto-link Figma/MR",
-            "SLA timers & alerts",
-            "Assign by team rules"
+            "Template actions",
+            "Auto-labels by component",
+            "RAG enrichment from specs"
           ],
-          "itemCount": 5
+          "itemCount": 3
         },
         "Workflow Challenges:": {
           "items": [
@@ -469,12 +444,6 @@
             "Duplicate detection"
           ],
           "itemCount": 3
-        },
-        "User Story:": {
-          "items": [
-            "As a product owner, I want to create clear tickets so work flows smoothly and devs can start quickly."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
@@ -555,12 +524,6 @@
             "Coding guidelines"
           ],
           "itemCount": 3
-        },
-        "User Story:": {
-          "items": [
-            "As a developer, I want to implement features with quality so that the application is maintainable and scalable."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
@@ -637,12 +600,6 @@
             "Scope alignment"
           ],
           "itemCount": 3
-        },
-        "User Story:": {
-          "items": [
-            "As a developer, I want to create a detailed MR so reviewers understand the change quickly and can approve faster."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
@@ -719,12 +676,6 @@
             "Change fatigue"
           ],
           "itemCount": 2
-        },
-        "User Story:": {
-          "items": [
-            "As a reviewer, I want to ensure quality and performance while keeping standards consistent."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
@@ -802,12 +753,6 @@
             "Change sync"
           ],
           "itemCount": 2
-        },
-        "User Story:": {
-          "items": [
-            "As a tech lead, I want merges to be reliable so changes flow to main without regressions."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
@@ -888,12 +833,6 @@
             "Coverage management"
           ],
           "itemCount": 3
-        },
-        "User Story:": {
-          "items": [
-            "As a QA engineer, I want to thoroughly validate changes so defects are caught before release."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
@@ -971,12 +910,6 @@
             "Capacity planning"
           ],
           "itemCount": 2
-        },
-        "User Story:": {
-          "items": [
-            "As a release manager, I want deployments to be reliable and observable so incidents are minimized."
-          ],
-          "itemCount": 1
         }
       },
       "ownership": [
