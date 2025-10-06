@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T09:04:11.742Z",
+    "lastAutoSave": "2025-10-06T09:04:25.731Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 341,
-    "lastModified": "2025-10-06T09:04:11.742Z"
+    "totalItems": 342,
+    "lastModified": "2025-10-06T09:04:25.731Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -356,7 +356,8 @@
       },
       "ownership": [
         "UX/UI Designer",
-        "Product Manager"
+        "Product Manager",
+        "Hannah"
       ]
     },
     "Ticket Creation": {
