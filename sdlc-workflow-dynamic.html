@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDLC Complete Workflow Guide - Dynamic</title>
+    <style>
+        /* Same styles as original file */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .sync-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4299e1;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .sync-status.syncing {
+            background: #ed8936;
+        }
+        
+        .sync-status.updated {
+            background: #48bb78;
+        }
+        
+        .sync-status.error {
+            background: #f56565;
+        }
+        
+        .data-source-selector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .data-source-selector select {
+            padding: 5px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        /* Add other styles from original file here */
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            position: relative;
+        }
+        
+        .phase {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+        }
+        
+        .phase-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+        }
+        
+        .phase-description {
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .section {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .item {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin: 3px 6px 8px 0px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .item:hover {
+            background: #4299e1;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .add-item-container {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .add-item-input {
+            flex: 1;
+            min-width: 120px;
+            padding: 6px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        .add-item-input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.1);
+        }
+        
+        .add-item-btn {
+            padding: 6px 12px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            margin-left: 4px;
+        }
+        
+        .add-item-btn:hover {
+            background: #3182ce;
+            transform: translateY(-1px);
+        }
+        
+        .item-remove {
+            margin-left: 4px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+            font-size: 1rem;
+        }
+        
+        .item-remove:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Complete SDLC Workflow Guide - Dynamic</h1>
+            <p>Real-time data synchronization with server</p>
+        </div>
+        
+        <div class="data-source-selector">
+            <label for="dataSource">Data Source:</label>
+            <select id="dataSource" onchange="changeDataSource()">
+                <option value="local">Local Storage</option>
+                <option value="netlify">Netlify Functions</option>
+                <option value="vercel">Vercel API</option>
+                <option value="firebase">Firebase</option>
+            </select>
+        </div>
+        
+        <div class="sync-status" id="syncStatus">
+            🔄 Loading...
+        </div>
+        
+        <div class="workflow" id="workflow">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Configuration for different data sources
+        const DATA_SOURCES = {
+            local: {
+                name: 'Local Storage',
+                getData: () => {
+                    const data = localStorage.getItem('sdlc-auto-save');
+                    return data ? JSON.parse(data) : null;
+                },
+                saveData: (data) => {
+                    localStorage.setItem('sdlc-auto-save', JSON.stringify(data));
+                    return Promise.resolve(true);
+                }
+            },
+            netlify: {
+                name: 'Netlify Functions',
+                getData: async () => {
+                    try {
+                        const response = await fetch('/.netlify/functions/update-data');
+                        return await response.json();
+                    } catch (error) {
+                        console.error('Error fetching from Netlify:', error);
+                        return null;
+                    }
+                },
+                saveData: async (data) => {
+                    try {
+                        const response = await fetch('/.netlify/functions/update-data', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+                        return response.ok;
+                    } catch (error) {
+                        console.error('Error saving to Netlify:', error);
+                        return false;
+                    }
+                }
+            },
+            vercel: {
+                name: 'Vercel API',
+                getData: async () => {
+                    try {
+                        const response = await fetch('/api/update-data');
+                        return await response.json();
+                    } catch (error) {
+                        console.error('Error fetching from Vercel:', error);
+                        return null;
+                    }
+                },
+                saveData: async (data) => {
+                    try {
+                        const response = await fetch('/api/update-data', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+                        return response.ok;
+                    } catch (error) {
+                        console.error('Error saving to Vercel:', error);
+                        return false;
+                    }
+                }
+            },
+            firebase: {
+                name: 'Firebase',
+                getData: async () => {
+                    try {
+                        // This would use the Firebase config
+                        const { sdlcData } = await import('./firebase-config.js');
+                        return await sdlcData.getData();
+                    } catch (error) {
+                        console.error('Error fetching from Firebase:', error);
+                        return null;
+                    }
+                },
+                saveData: async (data) => {
+                    try {
+                        const { sdlcData } = await import('./firebase-config.js');
+                        return await sdlcData.saveData(data);
+                    } catch (error) {
+                        console.error('Error saving to Firebase:', error);
+                        return false;
+                    }
+                }
+            }
+        };
+
+        let currentDataSource = 'local';
+        let workflowData = null;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            initializeInteractiveFeatures();
+        });
+
+        // Change data source
+        function changeDataSource() {
+            const select = document.getElementById('dataSource');
+            currentDataSource = select.value;
+            updateSyncStatus(`🔄 Switching to ${DATA_SOURCES[currentDataSource].name}...`, 'syncing');
+            loadData();
+        }
+
+        // Update sync status
+        function updateSyncStatus(message, type = 'syncing') {
+            const status = document.getElementById('syncStatus');
+            if (status) {
+                status.textContent = message;
+                status.className = `sync-status ${type}`;
+            }
+        }
+
+        // Load data from selected source
+        async function loadData() {
+            try {
+                updateSyncStatus('🔄 Loading data...', 'syncing');
+                
+                const data = await DATA_SOURCES[currentDataSource].getData();
+                
+                if (data) {
+                    workflowData = data;
+                    renderWorkflow(data);
+                    updateSyncStatus(`✅ Loaded from ${DATA_SOURCES[currentDataSource].name}`, 'updated');
+                } else {
+                    updateSyncStatus('📄 No data found', 'syncing');
+                    renderWorkflow(getDefaultData());
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                updateSyncStatus('❌ Load error', 'error');
+            }
+        }
+
+        // Save data to selected source
+        async function saveData() {
+            try {
+                updateSyncStatus('🔄 Saving data...', 'syncing');
+                
+                const success = await DATA_SOURCES[currentDataSource].saveData(workflowData);
+                
+                if (success) {
+                    updateSyncStatus(`✅ Saved to ${DATA_SOURCES[currentDataSource].name}`, 'updated');
+                } else {
+                    updateSyncStatus('❌ Save failed', 'error');
+                }
+            } catch (error) {
+                console.error('Error saving data:', error);
+                updateSyncStatus('❌ Save error', 'error');
+            }
+        }
+
+        // Get default data structure
+        function getDefaultData() {
+            return {
+                metadata: {
+                    version: "1.0",
+                    lastAutoSave: new Date().toISOString(),
+                    totalPhases: 0,
+                    totalCategories: 0,
+                    totalItems: 0
+                },
+                phases: {}
+            };
+        }
+
+        // Render workflow from data
+        function renderWorkflow(data) {
+            const workflow = document.getElementById('workflow');
+            workflow.innerHTML = '';
+
+            if (!data || !data.phases) {
+                workflow.innerHTML = '<p>No data available</p>';
+                return;
+            }
+
+            Object.keys(data.phases).forEach(phaseKey => {
+                const phase = data.phases[phaseKey];
+                const phaseElement = createPhaseElement(phaseKey, phase);
+                workflow.appendChild(phaseElement);
+            });
+        }
+
+        // Create phase element
+        function createPhaseElement(phaseKey, phase) {
+            const phaseDiv = document.createElement('div');
+            phaseDiv.className = 'phase';
+            phaseDiv.innerHTML = `
+                <h3 class="phase-title">${phase.name || phaseKey}</h3>
+                <p class="phase-description">${phase.description || ''}</p>
+                <div class="sections">
+                    ${renderCategories(phase.categories || {})}
+                </div>
+            `;
+            return phaseDiv;
+        }
+
+        // Render categories
+        function renderCategories(categories) {
+            return Object.keys(categories).map(categoryKey => {
+                const category = categories[categoryKey];
+                return `
+                    <div class="section">
+                        <div class="section-title">${category.name || categoryKey}</div>
+                        <div class="items">
+                            ${(category.items || []).map(item => 
+                                `<span class="item">${item}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialize interactive features
+        function initializeInteractiveFeatures() {
+            // Add event listeners for interactive elements
+            // This would include the same functionality as the original file
+        }
+
+        // Auto-save functionality
+        function autoSave() {
+            if (workflowData) {
+                workflowData.metadata.lastAutoSave = new Date().toISOString();
+                saveData();
+            }
+        }
+
+        // Set up auto-save interval
+        setInterval(autoSave, 30000); // Auto-save every 30 seconds
+    </script>
+</body>
+</html>

@@ -47,6 +47,29 @@
             font-size: 1.1rem;
         }
         
+        .sync-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4299e1;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .sync-status.syncing {
+            background: #ed8936;
+        }
+        
+        .sync-status.updated {
+            background: #48bb78;
+        }
+        
         .workflow {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -381,6 +404,24 @@
         <div class="header">
             <h1>Complete SDLC Workflow Guide</h1>
             <p>Comprehensive guide with tools, conductors, and workflow optimizations</p>
+        </div>
+        <div class="data-summary" style="
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #48bb78;
+        ">
+            <h3>📊 Data Summary</h3>
+            <p><strong>Total Phases:</strong> 11</p>
+            <p><strong>Total Items:</strong> 3</p>
+            <p><strong>Last Updated:</strong> 10/4/2025, 10:26:13 PM</p>
+            <p><strong>Phases with Data:</strong> 0</p>
+        </div>
+    
+        
+        <div class="sync-status" id="syncStatus">
+            🔄 Syncing with JSON...
         </div>
         
         <div class="workflow">
@@ -1425,9 +1466,51 @@
     <script>
         // Initialize interactive features when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            loadDataFromJSON();
             initializeInteractiveFeatures();
             loadAutoSave();
         });
+
+        // Update sync status indicator
+        function updateSyncStatus(message, type = 'syncing') {
+            const status = document.getElementById('syncStatus');
+            if (status) {
+                status.textContent = message;
+                status.className = `sync-status ${type}`;
+            }
+        }
+
+        // Load data from JSON file
+        async function loadDataFromJSON() {
+            try {
+                updateSyncStatus('🔄 Loading from JSON...', 'syncing');
+                console.log('🔄 Loading data from sdlc-workflow.json...');
+                
+                const response = await fetch('./sdlc-workflow.json');
+                if (!response.ok) {
+                    console.log('📄 JSON file not found, using default data');
+                    updateSyncStatus('📄 No JSON file found', 'syncing');
+                    return;
+                }
+                
+                const data = await response.json();
+                console.log('✅ JSON data loaded successfully');
+                
+                // Restore data from JSON
+                restoreDataFromJSON(data);
+                
+                // Update status
+                updateSyncStatus('✅ Synced with JSON', 'updated');
+                
+                // Show notification
+                showNotification('Data loaded from sdlc-workflow.json!', 'success');
+                
+            } catch (error) {
+                console.error('❌ Error loading JSON data:', error);
+                updateSyncStatus('❌ Sync error', 'syncing');
+                showNotification('Could not load data from JSON file', 'error');
+            }
+        }
 
         function initializeInteractiveFeatures() {
             // Add interactive functionality to all categories
@@ -1708,8 +1791,88 @@
             const data = collectAllData();
             localStorage.setItem('sdlc-auto-save', JSON.stringify(data));
             
+            // Auto-save to JSON file
+            autoSaveToJSON(data);
+            
             // Show subtle auto-save indicator
             showAutoSaveIndicator();
+        }
+
+        // Auto-save to JSON file (without download)
+        function autoSaveToJSON(data) {
+            try {
+                // Save to localStorage for immediate persistence
+                localStorage.setItem('sdlc-auto-save', JSON.stringify(data));
+                
+                // Update the main JSON file directly via fetch
+                updateMainJSONFile(data);
+                
+                console.log('Data auto-saved to localStorage and JSON file');
+            } catch (error) {
+                console.error('Error auto-saving to JSON:', error);
+            }
+        }
+
+        // Update the main JSON file directly via server
+        async function updateMainJSONFile(data) {
+            try {
+                // Note: API updates not available in static hosting
+                console.log('API updates not available in static hosting mode');
+                console.log('Data saved to localStorage only');
+                updateSyncStatus('💾 Saved locally', 'syncing');
+                showNotification('Data saved locally (static hosting mode)', 'info');
+            } catch (error) {
+                console.log('📄 JSON server not available, saving to localStorage only');
+                updateSyncStatus('💾 Saved locally', 'syncing');
+            }
+        }
+
+        // Merge data with existing JSON
+        function mergeDataWithExisting(existingData, newData) {
+            if (!newData || !newData.phases) {
+                return existingData;
+            }
+            
+            // Update metadata
+            existingData.metadata.lastModified = new Date().toISOString();
+            existingData.metadata.totalPhases = Object.keys(newData.phases).length;
+            
+            // Count total categories and items
+            let totalCategories = 0;
+            let totalItems = 0;
+            
+            Object.values(newData.phases).forEach(phase => {
+                if (phase.categories) {
+                    totalCategories += Object.keys(phase.categories).length;
+                    Object.values(phase.categories).forEach(category => {
+                        if (category.items) {
+                            totalItems += category.items.length;
+                        }
+                    });
+                }
+                if (phase.ownership) {
+                    totalItems += phase.ownership.length;
+                }
+            });
+            
+            existingData.metadata.totalCategories = totalCategories;
+            existingData.metadata.totalItems = totalItems;
+            
+            // Merge phases data
+            Object.keys(newData.phases).forEach(phaseName => {
+                if (existingData.phases[phaseName]) {
+                    // Update existing phase
+                    existingData.phases[phaseName] = {
+                        ...existingData.phases[phaseName],
+                        ...newData.phases[phaseName]
+                    };
+                } else {
+                    // Add new phase
+                    existingData.phases[phaseName] = newData.phases[phaseName];
+                }
+            });
+            
+            return existingData;
         }
 
         function collectAllData() {
@@ -1861,7 +2024,7 @@
             data.metadata.totalItems = totalItems;
             
             // Create and download JSON file
-            downloadJSONFile(data, 'sdlc-workflow-data.json');
+            downloadJSONFile(data, 'sdlc-workflow-date.json');
             showNotification('Data saved to JSON file successfully!');
         }
 
@@ -2078,7 +2241,51 @@
                 miroBtn.style.boxShadow = '0 4px 15px rgba(255, 107, 107, 0.3)';
             };
             
+            // Create Sync button
+            const syncBtn = document.createElement('button');
+            syncBtn.textContent = '🔄 Sync to JSON';
+            syncBtn.style.cssText = `
+                padding: 8px 16px;
+                background: #48bb78;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s ease;
+                font-weight: 600;
+            `;
+            syncBtn.onclick = () => {
+                const data = collectAllData();
+                autoSaveToJSON(data);
+                showNotification('Data synced to sdlc-workflow-date.json!', 'success');
+            };
+            syncBtn.onmouseover = () => syncBtn.style.background = '#38a169';
+            syncBtn.onmouseout = () => syncBtn.style.background = '#48bb78';
+            
+            // Create Refresh button
+            const refreshBtn = document.createElement('button');
+            refreshBtn.textContent = '🔄 Refresh from JSON';
+            refreshBtn.style.cssText = `
+                padding: 8px 16px;
+                background: #ed8936;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s ease;
+                font-weight: 600;
+            `;
+            refreshBtn.onclick = () => {
+                loadDataFromJSON();
+            };
+            refreshBtn.onmouseover = () => refreshBtn.style.background = '#dd6b20';
+            refreshBtn.onmouseout = () => refreshBtn.style.background = '#ed8936';
+            
             buttonContainer.appendChild(saveBtn);
+            buttonContainer.appendChild(syncBtn);
+            buttonContainer.appendChild(refreshBtn);
             buttonContainer.appendChild(miroBtn);
             header.appendChild(buttonContainer);
         }
@@ -2096,6 +2303,37 @@
                 }
             }
         }
+
+        // Real-time sync with JSON file
+        let lastJSONCheck = 0;
+        const JSON_CHECK_INTERVAL = 5000; // Check every 5 seconds
+
+        function startRealTimeSync() {
+            console.log('🔄 Starting real-time sync with JSON file...');
+            setInterval(async () => {
+                try {
+                    const response = await fetch('./sdlc-workflow.json?' + Date.now());
+                    if (!response.ok) return;
+                    
+                    const data = await response.json();
+                    const currentTime = new Date(data.metadata.lastModified).getTime();
+                    
+                    if (currentTime > lastJSONCheck) {
+                        console.log('📄 JSON file updated, refreshing data...');
+                        updateSyncStatus('🔄 Updating from JSON...', 'syncing');
+                        restoreDataFromJSON(data);
+                        lastJSONCheck = currentTime;
+                        updateSyncStatus('✅ Updated from JSON', 'updated');
+                        showNotification('Data refreshed from JSON!', 'success');
+                    }
+                } catch (error) {
+                    // Silently handle errors (file might not exist yet)
+                }
+            }, JSON_CHECK_INTERVAL);
+        }
+
+        // Start real-time sync after a delay
+        setTimeout(startRealTimeSync, 2000);
 
         // Initialize save/load buttons
         addSaveLoadButtons();

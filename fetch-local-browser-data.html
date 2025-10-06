@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Browser Data Fetcher</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f7fafc;
+        }
+        
+        .section h3 {
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .status.success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+        
+        .status.error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+        }
+        
+        .status.info {
+            background: #bee3f8;
+            color: #2a4365;
+            border: 1px solid #90cdf4;
+        }
+        
+        .data-preview {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .instructions {
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions h4 {
+            color: #742a2a;
+            margin-top: 0;
+        }
+        
+        .instructions ol {
+            color: #4a5568;
+            margin: 10px 0;
+        }
+        
+        .instructions li {
+            margin: 5px 0;
+        }
+        
+        .file-input {
+            margin: 10px 0;
+        }
+        
+        .file-input input[type="file"] {
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Local Browser Data Fetcher</h1>
+        
+        <div class="instructions">
+            <h4>📋 Instructions:</h4>
+            <ol>
+                <li>Open the local SDLC file: <code>file:///Users/Szymon/Documents/PROJEKTY/Development-Livecycle/sdlc_miro_diagram-v1.html</code></li>
+                <li>Add or modify some data in the workflow</li>
+                <li>Come back to this page and click "Fetch from Local Storage"</li>
+                <li>Review the data and click "Download for Merge"</li>
+                <li>Run the Node.js script to merge with sdlc-workflow.json</li>
+            </ol>
+        </div>
+        
+        <div class="section">
+            <h3>🔍 Step 1: Fetch Data from Local Storage</h3>
+            <p>This will retrieve the latest data from the local file's localStorage.</p>
+            <button class="button" onclick="fetchLocalData()">Fetch from Local Storage</button>
+            <div id="fetchStatus"></div>
+        </div>
+        
+        <div class="section">
+            <h3>📊 Step 2: Preview Data</h3>
+            <p>Review the data that will be merged with sdlc-workflow.json</p>
+            <div id="dataPreview" class="data-preview" style="display: none;">
+                No data available. Click "Fetch from Local Storage" first.
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>💾 Step 3: Download for Merge</h3>
+            <p>Download the data as sdlc-workflow-date.json for merging</p>
+            <button class="button" id="downloadBtn" onclick="downloadData()" disabled>Download for Merge</button>
+            <div id="downloadStatus"></div>
+        </div>
+        
+        <div class="section">
+            <h3>🔄 Step 4: Merge with sdlc-workflow.json</h3>
+            <p>Run the Node.js script to merge the data:</p>
+            <div class="data-preview">node fetch-browser-data.js</div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = null;
+        
+        function showStatus(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+        
+        function fetchLocalData() {
+            try {
+                // Try to get data from localStorage
+                const savedData = localStorage.getItem('sdlc-auto-save');
+                
+                if (!savedData) {
+                    showStatus('fetchStatus', '❌ No data found in local storage. Make sure you have used the local SDLC file and added some data.', 'error');
+                    return;
+                }
+                
+                const data = JSON.parse(savedData);
+                currentData = data;
+                
+                // Show data preview
+                const preview = document.getElementById('dataPreview');
+                preview.style.display = 'block';
+                preview.textContent = JSON.stringify(data, null, 2);
+                
+                // Enable download button
+                document.getElementById('downloadBtn').disabled = false;
+                
+                showStatus('fetchStatus', `✅ Successfully fetched data! Found ${Object.keys(data.phases).length} phases with ${data.metadata?.totalItems || 0} total items.`, 'success');
+                
+            } catch (error) {
+                showStatus('fetchStatus', `❌ Error fetching data: ${error.message}`, 'error');
+            }
+        }
+        
+        function downloadData() {
+            if (!currentData) {
+                showStatus('downloadStatus', '❌ No data to download. Please fetch data first.', 'error');
+                return;
+            }
+            
+            try {
+                const jsonString = JSON.stringify(currentData, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'sdlc-workflow-date.json';
+                link.style.display = 'none';
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                URL.revokeObjectURL(url);
+                
+                showStatus('downloadStatus', '✅ Data downloaded as sdlc-workflow-date.json! You can now run the merge script.', 'success');
+                
+            } catch (error) {
+                showStatus('downloadStatus', `❌ Error downloading data: ${error.message}`, 'error');
+            }
+        }
+        
+        // Auto-fetch data on page load
+        window.addEventListener('load', function() {
+            fetchLocalData();
+        });
+    </script>
+</body>
+</html>

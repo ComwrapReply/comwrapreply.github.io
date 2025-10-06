@@ -1,0 +1,42 @@
+name: Update SDLC Data
+
+on:
+  workflow_dispatch: # Manual trigger
+  schedule:
+    - cron: "0 */6 * * *" # Every 6 hours
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update data from localStorage
+        run: |
+          # This would need to be modified to fetch from a data source
+          # For now, we'll just update the timestamp
+          node -e "
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('sdlc-workflow.json', 'utf8'));
+          data.metadata.lastAutoSave = new Date().toISOString();
+          data.metadata.lastModified = new Date().toISOString();
+          fs.writeFileSync('sdlc-workflow.json', JSON.stringify(data, null, 2));
+          console.log('Data updated successfully');
+          "
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add sdlc-workflow.json
+          git diff --staged --quiet || git commit -m "Auto-update SDLC data [skip ci]"
+          git push

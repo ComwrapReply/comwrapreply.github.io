@@ -1,0 +1,428 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "lastAutoSave": "2025-10-04T21:59:13.751Z",
+    "totalPhases": 11,
+    "totalCategories": 79,
+    "totalItems": 26
+  },
+  "phases": {
+    "Discovery & Planning": {
+      "phaseNumber": 1,
+      "categories": {
+        "AI Planning:": {
+          "items": [
+            "ChatGPT/Claude",
+            "ClickUp Brain",
+            "Notion AI"
+          ],
+          "itemCount": 3
+        },
+        "Project Management:": {
+          "items": [
+            "Linear",
+            "Monday.com",
+            "Asana",
+            "Jira"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Product Manager",
+            "Stakeholders",
+            "Business Analyst"
+          ],
+          "itemCount": 3
+        },
+        "How (Channels):": {
+          "items": [
+            "Discovery workshops",
+            "Stakeholder emails",
+            "User interviews"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Unclear requirements",
+            "Conflicting opinions",
+            "Scope creep"
+          ],
+          "itemCount": 3
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Missing approvals",
+            "Budget uncertainty"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Meeting scheduling",
+            "Follow-up emails",
+            "Note transcription"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "Product Manager",
+        "Business Analyst",
+        "Stakeholders"
+      ]
+    },
+    "Requirements": {
+      "phaseNumber": 2,
+      "categories": {
+        "AI Writing:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Documentation:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": [
+        "szymon",
+        "connie"
+      ]
+    },
+    "Solutions": {
+      "phaseNumber": 3,
+      "categories": {
+        "AI Architecture:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Design Tools:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    },
+    "Figma Design": {
+      "phaseNumber": 4,
+      "categories": {
+        "AI Design:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Design Tools:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    },
+    "Ticket Creation": {
+      "phaseNumber": 5,
+      "categories": {
+        "Ticketing:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Intake & Forms:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Automation:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "AI Assist:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    },
+    "Coding": {
+      "phaseNumber": 6,
+      "categories": {
+        "AI Coding:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "IDEs & Editors:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    },
+    "Create MR": {
+      "phaseNumber": 7,
+      "categories": {
+        "AI Assistance:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Version Control:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    },
+    "Review MRs": {
+      "phaseNumber": 8,
+      "categories": {
+        "AI Review:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Review Tools:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    },
+    "Merge MRs": {
+      "phaseNumber": 9,
+      "categories": {
+        "Merge Tools:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Automation:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    },
+    "Testing": {
+      "phaseNumber": 10,
+      "categories": {
+        "AI Testing:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Testing Tools:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    },
+    "Deployments": {
+      "phaseNumber": 11,
+      "categories": {
+        "Deployment:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Infrastructure:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "Who (Roles):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "How (Channels):": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚨 Pain Points:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🚧 Blockers:": {
+          "items": [],
+          "itemCount": 0
+        },
+        "🤖 Automate This:": {
+          "items": [],
+          "itemCount": 0
+        }
+      },
+      "ownership": []
+    }
+  }
+}
