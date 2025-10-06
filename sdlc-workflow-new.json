@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T10:54:15.036Z",
+    "lastAutoSave": "2025-10-06T10:54:24.257Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 347,
-    "lastModified": "2025-10-06T10:54:15.036Z"
+    "totalItems": 348,
+    "lastModified": "2025-10-06T10:54:24.257Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -544,7 +544,8 @@
       "ownership": [
         "Developers",
         "Tech Lead",
-        "Szymon"
+        "Szymon",
+        "Rrahul"
       ]
     },
     "Testing": {
