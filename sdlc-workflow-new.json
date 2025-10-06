@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T09:03:21.611Z",
+    "lastAutoSave": "2025-10-06T09:03:27.006Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 338,
-    "lastModified": "2025-10-06T09:03:21.611Z"
+    "totalItems": 339,
+    "lastModified": "2025-10-06T09:03:27.006Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -188,7 +188,8 @@
         "Product Owner",
         "Solution Architect",
         "Jeremy",
-        "Joshua"
+        "Joshua",
+        "Rahul"
       ]
     },
     "Solutions": {
