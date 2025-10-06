@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-05T22:10:39.001Z",
+    "lastAutoSave": "2025-10-06T08:44:40.587Z",
     "totalPhases": 11,
     "totalCategories": 112,
-    "totalItems": 320,
-    "lastModified": "2025-10-05T22:10:39.001Z"
+    "totalItems": 321,
+    "lastModified": "2025-10-06T08:44:40.587Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -63,9 +63,17 @@
           "items": [
             "Meeting scheduling",
             "Follow-up emails",
-            "Note transcription"
+            "Note transcription",
+            "Auto responder to clients emails",
+            "Saas for clients to log tickets service",
+            "Service Now ticket creation sasss",
+            "emails tickets integration to jira",
+            "copilot is integrated with emails to help log tieckets in jira",
+            "email responder/ai asistant",
+            "jira integration",
+            "szymon"
           ],
-          "itemCount": 3
+          "itemCount": 11
         },
         "Project Management:": {
           "items": [
@@ -161,11 +169,16 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "Spec templates",
-            "Doc scaffolding",
-            "Traceability matrix generation"
+            "Document formatting",
+            "Story creation",
+            "Requirements tracing",
+            "Record meetings and summarize tasks; auto-log to Jira",
+            "Auto-transcribe calls to take notes and draft tasks",
+            "Better ticket details",
+            "Better integration with Jira",
+            "Run workshops to understand AEM at a high level"
           ],
-          "itemCount": 3
+          "itemCount": 8
         },
         "Workflow Challenges:": {
           "items": [
@@ -251,9 +264,10 @@
           "items": [
             "Diagram generation",
             "Code scaffolding",
-            "Documentation sync"
+            "Documentation automation",
+            "Fetch transcripts from calls; summarize outcomes and report notes"
           ],
-          "itemCount": 3
+          "itemCount": 4
         },
         "Workflow Challenges:": {
           "items": [
@@ -334,11 +348,15 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "Spec export",
-            "Design tokens sync",
-            "Accessibility checks"
+            "Asset export",
+            "Design handoff",
+            "Version control",
+            "Find a tool that scans the design and finds improvements",
+            "Consult the recommendation with the client on better UX/UI",
+            "Find best match of AEM components to Figma design",
+            "Devs need to be involved with designers on design creation"
           ],
-          "itemCount": 3
+          "itemCount": 7
         },
         "Workflow Challenges:": {
           "items": [
@@ -436,11 +454,13 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "Template actions",
-            "Auto-labels by component",
-            "RAG enrichment from specs"
+            "Template enforcement",
+            "Auto-label by component",
+            "Auto-link Figma/MR",
+            "SLA timers & alerts",
+            "Assign by team rules"
           ],
-          "itemCount": 3
+          "itemCount": 5
         },
         "Workflow Challenges:": {
           "items": [
@@ -522,11 +542,18 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "PR descriptions",
-            "Changelog generation",
-            "Lint/format on CI"
+            "Code formatting",
+            "Test running",
+            "Documentation generation",
+            "Boilerplate code",
+            "Agent guidance to help developers write standard-compliant code",
+            "Create docs instructions while developing components",
+            "Jira must contain these component docs",
+            "Better prompting",
+            "Add AI test runs in GitHub Actions and GitLab pipelines",
+            "Try BrowserStack AI for testing"
           ],
-          "itemCount": 3
+          "itemCount": 10
         },
         "Workflow Challenges:": {
           "items": [

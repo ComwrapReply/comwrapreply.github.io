@@ -156,6 +156,53 @@
             padding-right: 50px;
         }
         
+        .user-story-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .user-story-title {
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-story-items {
+            margin-bottom: 10px;
+        }
+        
+        .user-story-item {
+            background: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ffeaa7;
+            font-style: italic;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .user-story-item .item-remove {
+            color: #dc3545;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+            font-style: normal;
+        }
+        
+        .user-story-item .item-remove:hover {
+            color: #c82333;
+        }
+        
         .ownership-section {
             margin-bottom: 20px;
             padding: 15px;
@@ -552,6 +599,29 @@
                 <h3 class="phase-title">${phaseName}</h3>
             `;
             
+            // Add User Story section first (if it exists)
+            if (phaseData.categories && phaseData.categories['User Story:']) {
+                const userStoryData = phaseData.categories['User Story:'];
+                html += `
+                <div class="user-story-section">
+                    <div class="user-story-title">
+                        📝 User Story
+                        <button class="add-item-btn" onclick="toggleUserStoryAdd(this)">+ Add</button>
+                    </div>
+                    <div class="user-story-items">
+                        ${userStoryData.items.map(item => 
+                            `<div class="user-story-item">${item}<span class="item-remove" onclick="removeUserStoryItem(this)">×</span></div>`
+                        ).join('')}
+                    </div>
+                    <div class="add-item-container">
+                        <input type="text" class="add-item-input" placeholder="Enter user story..." onkeypress="handleUserStoryEnter(event, this)">
+                        <button class="add-item-btn" onclick="addUserStoryItem(this)">Add</button>
+                        <button class="add-item-btn" onclick="cancelAdd(this)">Cancel</button>
+                </div>
+                    </div>
+                `;
+            }
+            
             // Add ownership section
             if (phaseData.ownership && phaseData.ownership.length > 0) {
                 html += `
@@ -572,8 +642,10 @@
                 `;
             }
             
-            // Group categories by type
-            const categoryGroups = groupCategories(phaseData.categories);
+            // Group categories by type (excluding User Story which is already handled above)
+            const filteredCategories = { ...phaseData.categories };
+            delete filteredCategories['User Story:'];
+            const categoryGroups = groupCategories(filteredCategories);
             
             // Render each category group
             Object.entries(categoryGroups).forEach(([groupName, categories]) => {
@@ -611,6 +683,20 @@
         }
         
         // Interactive functions
+        function toggleUserStoryAdd(button) {
+            const container = button.closest('.user-story-section').querySelector('.add-item-container');
+            const isActive = container.classList.contains('active');
+            
+            if (isActive) {
+                container.classList.remove('active');
+                button.textContent = '+ Add';
+            } else {
+                container.classList.add('active');
+                button.textContent = '− Cancel';
+                container.querySelector('input').focus();
+            }
+        }
+        
         function toggleOwnershipAdd(button) {
             const container = button.closest('.ownership-section').querySelector('.add-item-container');
             const isActive = container.classList.contains('active');
@@ -647,6 +733,37 @@
             container.classList.remove('active');
             container.querySelector('input').value = '';
             addButton.textContent = '+ Add';
+        }
+        
+        function addUserStoryItem(button) {
+            const input = button.parentElement.querySelector('input');
+            const text = input.value.trim();
+            
+            if (text) {
+                const userStorySection = button.closest('.user-story-section');
+                const newItem = document.createElement('div');
+                newItem.className = 'user-story-item';
+                newItem.innerHTML = `${text}<span class="item-remove" onclick="removeUserStoryItem(this)">×</span>`;
+                
+                const container = userStorySection.querySelector('.add-item-container');
+                userStorySection.querySelector('.user-story-items').appendChild(newItem);
+                
+                input.value = '';
+                cancelAdd(button);
+                autoSave();
+            }
+        }
+        
+        function removeUserStoryItem(button) {
+            button.parentElement.remove();
+            autoSave();
+        }
+        
+        function handleUserStoryEnter(event, input) {
+            if (event.key === 'Enter') {
+                const button = input.parentElement.querySelector('button[onclick="addUserStoryItem(this)"]');
+                addUserStoryItem(button);
+            }
         }
         
         function addOwnership(button) {
@@ -989,4 +1106,4 @@
         });
     </script>
 </body>
-</html>
+</html>§
