@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-05T22:29:52.487Z",
+    "lastAutoSave": "2025-10-06T08:28:11.160Z",
     "totalPhases": 11,
     "totalCategories": 112,
-    "totalItems": 328,
-    "lastModified": "2025-10-05T22:29:52.485Z"
+    "totalItems": 307,
+    "lastModified": "2025-10-06T08:28:11.158Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -169,11 +169,16 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "Spec templates",
-            "Doc scaffolding",
-            "Traceability matrix generation"
+            "Document formatting",
+            "Story creation",
+            "Requirements tracing",
+            "Record meetings and summarize tasks; auto-log to Jira",
+            "Auto-transcribe calls to take notes and draft tasks",
+            "Better ticket details",
+            "Better integration with Jira",
+            "Run workshops to understand AEM at a high level"
           ],
-          "itemCount": 3
+          "itemCount": 8
         },
         "Workflow Challenges:": {
           "items": [
