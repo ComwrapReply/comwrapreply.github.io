@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T08:35:54.079Z",
+    "lastAutoSave": "2025-10-06T08:37:36.077Z",
     "totalPhases": 11,
     "totalCategories": 112,
-    "totalItems": 312,
-    "lastModified": "2025-10-06T08:35:54.079Z"
+    "totalItems": 314,
+    "lastModified": "2025-10-06T08:37:36.077Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -454,11 +454,13 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "Template actions",
-            "Auto-labels by component",
-            "RAG enrichment from specs"
+            "Template enforcement",
+            "Auto-label by component",
+            "Auto-link Figma/MR",
+            "SLA timers & alerts",
+            "Assign by team rules"
           ],
-          "itemCount": 3
+          "itemCount": 5
         },
         "Workflow Challenges:": {
           "items": [
