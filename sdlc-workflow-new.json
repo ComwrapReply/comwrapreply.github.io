@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T08:56:30.639Z",
+    "lastAutoSave": "2025-10-06T09:03:16.176Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 336,
-    "lastModified": "2025-10-06T08:56:30.639Z"
+    "totalItems": 337,
+    "lastModified": "2025-10-06T09:03:16.174Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -186,7 +186,8 @@
       "ownership": [
         "Business Analyst",
         "Product Owner",
-        "Solution Architect"
+        "Solution Architect",
+        "Jeremy"
       ]
     },
     "Solutions": {
@@ -540,7 +541,7 @@
       ]
     },
     "Create MR": {
-      "phaseNumber": 8,
+      "phaseNumber": 7,
       "categories": {
         "AI Assistance:": {
           "items": [
@@ -615,7 +616,7 @@
       ]
     },
     "Review MRs": {
-      "phaseNumber": 9,
+      "phaseNumber": 8,
       "categories": {
         "AI Review:": {
           "items": [
@@ -692,7 +693,7 @@
       ]
     },
     "Merge MRs": {
-      "phaseNumber": 10,
+      "phaseNumber": 9,
       "categories": {
         "Merge Tools:": {
           "items": [
@@ -769,7 +770,7 @@
       ]
     },
     "Testing": {
-      "phaseNumber": 7,
+      "phaseNumber": 10,
       "categories": {
         "AI Testing:": {
           "items": [
