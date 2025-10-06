@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T10:54:04.690Z",
+    "lastAutoSave": "2025-10-06T10:54:15.036Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 346,
-    "lastModified": "2025-10-06T10:54:04.690Z"
+    "totalItems": 347,
+    "lastModified": "2025-10-06T10:54:15.036Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -543,7 +543,8 @@
       },
       "ownership": [
         "Developers",
-        "Tech Lead"
+        "Tech Lead",
+        "Szymon"
       ]
     },
     "Testing": {
