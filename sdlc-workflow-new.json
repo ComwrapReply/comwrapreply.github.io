@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T08:43:14.677Z",
+    "lastAutoSave": "2025-10-06T08:44:46.327Z",
     "totalPhases": 11,
-    "totalCategories": 101,
-    "totalItems": 336,
-    "lastModified": "2025-10-06T08:43:14.677Z"
+    "totalCategories": 112,
+    "totalItems": 321,
+    "lastModified": "2025-10-06T08:44:46.327Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -83,6 +83,12 @@
             "Jira"
           ],
           "itemCount": 4
+        },
+        "User Story:": {
+          "items": [
+            "As a product manager, I want to conduct discovery so that priorities are clear, risks are understood, and scope and budget are aligned."
+          ],
+          "itemCount": 1
         },
         "Workflow Challenges:": {
           "items": [
@@ -181,15 +187,18 @@
             "NFRs captured"
           ],
           "itemCount": 3
+        },
+        "User Story:": {
+          "items": [
+            "As a business analyst, I want to document clear, testable requirements so that dev and QA know exactly what needs to be built."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
         "Business Analyst",
         "Product Owner",
-        "Solution Architect",
-        "Joshua",
-        "Rahul",
-        "Jeremy"
+        "Solution Architect"
       ]
     },
     "Solutions": {
@@ -267,13 +276,17 @@
             "Versioned decisions"
           ],
           "itemCount": 3
+        },
+        "User Story:": {
+          "items": [
+            "As a solution architect, I want to design an implementation plan so the team can deliver the right system with minimal rework."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
         "Solution Architect",
-        "Tech Lead",
-        "Alex",
-        "Nathan"
+        "Tech Lead"
       ]
     },
     "Figma Design": {
@@ -352,13 +365,17 @@
             "Token alignment"
           ],
           "itemCount": 3
+        },
+        "User Story:": {
+          "items": [
+            "As a designer, I want to create validated prototypes so the experience is testable before build."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
         "UX/UI Designer",
-        "Product Manager",
-        "Hannah",
-        "Joshua"
+        "Product Manager"
       ]
     },
     "Ticket Creation": {
@@ -437,11 +454,13 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "Template actions",
-            "Auto-labels by component",
-            "RAG enrichment from specs"
+            "Template enforcement",
+            "Auto-label by component",
+            "Auto-link Figma/MR",
+            "SLA timers & alerts",
+            "Assign by team rules"
           ],
-          "itemCount": 3
+          "itemCount": 5
         },
         "Workflow Challenges:": {
           "items": [
@@ -450,13 +469,17 @@
             "Duplicate detection"
           ],
           "itemCount": 3
+        },
+        "User Story:": {
+          "items": [
+            "As a product owner, I want to create clear tickets so work flows smoothly and devs can start quickly."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
         "Product Owner",
-        "Business Analyst",
-        "Connie",
-        "Szymon"
+        "Business Analyst"
       ]
     },
     "Coding": {
@@ -519,11 +542,18 @@
         },
         "🤖 Automate This:": {
           "items": [
-            "PR descriptions",
-            "Changelog generation",
-            "Lint/format on CI"
+            "Code formatting",
+            "Test running",
+            "Documentation generation",
+            "Boilerplate code",
+            "Agent guidance to help developers write standard-compliant code",
+            "Create docs instructions while developing components",
+            "Jira must contain these component docs",
+            "Better prompting",
+            "Add AI test runs in GitHub Actions and GitLab pipelines",
+            "Try BrowserStack AI for testing"
           ],
-          "itemCount": 3
+          "itemCount": 10
         },
         "Workflow Challenges:": {
           "items": [
@@ -532,6 +562,12 @@
             "Coding guidelines"
           ],
           "itemCount": 3
+        },
+        "User Story:": {
+          "items": [
+            "As a developer, I want to implement features with quality so that the application is maintainable and scalable."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
@@ -608,6 +644,12 @@
             "Scope alignment"
           ],
           "itemCount": 3
+        },
+        "User Story:": {
+          "items": [
+            "As a developer, I want to create a detailed MR so reviewers understand the change quickly and can approve faster."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
@@ -684,6 +726,12 @@
             "Change fatigue"
           ],
           "itemCount": 2
+        },
+        "User Story:": {
+          "items": [
+            "As a reviewer, I want to ensure quality and performance while keeping standards consistent."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
@@ -761,6 +809,12 @@
             "Change sync"
           ],
           "itemCount": 2
+        },
+        "User Story:": {
+          "items": [
+            "As a tech lead, I want merges to be reliable so changes flow to main without regressions."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
@@ -841,6 +895,12 @@
             "Coverage management"
           ],
           "itemCount": 3
+        },
+        "User Story:": {
+          "items": [
+            "As a QA engineer, I want to thoroughly validate changes so defects are caught before release."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
@@ -918,6 +978,12 @@
             "Capacity planning"
           ],
           "itemCount": 2
+        },
+        "User Story:": {
+          "items": [
+            "As a release manager, I want deployments to be reliable and observable so incidents are minimized."
+          ],
+          "itemCount": 1
         }
       },
       "ownership": [
