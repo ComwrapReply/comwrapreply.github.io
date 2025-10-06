@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T08:44:46.327Z",
+    "lastAutoSave": "2025-10-06T08:51:11.045Z",
     "totalPhases": 11,
     "totalCategories": 112,
     "totalItems": 321,
-    "lastModified": "2025-10-06T08:44:46.327Z"
+    "lastModified": "2025-10-06T08:51:11.043Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -576,7 +576,7 @@
       ]
     },
     "Create MR": {
-      "phaseNumber": 7,
+      "phaseNumber": 8,
       "categories": {
         "AI Assistance:": {
           "items": [
@@ -657,7 +657,7 @@
       ]
     },
     "Review MRs": {
-      "phaseNumber": 8,
+      "phaseNumber": 9,
       "categories": {
         "AI Review:": {
           "items": [
@@ -740,7 +740,7 @@
       ]
     },
     "Merge MRs": {
-      "phaseNumber": 9,
+      "phaseNumber": 10,
       "categories": {
         "Merge Tools:": {
           "items": [
@@ -823,7 +823,7 @@
       ]
     },
     "Testing": {
-      "phaseNumber": 10,
+      "phaseNumber": 7,
       "categories": {
         "AI Testing:": {
           "items": [
