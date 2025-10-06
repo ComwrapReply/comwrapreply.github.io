@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-06T09:03:27.006Z",
+    "lastAutoSave": "2025-10-06T09:04:07.954Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 339,
-    "lastModified": "2025-10-06T09:03:27.006Z"
+    "totalItems": 340,
+    "lastModified": "2025-10-06T09:04:07.954Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -271,7 +271,8 @@
       },
       "ownership": [
         "Solution Architect",
-        "Tech Lead"
+        "Tech Lead",
+        "Nathan"
       ]
     },
     "Figma Design": {
