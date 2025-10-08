@@ -8,7 +8,7 @@ const fs = require('fs');
  * Tests all components: server, API, JSON file, and data flow
  */
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'http://localhost:5000';
 const JSON_FILE = 'sdlc-workflow.json';
 
 // Test data

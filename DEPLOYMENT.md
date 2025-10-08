@@ -80,7 +80,7 @@ npm install
 npm run serve
 
 # Open in browser
-open http://localhost:3000/sdlc-workflow.html
+open http://localhost:5000/sdlc-workflow.html
 ```
 
 ## Data Management

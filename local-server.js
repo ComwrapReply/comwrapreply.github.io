@@ -10,7 +10,7 @@ const { exec } = require('child_process');
  * This allows us to access localStorage data from the browser
  */
 
-const PORT = 3000;
+const PORT = 5000;
 const LOCAL_HTML_FILE = '/Users/Szymon/Documents/PROJEKTY/Development-Livecycle/sdlc_miro_diagram-v1.html';
 
 function serveFile(req, res) {
@@ -51,7 +51,7 @@ function startServer() {
         console.log(`📁 Serving local HTML file: ${LOCAL_HTML_FILE}`);
         console.log('');
         console.log('📋 Instructions:');
-        console.log('1. Open http://localhost:3000 in your browser');
+        console.log('1. Open http://localhost:5000 in your browser');
         console.log('2. Add or modify data in the workflow');
         console.log('3. Open browser console and run:');
         console.log('   localStorage.getItem("sdlc-auto-save")');

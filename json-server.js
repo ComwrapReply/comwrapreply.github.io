@@ -9,7 +9,7 @@ const url = require('url');
  * Simple JSON server to handle updates to sdlc-workflow.json
  */
 
-const PORT = 3001;
+const PORT = 5000;
 const JSON_FILE = 'sdlc-workflow.json';
 
 function readJSONFile() {

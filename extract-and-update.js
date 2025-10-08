@@ -9,7 +9,7 @@ const http = require('http');
  */
 
 const LOCAL_HTML_FILE = '/Users/Szymon/Documents/PROJEKTY/Development-Livecycle/sdlc_miro_diagram-v1.html';
-const SERVER_URL = 'http://localhost:3001';
+const SERVER_URL = 'http://localhost:5000';
 
 function readJSONFile(filePath) {
     try {
@@ -50,7 +50,7 @@ function updateJSONViaServer(data) {
         
         const options = {
             hostname: 'localhost',
-            port: 3001,
+            port: 5000,
             path: '/api/update',
             method: 'POST',
             headers: {

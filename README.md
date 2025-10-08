@@ -22,7 +22,7 @@ This tool helps you:
 ### Method 1: Using the Local Development Server (Recommended)
 
 1. Start the local server: `npm run serve` or `node server.js`
-2. Open your browser and go to: `http://localhost:3000/sdlc-workflow.html`
+2. Open your browser and go to: `http://localhost:5000/sdlc-workflow.html`
 3. The page will automatically load data from `sdlc-workflow.json`
 4. Make changes to the workflow data
 5. Changes are automatically saved to the JSON file via the server
@@ -30,7 +30,7 @@ This tool helps you:
 ### Method 2: Using the Browser Data Fetcher
 
 1. Start the local server: `npm run serve` or `node server.js`
-2. Open `http://localhost:3000/fetch-local-browser-data.html` in your browser
+2. Open `http://localhost:5000/fetch-local-browser-data.html` in your browser
 3. Open the local SDLC file: `file:///Users/Szymon/Documents/PROJEKTY/Development-Livecycle/sdlc_miro_diagram-v1.html`
 4. Add or modify data in the workflow
 5. Return to the web interface and click "Fetch from Local Storage"

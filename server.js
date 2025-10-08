@@ -10,7 +10,7 @@ const url = require('url');
  * This solves the CORS issue when accessing local files from the browser
  */
 
-const PORT = 3001;
+const PORT = 5000;
 const HOST = 'localhost';
 
 // MIME types for different file extensions
