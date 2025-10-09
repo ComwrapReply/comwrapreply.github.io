@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:22:25.499Z",
+    "lastAutoSave": "2025-10-09T12:22:44.003Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 353,
-    "lastModified": "2025-10-09T12:22:25.496Z"
+    "totalItems": 352,
+    "lastModified": "2025-10-09T12:22:44.003Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -23,10 +23,9 @@
           "items": [
             "Unclear requirements",
             "Conflicting opinions",
-            "Scope creep",
-            "sas"
+            "Scope creep"
           ],
-          "itemCount": 4
+          "itemCount": 3
         },
         "Key Deliverables:": {
           "items": [
