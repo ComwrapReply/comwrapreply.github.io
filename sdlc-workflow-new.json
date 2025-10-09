@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:29:27.472Z",
+    "lastAutoSave": "2025-10-09T12:30:50.338Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 352,
-    "lastModified": "2025-10-09T12:29:27.469Z"
+    "totalItems": 353,
+    "lastModified": "2025-10-09T12:30:50.338Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -358,7 +358,8 @@
         "UX/UI Designer",
         "Product Manager",
         "Hannah",
-        "Joshua"
+        "Joshua",
+        "Sorana"
       ]
     },
     "Ticket Creation": {
