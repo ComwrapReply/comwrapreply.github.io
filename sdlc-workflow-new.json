@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:22:44.003Z",
+    "lastAutoSave": "2025-10-09T12:23:43.305Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 352,
-    "lastModified": "2025-10-09T12:22:44.003Z"
+    "totalItems": 351,
+    "lastModified": "2025-10-09T12:23:43.305Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -70,10 +70,9 @@
             "emails tickets integration to jira",
             "copilot is integrated with emails to help log tieckets in jira",
             "email responder/ai asistant",
-            "jira integration",
-            "szymon"
+            "jira integration"
           ],
-          "itemCount": 11
+          "itemCount": 10
         },
         "Project Management:": {
           "items": [
