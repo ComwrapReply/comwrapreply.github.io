@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:30:50.338Z",
+    "lastAutoSave": "2025-10-09T12:31:17.899Z",
     "totalPhases": 11,
     "totalCategories": 101,
     "totalItems": 353,
-    "lastModified": "2025-10-09T12:30:50.338Z"
+    "lastModified": "2025-10-09T12:31:17.899Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -70,9 +70,10 @@
             "emails tickets integration to jira",
             "copilot is integrated with emails to help log tieckets in jira",
             "email responder/ai asistant",
-            "jira integration"
+            "jira integration",
+            "szymon"
           ],
-          "itemCount": 10
+          "itemCount": 11
         },
         "Project Management:": {
           "items": [
@@ -272,8 +273,7 @@
         "Solution Architect",
         "Tech Lead",
         "Nathan",
-        "Alex",
-        "Rahul"
+        "Alex"
       ]
     },
     "Figma Design": {
@@ -290,9 +290,10 @@
         "Design Tools:": {
           "items": [
             "Figma",
-            "Framer"
+            "Framer",
+            "Rapid prototype?"
           ],
-          "itemCount": 2
+          "itemCount": 3
         },
         "🚨 Pain Points:": {
           "items": [
@@ -358,8 +359,7 @@
         "UX/UI Designer",
         "Product Manager",
         "Hannah",
-        "Joshua",
-        "Sorana"
+        "Joshua"
       ]
     },
     "Ticket Creation": {
