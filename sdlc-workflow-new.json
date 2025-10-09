@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:33:22.534Z",
+    "lastAutoSave": "2025-10-09T12:33:37.317Z",
     "totalPhases": 11,
     "totalCategories": 101,
     "totalItems": 354,
-    "lastModified": "2025-10-09T12:33:22.534Z"
+    "lastModified": "2025-10-09T12:33:37.317Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -461,7 +461,7 @@
         "Joshua",
         "Szymon",
         "Connie",
-        "Awab"
+        "awab"
       ]
     },
     "Coding": {
