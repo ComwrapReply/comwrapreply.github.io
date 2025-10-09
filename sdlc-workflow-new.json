@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:37:48.680Z",
+    "lastAutoSave": "2025-10-09T12:38:11.002Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 356,
-    "lastModified": "2025-10-09T12:37:48.680Z"
+    "totalItems": 354,
+    "lastModified": "2025-10-09T12:38:11.002Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -97,8 +97,7 @@
         "Business Analyst",
         "Stakeholders",
         "Connie",
-        "Szymon",
-        "Nathan"
+        "Szymon"
       ]
     },
     "Requirements": {
@@ -551,8 +550,7 @@
         "Developers",
         "Tech Lead",
         "Szymon",
-        "Rrahul",
-        "https://traycer.ai/"
+        "Rrahul"
       ]
     },
     "Testing": {
