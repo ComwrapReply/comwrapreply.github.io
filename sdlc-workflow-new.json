@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:37:04.765Z",
+    "lastAutoSave": "2025-10-09T12:37:48.680Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 355,
-    "lastModified": "2025-10-09T12:37:04.765Z"
+    "totalItems": 356,
+    "lastModified": "2025-10-09T12:37:48.680Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -97,7 +97,8 @@
         "Business Analyst",
         "Stakeholders",
         "Connie",
-        "Szymon"
+        "Szymon",
+        "Nathan"
       ]
     },
     "Requirements": {
