@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:33:37.317Z",
+    "lastAutoSave": "2025-10-09T12:33:39.725Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 354,
-    "lastModified": "2025-10-09T12:33:37.317Z"
+    "totalItems": 353,
+    "lastModified": "2025-10-09T12:33:39.725Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -460,8 +460,7 @@
         "Business Analyst",
         "Joshua",
         "Szymon",
-        "Connie",
-        "awab"
+        "Connie"
       ]
     },
     "Coding": {
