@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-10T17:05:20.315Z",
+    "lastAutoSave": "2025-10-10T17:08:52.850Z",
     "totalPhases": 11,
     "totalCategories": 101,
     "totalItems": 358,
-    "lastModified": "2025-10-10T17:05:20.313Z"
+    "lastModified": "2025-10-10T17:08:52.850Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -292,7 +292,7 @@
           "items": [
             "Figma",
             "Framer",
-            "lavable"
+            "test"
           ],
           "itemCount": 3
         },
