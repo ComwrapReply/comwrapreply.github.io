@@ -6,7 +6,10 @@
   "scripts": {
     "build": "echo 'No build step needed'",
     "deploy": "netlify deploy --prod",
-    "dev": "netlify dev"
+    "dev": "netlify dev",
+    "setup-team": "node setup-team-collaboration.js",
+    "cleanup-ports": "./cleanup-ports.sh",
+    "serve": "node server.js"
   },
   "keywords": [
     "sdlc",

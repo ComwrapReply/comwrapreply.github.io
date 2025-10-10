@@ -1,0 +1,31 @@
+{
+  "setupDate": "2025-10-09T14:26:50.228Z",
+  "teamSize": 10,
+  "collaborationMethod": "Netlify Identity + GitHub",
+  "features": [
+    "User authentication",
+    "Change tracking",
+    "Conflict resolution",
+    "Team permissions",
+    "Activity logging"
+  ],
+  "teamMembers": [
+    "member1@company.com",
+    "member2@company.com",
+    "member3@company.com",
+    "member4@company.com",
+    "member5@company.com",
+    "member6@company.com",
+    "member7@company.com",
+    "member8@company.com",
+    "member9@company.com",
+    "member10@company.com"
+  ],
+  "nextSteps": [
+    "Enable Netlify Identity",
+    "Add team members to GitHub",
+    "Send invitation emails",
+    "Test with small group",
+    "Roll out to full team"
+  ]
+}
