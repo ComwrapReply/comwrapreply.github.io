@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-10T16:52:16.578Z",
+    "lastAutoSave": "2025-10-10T16:55:26.815Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 358,
-    "lastModified": "2025-10-10T16:52:16.578Z"
+    "totalItems": 357,
+    "lastModified": "2025-10-10T16:55:26.815Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -284,10 +284,9 @@
             "Figma AI",
             "Uizard",
             "Magician",
-            "lovable",
-            "test"
+            "lovable"
           ],
-          "itemCount": 5
+          "itemCount": 4
         },
         "Design Tools:": {
           "items": [
