@@ -29,6 +29,93 @@
             position: relative;
         }
         
+        .user-profile {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            z-index: 100;
+        }
+        
+        .user-profile.not-logged-in {
+            background: #6c757d;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .user-email {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: 8px;
+        }
+        
+        .user-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .user-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .user-status {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-left: 8px;
+        }
+        
+        .status-indicator {
+            font-size: 11px;
+            opacity: 0.8;
+            padding: 2px 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+        
+        
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -487,6 +574,19 @@
 </head>
 <body>
     <div class="container">
+        <!-- User Profile Section -->
+        <div class="user-profile" id="userProfile">
+            <div class="user-avatar" id="userAvatar">👤</div>
+            <div class="user-info">
+                <div class="user-name" id="userName">Anonymous User</div>
+                <div class="user-email" id="userEmail">Open editing - no login required</div>
+        </div>
+            <div class="user-status" id="userStatus">
+                <div class="status-indicator" id="autoSaveStatus">💾 Auto-save: ON</div>
+                <div class="status-indicator" id="refreshStatus">🔄 Refresh: ON</div>
+        </div>
+        </div>
+        
         <div class="header">
             <h1>Complete SDLC Workflow Guide</h1>
             <p>Comprehensive guide with tools, conductors, and workflow optimizations</p>
@@ -497,13 +597,13 @@
                 <button class="control-btn sync-btn" onclick="loadWorkflowData()">🔄 Refresh</button>
                 <button class="control-btn sync-btn" onclick="forceReloadFromGitHub()">🔄 Force Reload from GitHub</button>
                 <a href="https://miro.com/app/board/uXjVJCfwKNc=/" target="_blank" class="control-btn miro-btn">🎨 SDLC in Miro</a>
-        </div>
-        </div>
-        
+                </div>
+                </div>
+                
         <div class="sync-status" id="syncStatus">
             🔄 Loading...
         </div>
-        
+                
         <div class="data-summary" id="dataSummary">
             <h3>📊 Data Summary</h3>
             <div class="loading">Loading data...</div>
@@ -512,15 +612,149 @@
         <div class="workflow" id="workflowContainer">
             <div class="loading">Loading SDLC phases...</div>
                     </div>
-        </div>
+                </div>
                 
     <script>
+        // Simple user info for API calls (no authentication required)
+        function getCurrentUserInfo() {
+            return {
+                userEmail: 'anonymous@team.com',
+                userName: 'Anonymous User'
+            };
+        }
+        
+        // Auto-save functionality
+        let autoSaveTimeout = null;
+        let lastSavedData = null;
+        let isAutoSaving = false;
+        let pendingChanges = false;
+        
+        function autoSave() {
+            if (autoSaveTimeout) {
+                clearTimeout(autoSaveTimeout);
+            }
+            
+            pendingChanges = true;
+            
+            autoSaveTimeout = setTimeout(async () => {
+                if (isAutoSaving) return; // Prevent multiple simultaneous saves
+                
+                try {
+                    isAutoSaving = true;
+                    const currentData = collectCurrentData();
+                    const dataString = JSON.stringify(currentData);
+                    
+                    // Only save if data has actually changed
+                    if (dataString !== lastSavedData) {
+                        console.log('🔄 Auto-saving changes...');
+                        await saveDataToCloud(currentData);
+                        lastSavedData = dataString;
+                        pendingChanges = false;
+                        showNotification('💾 Changes saved automatically', 'success');
+                    }
+                } catch (error) {
+                    console.log('Auto-save failed:', error);
+                    showNotification('❌ Auto-save failed', 'error');
+                } finally {
+                    isAutoSaving = false;
+                }
+            }, 1000); // Reduced to 1 second for faster saves
+        }
+        
+        // Save data to cloud (separate from UI save)
+        async function saveDataToCloud(data) {
+            const userInfo = getCurrentUserInfo();
+            data.userEmail = userInfo.userEmail;
+            data.userName = userInfo.userName;
+            
+            const response = await fetch('/.netlify/functions/save-data-simple', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            
+            if (!response.ok) {
+                throw new Error('Cloud save failed');
+            }
+            
+            return response.json();
+        }
+        
+        // Auto-refresh data from cloud
+        let refreshInterval = null;
+        let lastRefreshTime = 0;
+        
+        function startAutoRefresh() {
+            // Refresh every 15 seconds to get changes from other users
+            // But only if we're not currently saving or have pending changes
+            refreshInterval = setInterval(async () => {
+                // Don't refresh if we have pending changes or are currently saving
+                if (pendingChanges || isAutoSaving) {
+                    console.log('⏸️ Skipping refresh - pending changes or saving in progress');
+                    return;
+                }
+                
+                // Don't refresh too frequently
+                const now = Date.now();
+                if (now - lastRefreshTime < 5000) {
+                    return;
+                }
+                
+                try {
+                    console.log('🔄 Auto-refreshing data from cloud...');
+                    await loadWorkflowData(true); // Skip UI update to prevent conflicts
+                    lastRefreshTime = now;
+                } catch (error) {
+                    console.log('Auto-refresh failed:', error);
+                }
+            }, 15000); // Increased to 15 seconds to reduce conflicts
+        }
+        
+        function stopAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+                refreshInterval = null;
+            }
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${type === 'success' ? '#48bb78' : type === 'error' ? '#f56565' : '#4299e1'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                font-weight: 500;
+                z-index: 1001;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
         let workflowData = null;
         
         // Load and display data from JSON
-        async function loadWorkflowData() {
+        async function loadWorkflowData(skipUIUpdate = false) {
             try {
-                updateSyncStatus('🔄 Loading data...', 'syncing');
+                if (!skipUIUpdate) {
+                    updateSyncStatus('🔄 Loading data...', 'syncing');
+                }
                 console.log('Loading workflow data...');
                 
                 // Try to load from GitHub first, then fallback to local file
@@ -540,11 +774,15 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                workflowData = await response.json();
-                console.log('Data loaded successfully:', workflowData);
+                const newData = await response.json();
                 
-                // Update data summary
-                updateDataSummary(workflowData.metadata);
+                // Only update if data has actually changed
+                if (!workflowData || JSON.stringify(newData) !== JSON.stringify(workflowData)) {
+                    workflowData = newData;
+                    console.log('Data loaded successfully:', workflowData);
+                    
+                    // Update data summary
+                    updateDataSummary(workflowData.metadata);
                 
                 // Render workflow phases
                 renderWorkflow(workflowData.phases);
@@ -607,18 +845,18 @@
                     <div class="user-story-title">
                         📝 User Story
                         <button class="add-item-btn" onclick="toggleUserStoryAdd(this)">+ Add</button>
-                    </div>
+                </div>
                     <div class="user-story-items">
                         ${userStoryData.items.map(item => 
                             `<div class="user-story-item">${item}<span class="item-remove" onclick="removeUserStoryItem(this)">×</span></div>`
                         ).join('')}
-                    </div>
+                </div>
                     <div class="add-item-container">
                         <input type="text" class="add-item-input" placeholder="Enter user story..." onkeypress="handleUserStoryEnter(event, this)">
                         <button class="add-item-btn" onclick="addUserStoryItem(this)">Add</button>
                         <button class="add-item-btn" onclick="cancelAdd(this)">Cancel</button>
-                </div>
                     </div>
+        </div>
                 `;
             }
             
@@ -748,7 +986,7 @@
                 const container = userStorySection.querySelector('.add-item-container');
                 userStorySection.querySelector('.user-story-items').appendChild(newItem);
                 
-                input.value = '';
+                    input.value = '';
                 cancelAdd(button);
                 autoSave();
             }
@@ -923,21 +1161,10 @@
             const data = collectCurrentData();
             
             try {
-                // Save to cloud first
-                const response = await fetch('/.netlify/functions/save-data', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                if (response.ok) {
-                    updateSyncStatus('✅ Saved to cloud', 'updated');
-                    showNotification('Data saved to cloud successfully!', 'success');
-                } else {
-                    throw new Error('Cloud save failed');
-                }
+                const result = await saveDataToCloud(data);
+                updateSyncStatus('✅ Saved to cloud', 'updated');
+                showNotification('Data saved to cloud successfully!', 'success');
+                lastSavedData = JSON.stringify(data);
                     } catch (error) {
                 console.log('Cloud save failed, downloading JSON file instead:', error);
                 // Fallback to download
@@ -948,9 +1175,11 @@
             const link = document.createElement('a');
             link.href = url;
                 link.download = 'sdlc-workflow-updated.json';
+            document.body.appendChild(link);
             link.click();
-            
+            document.body.removeChild(link);
             URL.revokeObjectURL(url);
+                
                 updateSyncStatus('💾 Downloaded', 'updated');
                 showNotification('Data downloaded as JSON file!', 'success');
             }
@@ -1078,6 +1307,10 @@
                 workflowData = data;
                 renderWorkflow(data.phases);
                 updateDataSummary(data.metadata);
+                
+                // Update lastSavedData to prevent conflicts
+                lastSavedData = JSON.stringify(data);
+                
                 updateSyncStatus('✅ Force reloaded from GitHub', 'updated');
                 showNotification('Data force reloaded from GitHub!', 'success');
             })
@@ -1090,7 +1323,11 @@
 
         // Load data when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // Load workflow data directly - no authentication required
             loadWorkflowData();
+            
+            // Start auto-refresh to get changes from other users
+            startAutoRefresh();
             
             // Load autosaved data if available
             const autosaved = localStorage.getItem('sdlc-workflow-autosave');
@@ -1103,7 +1340,11 @@
                     console.log('Could not parse autosaved data');
                 }
             }
+            
+            // Show welcome message
+            showNotification('🎉 Welcome! Changes auto-save every 1 second and refresh every 15 seconds', 'info');
         });
     </script>
+                
 </body>
 </html>§
