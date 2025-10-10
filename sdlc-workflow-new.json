@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-09T12:38:33.595Z",
+    "lastAutoSave": "2025-10-10T16:41:08.425Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 356,
-    "lastModified": "2025-10-09T12:38:33.595Z"
+    "totalItems": 357,
+    "lastModified": "2025-10-10T16:41:08.422Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -283,9 +283,10 @@
           "items": [
             "Figma AI",
             "Uizard",
-            "Magician"
+            "Magician",
+            "https://lovable.dev/l"
           ],
-          "itemCount": 3
+          "itemCount": 4
         },
         "Design Tools:": {
           "items": [
