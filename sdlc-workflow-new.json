@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastAutoSave": "2025-10-10T16:55:26.815Z",
+    "lastAutoSave": "2025-10-10T17:05:20.315Z",
     "totalPhases": 11,
     "totalCategories": 101,
-    "totalItems": 357,
-    "lastModified": "2025-10-10T16:55:26.815Z"
+    "totalItems": 358,
+    "lastModified": "2025-10-10T17:05:20.313Z"
   },
   "phases": {
     "Discovery & Planning": {
@@ -291,9 +291,10 @@
         "Design Tools:": {
           "items": [
             "Figma",
-            "Framer"
+            "Framer",
+            "lavable"
           ],
-          "itemCount": 2
+          "itemCount": 3
         },
         "🚨 Pain Points:": {
           "items": [
