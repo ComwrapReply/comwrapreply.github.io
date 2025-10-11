@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDLC Complete Workflow Guide - GitHub Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .user-profile {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            z-index: 100;
+        }
+        
+        .user-profile.not-logged-in {
+            background: #6c757d;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .user-email {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: 8px;
+        }
+        
+        .user-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .user-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .user-status {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-left: 8px;
+        }
+        
+        .status-indicator {
+            font-size: 11px;
+            opacity: 0.8;
+            padding: 2px 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+        
+        .github-indicator {
+            background: linear-gradient(135deg, #24292e 0%, #586069 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .sync-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4299e1;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .sync-status.syncing {
+            background: #ed8936;
+        }
+        
+        .sync-status.updated {
+            background: #48bb78;
+        }
+        
+        .data-summary {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #48bb78;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.1);
+        }
+        
+        .data-summary h3 {
+            color: #2d5a2d;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .data-summary p {
+            margin: 8px 0;
+            color: #2d5a2d;
+            font-weight: 500;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            position: relative;
+        }
+        
+        .phase {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--phase-color);
+        }
+        
+        .phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+            border-color: var(--phase-color);
+        }
+        
+        .phase-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--phase-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+            padding-right: 50px;
+        }
+        
+        .user-story-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .user-story-title {
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-story-items {
+            margin-bottom: 10px;
+        }
+        
+        .user-story-item {
+            background: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ffeaa7;
+            font-style: italic;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .user-story-item .item-remove {
+            color: #dc3545;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+            font-style: normal;
+        }
+        
+        .user-story-item .item-remove:hover {
+            color: #c82333;
+        }
+        
+        .ownership-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 8px;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .ownership-title {
+            font-weight: 600;
+            color: #0c4a6e;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .ownership-item {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin: 3px 6px 6px 0px;
+            font-weight: 500;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 1px solid #93c5fd;
+            color: #1e40af;
+            position: relative;
+        }
+        
+        .section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .category {
+            margin-bottom: 12px;
+        }
+        
+        .category-name {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .category-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .item {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin: 2px 4px 4px 0px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .deliverable-tag {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+        }
+        
+        .tool-item {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .ai-tool {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+        }
+        
+        .conductor-item {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border: 1px solid #81e6d9;
+            color: #234e52;
+        }
+        
+        .pain-point-item {
+            background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+            color: #742a2a;
+        }
+        
+        .blocker-item {
+            background: linear-gradient(135deg, #faf089 0%, #f6e05e 100%);
+            color: #744210;
+        }
+        
+        .automation-item {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+        }
+        
+        /* Interactive elements */
+        .add-item-btn {
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            background: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .add-item-btn:hover {
+            background: var(--phase-color, #4299e1);
+            color: white;
+            border-color: var(--phase-color, #4299e1);
+        }
+        
+        .add-item-container {
+            margin-top: 8px;
+            display: none;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .add-item-container.active {
+            display: flex;
+        }
+        
+        .add-item-input {
+            flex: 1;
+            min-width: 120px;
+            padding: 6px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        .add-item-input:focus {
+            outline: none;
+            border-color: var(--phase-color, #4299e1);
+            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.1);
+        }
+        
+        .item-remove {
+            margin-left: 6px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .item-remove:hover {
+            opacity: 1;
+            color: #e53e3e;
+        }
+        
+        /* Phase-specific colors */
+        .phase:nth-child(1) { --phase-color: #9f7aea; }
+        .phase:nth-child(2) { --phase-color: #ed8936; }
+        .phase:nth-child(3) { --phase-color: #38b2ac; }
+        .phase:nth-child(4) { --phase-color: #4299e1; }
+        .phase:nth-child(5) { --phase-color: #48bb78; }
+        .phase:nth-child(6) { --phase-color: #ed64a6; }
+        .phase:nth-child(7) { --phase-color: #667eea; }
+        .phase:nth-child(8) { --phase-color: #f56565; }
+        .phase:nth-child(9) { --phase-color: #38a169; }
+        .phase:nth-child(10) { --phase-color: #d69e2e; }
+        .phase:nth-child(11) { --phase-color: #805ad5; }
+        
+        .error {
+            background: #fed7d7;
+            color: #742a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .control-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .control-btn.miro-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .control-btn.miro-btn:hover {
+            background: linear-gradient(135deg, #ff5252 0%, #d63031 100%);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        .save-btn {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .save-btn:hover {
+            background: #3182ce;
+            transform: translateY(-1px);
+        }
+        
+        .sync-btn {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .sync-btn:hover {
+            background: #38a169;
+            transform: translateY(-1px);
+        }
+        
+        @media (max-width: 768px) {
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .phase {
+                padding: 15px;
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- User Profile Section -->
+        <div class="user-profile" id="userProfile">
+            <div class="user-avatar" id="userAvatar">👤</div>
+            <div class="user-info">
+                <div class="user-name" id="userName">GitHub User</div>
+                <div class="user-email" id="userEmail">GitHub Pages - Live hosting</div>
+        </div>
+            <div class="user-status" id="userStatus">
+                <div class="status-indicator" id="autoSaveStatus">💾 Auto-save: ON</div>
+                <div class="status-indicator" id="refreshStatus">🔄 Refresh: ON</div>
+                <div class="github-indicator">🐙 GITHUB</div>
+        </div>
+        </div>
+        
+        <div class="header">
+            <h1>Complete SDLC Workflow Guide <span class="github-indicator">GITHUB PAGES</span></h1>
+            <p>Comprehensive guide with tools, conductors, and workflow optimizations - Hosted on GitHub Pages</p>
+            
+            <div class="control-buttons">
+                <button class="control-btn save-btn" onclick="saveData()">💾 Save Data</button>
+                <button class="control-btn sync-btn" onclick="syncData()">🔄 Sync JSON</button>
+                <button class="control-btn sync-btn" onclick="loadWorkflowData()">🔄 Refresh</button>
+                <button class="control-btn sync-btn" onclick="forceReloadFromGitHub()">🔄 Force Reload from GitHub</button>
+                <a href="https://miro.com/app/board/uXjVJCfwKNc=/" target="_blank" class="control-btn miro-btn">🎨 SDLC in Miro</a>
+                </div>
+                </div>
+                
+        <div class="sync-status" id="syncStatus">
+            🔄 Loading...
+        </div>
+                
+        <div class="data-summary" id="dataSummary">
+            <h3>📊 Data Summary</h3>
+            <div class="loading">Loading data...</div>
+                </div>
+                
+        <div class="workflow" id="workflowContainer">
+            <div class="loading">Loading SDLC phases...</div>
+                    </div>
+                </div>
+                
+    <script>
+        // Simple user info for GitHub Pages
+        function getCurrentUserInfo() {
+            return {
+                userEmail: 'github@pages.com',
+                userName: 'GitHub User'
+            };
+        }
+        
+        // Auto-save functionality
+        let autoSaveTimeout = null;
+        let lastSavedData = null;
+        let isAutoSaving = false;
+        let pendingChanges = false;
+        
+        function autoSave() {
+            if (autoSaveTimeout) {
+                clearTimeout(autoSaveTimeout);
+            }
+            
+            pendingChanges = true;
+            
+            autoSaveTimeout = setTimeout(async () => {
+                if (isAutoSaving) return; // Prevent multiple simultaneous saves
+                
+                try {
+                    isAutoSaving = true;
+                    const currentData = collectCurrentData();
+                    const dataString = JSON.stringify(currentData);
+                    
+                    // Only save if data has actually changed
+                    if (dataString !== lastSavedData) {
+                        console.log('🔄 Auto-saving changes...');
+                        await saveDataToGitHub(currentData);
+                        lastSavedData = dataString;
+                        pendingChanges = false;
+                        showNotification('💾 Changes saved to GitHub', 'success');
+                    }
+                } catch (error) {
+                    console.log('Auto-save failed:', error);
+                    showNotification('❌ Auto-save failed', 'error');
+                } finally {
+                    isAutoSaving = false;
+                }
+            }, 1000); // Auto-save every 1 second
+        }
+        
+        // Save data to GitHub (simplified for GitHub Pages)
+        async function saveDataToGitHub(data) {
+            const userInfo = getCurrentUserInfo();
+            data.userEmail = userInfo.userEmail;
+            data.userName = userInfo.userName;
+            
+            // For GitHub Pages, we'll save to localStorage and provide download
+            localStorage.setItem('sdlc-workflow-github-autosave', JSON.stringify(data));
+            
+            return { success: true, message: 'Saved locally for GitHub Pages' };
+        }
+        
+        // Auto-refresh data from GitHub
+        let refreshInterval = null;
+        let lastRefreshTime = 0;
+        
+        function startAutoRefresh() {
+            // Refresh every 30 seconds to get changes from GitHub
+            refreshInterval = setInterval(async () => {
+                // Don't refresh if we have pending changes or are currently saving
+                if (pendingChanges || isAutoSaving) {
+                    console.log('⏸️ Skipping refresh - pending changes or saving in progress');
+                    return;
+                }
+                
+                // Don't refresh too frequently
+                const now = Date.now();
+                if (now - lastRefreshTime < 10000) {
+                    return;
+                }
+                
+                try {
+                    console.log('🔄 Auto-refreshing data from GitHub...');
+                    await loadWorkflowData(true); // Skip UI update to prevent conflicts
+                    lastRefreshTime = now;
+                } catch (error) {
+                    console.log('Auto-refresh failed:', error);
+                }
+            }, 30000); // Refresh every 30 seconds
+        }
+        
+        function stopAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+                refreshInterval = null;
+            }
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${type === 'success' ? '#48bb78' : type === 'error' ? '#f56565' : '#4299e1'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                font-weight: 500;
+                z-index: 1001;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        let workflowData = null;
+        
+        // Load and display data from GitHub Pages JSON
+        async function loadWorkflowData(skipUIUpdate = false) {
+            try {
+                if (!skipUIUpdate) {
+                    updateSyncStatus('🔄 Loading data from GitHub Pages...', 'syncing');
+                }
+                console.log('Loading workflow data from GitHub Pages...');
+                
+                // Load from GitHub Pages hosted JSON file
+                const response = await fetch('./sdlc-workflow-new-copy.json?' + Date.now());
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const newData = await response.json();
+                
+                // Only update if data has actually changed
+                if (!workflowData || JSON.stringify(newData) !== JSON.stringify(workflowData)) {
+                    workflowData = newData;
+                    console.log('GitHub Pages data loaded successfully:', workflowData);
+                    
+                    // Update data summary
+                    updateDataSummary(workflowData.metadata);
+                
+                    // Render workflow phases
+                    renderWorkflow(workflowData.phases);
+                }
+                
+                updateSyncStatus('✅ GitHub Pages data loaded', 'updated');
+                
+            } catch (error) {
+                console.error('Error loading GitHub Pages data:', error);
+                updateSyncStatus('❌ Load failed', 'syncing');
+                showError('Failed to load workflow data. Please check if sdlc-workflow-new copy.json exists on GitHub Pages.');
+            }
+        }
+        
+        function updateSyncStatus(message, type = 'syncing') {
+            const status = document.getElementById('syncStatus');
+            if (status) {
+                status.textContent = message;
+                status.className = `sync-status ${type}`;
+            }
+        }
+        
+        function updateDataSummary(metadata) {
+            const summaryDiv = document.getElementById('dataSummary');
+            const lastUpdated = new Date(metadata.lastAutoSave).toLocaleString();
+            
+            summaryDiv.innerHTML = `
+                <h3>📊 Data Summary (GitHub Pages)</h3>
+                <p><strong>Total Phases:</strong> ${metadata.totalPhases}</p>
+                <p><strong>Total Categories:</strong> ${metadata.totalCategories}</p>
+                <p><strong>Total Items:</strong> ${metadata.totalItems}</p>
+                <p><strong>Last Updated:</strong> ${lastUpdated}</p>
+                <p><strong>Status:</strong> ✅ GitHub Pages data loaded successfully</p>
+                <p><strong>Data Source:</strong> 🐙 sdlc-workflow-new copy.json</p>
+            `;
+        }
+        
+        function renderWorkflow(phases) {
+            const container = document.getElementById('workflowContainer');
+            container.innerHTML = '';
+            
+            Object.entries(phases).forEach(([phaseName, phaseData], index) => {
+                const phaseDiv = createPhaseElement(phaseName, phaseData, index + 1, workflowData.metadata);
+                container.appendChild(phaseDiv);
+            });
+        }
+        
+        function createPhaseElement(phaseName, phaseData, phaseNumber, metadata) {
+            const phaseDiv = document.createElement('div');
+            phaseDiv.className = 'phase';
+            
+            const lastUpdated = metadata ? new Date(metadata.lastAutoSave).toLocaleString() : 'Unknown';
+            
+            let html = `
+                <div class="phase-number">${phaseNumber}</div>
+                <h3 class="phase-title">${phaseName}</h3>
+                <div style="font-size: 0.8rem; color: #666; margin-bottom: 15px; font-style: italic;">
+                    📅 Last updated: ${lastUpdated}
+                </div>
+            `;
+            
+            // Add User Story section first (if it exists)
+            if (phaseData.categories && phaseData.categories['User Story:']) {
+                const userStoryData = phaseData.categories['User Story:'];
+                html += `
+                <div class="user-story-section">
+                    <div class="user-story-title">
+                        📝 User Story
+                        <button class="add-item-btn" onclick="toggleUserStoryAdd(this)">+ Add</button>
+                </div>
+                    <div class="user-story-items">
+                        ${userStoryData.items.map(item => 
+                            `<div class="user-story-item">${item}<span class="item-remove" onclick="removeUserStoryItem(this)">×</span></div>`
+                        ).join('')}
+                </div>
+                    <div class="add-item-container">
+                        <input type="text" class="add-item-input" placeholder="Enter user story..." onkeypress="handleUserStoryEnter(event, this)">
+                        <button class="add-item-btn" onclick="addUserStoryItem(this)">Add</button>
+                        <button class="add-item-btn" onclick="cancelAdd(this)">Cancel</button>
+                    </div>
+        </div>
+                `;
+            }
+            
+            // Add ownership section
+            if (phaseData.ownership && phaseData.ownership.length > 0) {
+                html += `
+                <div class="ownership-section">
+                        <div class="ownership-title">
+                            👥 Ownership
+                            <button class="add-item-btn" onclick="toggleOwnershipAdd(this)">+ Add</button>
+                </div>
+                        ${phaseData.ownership.map(owner => 
+                            `<span class="ownership-item">${owner}<span class="item-remove" onclick="removeOwnership(this)">×</span></span>`
+                        ).join('')}
+                        <div class="add-item-container">
+                            <input type="text" class="add-item-input" placeholder="Enter role or person..." onkeypress="handleOwnershipEnter(event, this)">
+                            <button class="add-item-btn" onclick="addOwnership(this)">Add</button>
+                            <button class="add-item-btn" onclick="cancelAdd(this)">Cancel</button>
+                </div>
+                    </div>
+                `;
+            }
+            
+            // Group categories by type (excluding User Story which is already handled above)
+            const filteredCategories = { ...phaseData.categories };
+            delete filteredCategories['User Story:'];
+            const categoryGroups = groupCategories(filteredCategories);
+            
+            // Render each category group
+            Object.entries(categoryGroups).forEach(([groupName, categories]) => {
+                if (categories.length > 0) {
+                    html += `<div class="section">
+                        <div class="section-title">${groupName}</div>`;
+                    
+                    categories.forEach(([categoryName, categoryData]) => {
+                        html += `
+                    <div class="category">
+                                <div class="category-name">
+                                    ${categoryName}
+                                    <button class="add-item-btn" onclick="toggleCategoryAdd(this)">+ Add</button>
+                    </div>
+                                <div class="category-items">
+                                    ${categoryData.items.map(item => 
+                                        `<span class="item ${getItemClass(categoryName)}">${item}<span class="item-remove" onclick="removeItem(this)">×</span></span>`
+                                    ).join('')}
+                    </div>
+                                <div class="add-item-container">
+                                    <input type="text" class="add-item-input" placeholder="Enter new item..." onkeypress="handleCategoryEnter(event, this)">
+                                    <button class="add-item-btn" onclick="addCategoryItem(this)">Add</button>
+                                    <button class="add-item-btn" onclick="cancelAdd(this)">Cancel</button>
+                </div>
+                    </div>
+                        `;
+                    });
+                    
+                    html += '</div>';
+                }
+            });
+            
+            phaseDiv.innerHTML = html;
+            return phaseDiv;
+        }
+        
+        // Interactive functions
+        function toggleUserStoryAdd(button) {
+            const container = button.closest('.user-story-section').querySelector('.add-item-container');
+            const isActive = container.classList.contains('active');
+            
+            if (isActive) {
+                container.classList.remove('active');
+                button.textContent = '+ Add';
+            } else {
+                container.classList.add('active');
+                button.textContent = '− Cancel';
+                container.querySelector('input').focus();
+            }
+        }
+        
+        function toggleOwnershipAdd(button) {
+            const container = button.closest('.ownership-section').querySelector('.add-item-container');
+            const isActive = container.classList.contains('active');
+            
+            if (isActive) {
+                container.classList.remove('active');
+                button.textContent = '+ Add';
+            } else {
+                container.classList.add('active');
+                button.textContent = '− Cancel';
+                container.querySelector('input').focus();
+            }
+        }
+        
+        function toggleCategoryAdd(button) {
+            const container = button.closest('.category').querySelector('.add-item-container');
+            const isActive = container.classList.contains('active');
+            
+            if (isActive) {
+                container.classList.remove('active');
+                button.textContent = '+ Add';
+            } else {
+                container.classList.add('active');
+                button.textContent = '− Cancel';
+                container.querySelector('input').focus();
+            }
+        }
+        
+        function cancelAdd(button) {
+            const container = button.closest('.add-item-container');
+            const addButton = container.parentElement.querySelector('.category-name .add-item-btn') || 
+                             container.parentElement.querySelector('.ownership-title .add-item-btn');
+            
+            container.classList.remove('active');
+            container.querySelector('input').value = '';
+            addButton.textContent = '+ Add';
+        }
+        
+        function addUserStoryItem(button) {
+            const input = button.parentElement.querySelector('input');
+            const text = input.value.trim();
+            
+            if (text) {
+                const userStorySection = button.closest('.user-story-section');
+                const newItem = document.createElement('div');
+                newItem.className = 'user-story-item';
+                newItem.innerHTML = `${text}<span class="item-remove" onclick="removeUserStoryItem(this)">×</span>`;
+                
+                const container = userStorySection.querySelector('.add-item-container');
+                userStorySection.querySelector('.user-story-items').appendChild(newItem);
+                
+                    input.value = '';
+                cancelAdd(button);
+                autoSave();
+            }
+        }
+        
+        function removeUserStoryItem(button) {
+            button.parentElement.remove();
+            autoSave();
+        }
+        
+        function handleUserStoryEnter(event, input) {
+            if (event.key === 'Enter') {
+                const button = input.parentElement.querySelector('button[onclick="addUserStoryItem(this)"]');
+                addUserStoryItem(button);
+            }
+        }
+        
+        function addOwnership(button) {
+            const input = button.parentElement.querySelector('input');
+            const text = input.value.trim();
+            
+            if (text) {
+                const ownershipSection = button.closest('.ownership-section');
+            const newItem = document.createElement('span');
+            newItem.className = 'ownership-item';
+                newItem.innerHTML = `${text}<span class="item-remove" onclick="removeOwnership(this)">×</span>`;
+                
+                const container = ownershipSection.querySelector('.add-item-container');
+                ownershipSection.insertBefore(newItem, container);
+                
+                input.value = '';
+                cancelAdd(button);
+            autoSave();
+            }
+        }
+        
+        function addCategoryItem(button) {
+            const input = button.parentElement.querySelector('input');
+            const text = input.value.trim();
+            
+            if (text) {
+                const category = button.closest('.category');
+                const categoryName = category.querySelector('.category-name').textContent.replace('+ Add', '').replace('− Cancel', '').trim();
+                const itemsContainer = category.querySelector('.category-items');
+                
+            const newItem = document.createElement('span');
+                newItem.className = `item ${getItemClass(categoryName)}`;
+                newItem.innerHTML = `${text}<span class="item-remove" onclick="removeItem(this)">×</span>`;
+
+            itemsContainer.appendChild(newItem);
+
+                input.value = '';
+                cancelAdd(button);
+            autoSave();
+        }
+        }
+        
+        function removeOwnership(button) {
+            button.parentElement.remove();
+                autoSave();
+        }
+        
+        function removeItem(button) {
+            button.parentElement.remove();
+            autoSave();
+        }
+        
+        function handleOwnershipEnter(event, input) {
+            if (event.key === 'Enter') {
+                const addButton = input.parentElement.querySelector('.add-item-btn');
+                addOwnership(addButton);
+            }
+        }
+        
+        function handleCategoryEnter(event, input) {
+            if (event.key === 'Enter') {
+                const addButton = input.parentElement.querySelector('.add-item-btn');
+                addCategoryItem(addButton);
+            }
+        }
+        
+        function collectCurrentData() {
+            const data = {
+                metadata: {
+                    version: "1.0",
+                    lastAutoSave: new Date().toISOString(),
+                    totalPhases: 0,
+                    totalCategories: 0,
+                    totalItems: 0
+                },
+                phases: {}
+            };
+            
+            const phases = document.querySelectorAll('.phase');
+            let totalCategories = 0;
+            let totalItems = 0;
+            
+            phases.forEach((phase, index) => {
+                const phaseTitle = phase.querySelector('.phase-title').textContent;
+                data.phases[phaseTitle] = {
+                    phaseNumber: index + 1,
+                    categories: {},
+                    ownership: []
+                };
+                
+                // Collect ownership
+                const ownershipItems = Array.from(phase.querySelectorAll('.ownership-item')).map(item => 
+                        item.textContent.replace('×', '').trim()
+                    );
+                    data.phases[phaseTitle].ownership = ownershipItems;
+                    totalItems += ownershipItems.length;
+                
+                // Collect categories
+                const categories = phase.querySelectorAll('.category');
+                categories.forEach(category => {
+                    const categoryName = category.querySelector('.category-name').textContent.replace('+ Add', '').replace('− Cancel', '').trim();
+                    const items = Array.from(category.querySelectorAll('.item')).map(item => 
+                        item.textContent.replace('×', '').trim()
+                    );
+                    
+                    data.phases[phaseTitle].categories[categoryName] = {
+                        items: items,
+                        itemCount: items.length
+                    };
+                    
+                    totalCategories++;
+                    totalItems += items.length;
+                });
+            });
+            
+            data.metadata.totalPhases = phases.length;
+            data.metadata.totalCategories = totalCategories;
+            data.metadata.totalItems = totalItems;
+            
+            return data;
+        }
+
+        async function saveData() {
+            updateSyncStatus('💾 Saving to GitHub Pages...', 'syncing');
+            const data = collectCurrentData();
+            
+            try {
+                // Save to localStorage for GitHub Pages
+                localStorage.setItem('sdlc-workflow-github-save', JSON.stringify(data));
+                
+                // Create downloadable JSON file
+                const jsonString = JSON.stringify(data, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'sdlc-workflow-github-updated.json';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+                updateSyncStatus('💾 Downloaded for GitHub Pages', 'updated');
+                showNotification('Data saved and downloaded for GitHub Pages!', 'success');
+                lastSavedData = JSON.stringify(data);
+            } catch (error) {
+                console.log('GitHub Pages save failed:', error);
+                updateSyncStatus('❌ Save failed', 'error');
+                showNotification('Save failed: ' + error.message, 'error');
+            }
+        }
+        
+        function syncData() {
+            const data = collectCurrentData();
+            updateDataSummary(data.metadata);
+            updateSyncStatus('🔄 Data synced on GitHub Pages', 'updated');
+            showNotification('Data synchronized on GitHub Pages!', 'success');
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            const bgColor = type === 'error' ? '#f56565' : '#48bb78';
+            const icon = type === 'error' ? '❌' : '✅';
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 70px;
+                right: 20px;
+                background: ${bgColor};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                font-size: 14px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                max-width: 300px;
+            `;
+            notification.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+        
+        function groupCategories(categories) {
+            const groups = {
+                '🚀 Productivity Tools': [],
+                '📋 Key Deliverables': [],
+                '🎭 Phase Conductors': [],
+                '⚡ Workflow Challenges': [],
+                '📝 Other': []
+            };
+            
+            Object.entries(categories).forEach(([name, data]) => {
+                const lowerName = name.toLowerCase();
+                if (lowerName.includes('ai') || lowerName.includes('tool') || lowerName.includes('automation') || lowerName.includes('design') || lowerName.includes('ide') || lowerName.includes('version') || lowerName.includes('merge') || lowerName.includes('review') || lowerName.includes('testing') || lowerName.includes('deployment') || lowerName.includes('infrastructure') || lowerName.includes('ticketing') || lowerName.includes('intake') || lowerName.includes('documentation')) {
+                    groups['🚀 Productivity Tools'].push([name, data]);
+                } else if (lowerName.includes('deliverable') || lowerName.includes('key')) {
+                    groups['📋 Key Deliverables'].push([name, data]);
+                } else if (lowerName.includes('who') || lowerName.includes('how') || lowerName.includes('role') || lowerName.includes('channel')) {
+                    groups['🎭 Phase Conductors'].push([name, data]);
+                } else if (lowerName.includes('pain') || lowerName.includes('blocker') || lowerName.includes('automate') || lowerName.includes('🚨') || lowerName.includes('🚧') || lowerName.includes('🤖')) {
+                    groups['⚡ Workflow Challenges'].push([name, data]);
+                } else {
+                    groups['📝 Other'].push([name, data]);
+                }
+            });
+            
+            return groups;
+        }
+        
+        function getItemClass(categoryName) {
+            const name = categoryName.toLowerCase();
+            if (name.includes('ai') || name.includes('automation')) {
+                return 'ai-tool';
+            } else if (name.includes('pain') || name.includes('🚨')) {
+                return 'pain-point-item';
+            } else if (name.includes('blocker') || name.includes('🚧')) {
+                return 'blocker-item';
+            } else if (name.includes('automate') || name.includes('🤖')) {
+                return 'automation-item';
+            } else if (name.includes('who') || name.includes('how') || name.includes('role') || name.includes('channel')) {
+                return 'conductor-item';
+            } else if (name.includes('deliverable') || name.includes('key')) {
+                return 'deliverable-tag';
+            } else {
+                return 'tool-item';
+            }
+        }
+        
+        function showError(message) {
+            const container = document.getElementById('workflowContainer');
+            container.innerHTML = `<div class="error">${message}</div>`;
+            
+            const summaryDiv = document.getElementById('dataSummary');
+            summaryDiv.innerHTML = `
+                <h3>📊 Data Summary (GitHub Pages)</h3>
+                <div class="error">❌ Failed to load GitHub Pages data</div>
+            `;
+        }
+        
+        // Force reload from GitHub Pages
+        function forceReloadFromGitHub() {
+            console.log('🔄 Force reloading from GitHub Pages...');
+            updateSyncStatus('🔄 Force reloading from GitHub Pages...', 'syncing');
+            
+            // Clear any cached data
+            if ('caches' in window) {
+                caches.keys().then(function(names) {
+                    for (let name of names) {
+                        caches.delete(name);
+                    }
+                });
+            }
+            
+            // Force reload with cache busting
+            const cacheBuster = Date.now() + Math.random() + Math.random();
+            fetch(`./sdlc-workflow-new-copy.json?v=${cacheBuster}&t=${Date.now()}&r=${Math.random()}`, {
+                cache: 'no-cache'
+            })
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                console.log('✅ Force reload successful:', data);
+                workflowData = data;
+                renderWorkflow(data.phases);
+                updateDataSummary(data.metadata);
+                
+                // Update lastSavedData to prevent conflicts
+                lastSavedData = JSON.stringify(data);
+                
+                updateSyncStatus('✅ Force reloaded from GitHub Pages', 'updated');
+                showNotification('Data force reloaded from GitHub Pages!', 'success');
+            })
+            .catch(error => {
+                console.error('❌ Force reload failed:', error);
+                updateSyncStatus('❌ Force reload failed', 'error');
+                showNotification('Force reload failed: ' + error.message, 'error');
+            });
+        }
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load workflow data from GitHub Pages
+            loadWorkflowData();
+            
+            // Start auto-refresh to get changes from GitHub
+            startAutoRefresh();
+            
+            // Load autosaved data if available
+            const autosaved = localStorage.getItem('sdlc-workflow-github-autosave');
+            if (autosaved) {
+                try {
+                    const data = JSON.parse(autosaved);
+                    console.log('Found GitHub Pages autosaved data, applying changes...');
+                    // You could merge autosaved changes here if needed
+                } catch (e) {
+                    console.log('Could not parse GitHub Pages autosaved data');
+                }
+            }
+            
+            // Show welcome message
+            showNotification('🎉 Welcome to GitHub Pages! Changes auto-save every 1 second and refresh every 30 seconds', 'info');
+        });
+    </script>
+                
+</body>
+</html>
