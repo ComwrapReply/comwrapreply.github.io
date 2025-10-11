@@ -1,0 +1,951 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "lastAutoSave": "2025-10-10T17:13:25.570Z",
+    "totalPhases": 11,
+    "totalCategories": 101,
+    "totalItems": 357,
+    "lastModified": "2025-10-10T17:13:25.570Z"
+  },
+  "phases": {
+    "Discovery & Planning": {
+      "phaseNumber": 1,
+      "categories": {
+        "AI Planning:": {
+          "items": [
+            "ChatGPT/Claude",
+            "ClickUp Brain",
+            "Notion AI"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Unclear requirements",
+            "Conflicting opinions",
+            "Scope creep"
+          ],
+          "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Project Charter",
+            "Stakeholder Map",
+            "Timeline",
+            "Budget"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Product Manager",
+            "Stakeholders",
+            "Business Analyst"
+          ],
+          "itemCount": 3
+        },
+        "How (Channels):": {
+          "items": [
+            "Discovery workshops",
+            "Stakeholder emails",
+            "User interviews"
+          ],
+          "itemCount": 3
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Missing approvals",
+            "Budget uncertainty"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Meeting scheduling",
+            "Follow-up emails",
+            "Note transcription",
+            "Auto responder to clients emails",
+            "Saas for clients to log tickets service",
+            "Service Now ticket creation sasss",
+            "emails tickets integration to jira",
+            "copilot is integrated with emails to help log tieckets in jira",
+            "email responder/ai asistant",
+            "jira integration"
+          ],
+          "itemCount": 10
+        },
+        "Project Management:": {
+          "items": [
+            "Linear",
+            "Monday.com",
+            "Asana",
+            "Jira"
+          ],
+          "itemCount": 4
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Alignment across stakeholders",
+            "Risk visibility",
+            "Early scope drift"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "Product Manager",
+        "Business Analyst",
+        "Stakeholders",
+        "Connie",
+        "Szymon"
+      ]
+    },
+    "Requirements": {
+      "phaseNumber": 2,
+      "categories": {
+        "AI Writing:": {
+          "items": [
+            "ChatGPT/Claude",
+            "Notion AI",
+            "Codeium AI"
+          ],
+          "itemCount": 3
+        },
+        "Documentation:": {
+          "items": [
+            "Confluence",
+            "Notion",
+            "Miro"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Conflicting business rules",
+            "Edge cases missed",
+            "Traceability gaps"
+          ],
+          "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Requirements Document",
+            "User Stories",
+            "Acceptance Criteria",
+            "API Specifications"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Business Analyst",
+            "Product Owner",
+            "Solution Architect"
+          ],
+          "itemCount": 3
+        },
+        "How (Channels):": {
+          "items": [
+            "Workshops",
+            "Async notes",
+            "Clarification calls"
+          ],
+          "itemCount": 3
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Document formatting",
+            "Story creation",
+            "Requirement tracing"
+          ],
+          "itemCount": 3
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Document formatting",
+            "Story creation",
+            "Requirements tracing",
+            "Record meetings and summarize tasks; auto-log to Jira",
+            "Auto-transcribe calls to take notes and draft tasks",
+            "Better ticket details",
+            "Better integration with Jira",
+            "Run workshops to understand AEM at a high level"
+          ],
+          "itemCount": 8
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Ambiguity removal",
+            "Scope negotiation",
+            "NFRs captured"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "Business Analyst",
+        "Product Owner",
+        "Solution Architect",
+        "Jeremy",
+        "Joshua",
+        "Rahul"
+      ]
+    },
+    "Solutions": {
+      "phaseNumber": 3,
+      "categories": {
+        "AI Architecture:": {
+          "items": [
+            "ChatGPT/Claude",
+            "Code LLM Co-pilots"
+          ],
+          "itemCount": 2
+        },
+        "Design Tools:": {
+          "items": [
+            "Miro",
+            "Lucidchart",
+            "Excalidraw"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Architecture constraints",
+            "Integration complexity",
+            "Scope vs time"
+          ],
+          "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Architecture Diagram",
+            "Tech Stack",
+            "Database Design",
+            "Integration Plan"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Solution Architect",
+            "Tech Lead",
+            "DevOps Engineer"
+          ],
+          "itemCount": 3
+        },
+        "How (Channels):": {
+          "items": [
+            "Tech discussions",
+            "Design sessions",
+            "RFCs"
+          ],
+          "itemCount": 3
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Asset export",
+            "Design handoff",
+            "Version freeze for initial build"
+          ],
+          "itemCount": 3
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Diagram generation",
+            "Code scaffolding",
+            "Documentation automation",
+            "Fetch transcripts from calls; summarize outcomes and report notes"
+          ],
+          "itemCount": 4
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Trade-off analysis",
+            "Non-functional alignment",
+            "Versioned decisions"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "Solution Architect",
+        "Tech Lead",
+        "Nathan",
+        "Alex",
+        "Rahul"
+      ]
+    },
+    "Figma Design": {
+      "phaseNumber": 4,
+      "categories": {
+        "AI Design:": {
+          "items": [
+            "Figma AI",
+            "Uizard",
+            "Magician",
+            "lovable"
+          ],
+          "itemCount": 4
+        },
+        "Design Tools:": {
+          "items": [
+            "Figma",
+            "Framer"
+          ],
+          "itemCount": 2
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Asset export",
+            "Design debt",
+            "Scope churn from late feedback"
+          ],
+          "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Wireframes",
+            "High-fidelity Mockups",
+            "Interactive Prototypes",
+            "Design System"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "UX/UI Designer",
+            "Product Designer"
+          ],
+          "itemCount": 2
+        },
+        "How (Channels):": {
+          "items": [
+            "Design reviews",
+            "Handoffs",
+            "User testing"
+          ],
+          "itemCount": 3
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Missing content",
+            "Design questions delay"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Asset export",
+            "Design handoff",
+            "Version control",
+            "Find a tool that scans the design and finds improvements",
+            "Consult the recommendation with the client on better UX/UI",
+            "Find best match of AEM components to Figma design",
+            "Devs need to be involved with designers on design creation"
+          ],
+          "itemCount": 7
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Design–dev parity",
+            "Component consistency",
+            "Token alignment"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "UX/UI Designer",
+        "Product Manager",
+        "Hannah",
+        "Joshua",
+        "Sorana"
+      ]
+    },
+    "Ticket Creation": {
+      "phaseNumber": 5,
+      "categories": {
+        "Ticketing:": {
+          "items": [
+            "Jira",
+            "Azure Boards",
+            "Linear"
+          ],
+          "itemCount": 3
+        },
+        "Intake & Forms:": {
+          "items": [
+            "Forms",
+            "Issue Templates"
+          ],
+          "itemCount": 2
+        },
+        "Automation:": {
+          "items": [
+            "Email-to-ticket",
+            "Rules",
+            "Auto-labeling",
+            "Assignment by service rules"
+          ],
+          "itemCount": 4
+        },
+        "AI Assist:": {
+          "items": [
+            "LLM summarization",
+            "Auto acceptance-criteria drafting"
+          ],
+          "itemCount": 2
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Scope creep via tickets",
+            "Priority churn",
+            "Undefined scope"
+          ],
+          "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Epic/Feature backlog",
+            "Ticket with Acceptance Criteria",
+            "Priority & SLA",
+            "Definition of Ready check"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Product Owner",
+            "Business Analyst"
+          ],
+          "itemCount": 2
+        },
+        "How (Channels):": {
+          "items": [
+            "Backlog triage",
+            "Refinement sessions",
+            "Slack notifications"
+          ],
+          "itemCount": 3
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "No service ownership",
+            "High WIP/queues",
+            "Permission limits"
+          ],
+          "itemCount": 3
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Template enforcement",
+            "Auto-label by component",
+            "Auto-link Figma/MR",
+            "SLA timers & alerts",
+            "Assign by team rules"
+          ],
+          "itemCount": 5
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Prioritization clarity",
+            "Ticket quality",
+            "Duplicate detection"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "Product Owner",
+        "Business Analyst",
+        "Joshua",
+        "Szymon",
+        "Connie",
+        "Awab"
+      ]
+    },
+    "Coding": {
+      "phaseNumber": 6,
+      "categories": {
+        "AI Coding:": {
+          "items": [
+            "Copilot",
+            "Codeium",
+            "Cursor",
+            "Aider"
+          ],
+          "itemCount": 4
+        },
+        "IDEs & Editors:": {
+          "items": [
+            "VS Code",
+            "JetBrains IDEs"
+          ],
+          "itemCount": 2
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "API dependencies",
+            "Env issues",
+            "Missing libraries"
+          ],
+          "itemCount": 3
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Source Code",
+            "Unit Tests",
+            "Code Documentation",
+            "Code Instrumentation"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Backend Developer",
+            "Frontend Developer"
+          ],
+          "itemCount": 2
+        },
+        "How (Channels):": {
+          "items": [
+            "Daily standups",
+            "Code reviews"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Code formatting",
+            "Test running",
+            "Documentation generation"
+          ],
+          "itemCount": 3
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Code formatting",
+            "Test running",
+            "Documentation generation",
+            "Boilerplate code",
+            "Agent guidance to help developers write standard-compliant code",
+            "Create docs instructions while developing components",
+            "Jira must contain these component docs",
+            "Better prompting",
+            "Add AI test runs in GitHub Actions and GitLab pipelines",
+            "Try BrowserStack AI for testing"
+          ],
+          "itemCount": 10
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Branch strategy",
+            "Technical debt",
+            "Coding guidelines"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "Developers",
+        "Tech Lead",
+        "Szymon",
+        "Rrahul",
+        "SIdhan",
+        "Nathan"
+      ]
+    },
+    "Testing": {
+      "phaseNumber": 7,
+      "categories": {
+        "AI Testing:": {
+          "items": [
+            "Test case generation",
+            "Bug summarizers"
+          ],
+          "itemCount": 2
+        },
+        "Testing Tools:": {
+          "items": [
+            "Cypress",
+            "Selenium",
+            "Jest",
+            "Playwright",
+            "Postman",
+            "k6"
+          ],
+          "itemCount": 6
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Environment downtime",
+            "Missing test data"
+          ],
+          "itemCount": 2
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Test Cases",
+            "Bug Reports",
+            "Test Results"
+          ],
+          "itemCount": 3
+        },
+        "Who (Roles):": {
+          "items": [
+            "QA Engineer",
+            "Test Automation Engineer",
+            "Business Analyst"
+          ],
+          "itemCount": 3
+        },
+        "How (Channels):": {
+          "items": [
+            "Bug tracking",
+            "UAT sessions"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Test data creation",
+            "Flaky tests"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Regression suites",
+            "Report generation",
+            "Test data creation"
+          ],
+          "itemCount": 3
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Test data",
+            "Environments instability",
+            "Coverage management"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "QA",
+        "Test Automation Engineers",
+        "Awab",
+        "Nathan",
+        "Joshua"
+      ]
+    },
+    "Create MR": {
+      "phaseNumber": 8,
+      "categories": {
+        "AI Assistance:": {
+          "items": [
+            "PR description helpers",
+            "LLM checklists"
+          ],
+          "itemCount": 2
+        },
+        "Version Control:": {
+          "items": [
+            "GitHub",
+            "GitLab",
+            "Bitbucket"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Merge conflicts",
+            "Failing tests"
+          ],
+          "itemCount": 2
+        },
+        "Key Deliverables:": {
+          "items": [
+            "MR description",
+            "Code changes",
+            "Testing notes",
+            "Screenshots"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Developer"
+          ],
+          "itemCount": 1
+        },
+        "How (Channels):": {
+          "items": [
+            "Automations",
+            "CI templates"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "PR dependencies",
+            "Reviewer assignment"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Template enforcement",
+            "Labels/rules",
+            "Auto-assign reviewers"
+          ],
+          "itemCount": 3
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Large changesets",
+            "Missing context",
+            "Scope alignment"
+          ],
+          "itemCount": 3
+        }
+      },
+      "ownership": [
+        "Developers",
+        "TBC"
+      ]
+    },
+    "Review MRs": {
+      "phaseNumber": 9,
+      "categories": {
+        "AI Review:": {
+          "items": [
+            "LLM diff reviewers",
+            "Static analyzers"
+          ],
+          "itemCount": 2
+        },
+        "Review Tools:": {
+          "items": [
+            "GitHub",
+            "GitLab",
+            "Bitbucket",
+            "SonarQube"
+          ],
+          "itemCount": 4
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Code quality checks",
+            "Style enforcement"
+          ],
+          "itemCount": 2
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Code Review Comments",
+            "Approval/Rejection",
+            "Suggestions",
+            "Security Check"
+          ],
+          "itemCount": 4
+        },
+        "Who (Roles):": {
+          "items": [
+            "Code Reviewer",
+            "QA Engineer"
+          ],
+          "itemCount": 2
+        },
+        "How (Channels):": {
+          "items": [
+            "Code review sessions",
+            "Review comments"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Reviewer unavailable",
+            "Permissions"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Quality gates",
+            "Auto-format and lint",
+            "Security scanning"
+          ],
+          "itemCount": 3
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Coverage gaps",
+            "Change fatigue"
+          ],
+          "itemCount": 2
+        }
+      },
+      "ownership": [
+        "Code Reviewers",
+        "QA"
+      ]
+    },
+    "Merge MRs": {
+      "phaseNumber": 10,
+      "categories": {
+        "Merge Tools:": {
+          "items": [
+            "Git",
+            "Branch protection",
+            "CI pipelines"
+          ],
+          "itemCount": 3
+        },
+        "Automation:": {
+          "items": [
+            "Auto-merge rules",
+            "Release tagging",
+            "Backport automation"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Failed CI checks",
+            "Permission issues"
+          ],
+          "itemCount": 2
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Merged Code",
+            "Updated Main Branch",
+            "CI/CD Triggers"
+          ],
+          "itemCount": 3
+        },
+        "Who (Roles):": {
+          "items": [
+            "Tech Lead",
+            "Release Manager"
+          ],
+          "itemCount": 2
+        },
+        "How (Channels):": {
+          "items": [
+            "Merge strategies",
+            "Automated policies"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Merge conflicts",
+            "Conflict de-escalation",
+            "Branch cleanup"
+          ],
+          "itemCount": 3
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Tag creation",
+            "Release notes",
+            "Report generation"
+          ],
+          "itemCount": 3
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Chaining releases",
+            "Change sync"
+          ],
+          "itemCount": 2
+        }
+      },
+      "ownership": [
+        "Tech Lead",
+        "Release Manager"
+      ]
+    },
+    "Deployments": {
+      "phaseNumber": 11,
+      "categories": {
+        "Deployment:": {
+          "items": [
+            "GitHub Actions",
+            "GitLab CI/CD",
+            "Jenkins",
+            "ArgoCD"
+          ],
+          "itemCount": 4
+        },
+        "Infrastructure:": {
+          "items": [
+            "Kubernetes",
+            "Docker",
+            "Terraform"
+          ],
+          "itemCount": 3
+        },
+        "🚨 Pain Points:": {
+          "items": [
+            "Deployment freezes",
+            "Permissions problems"
+          ],
+          "itemCount": 2
+        },
+        "Key Deliverables:": {
+          "items": [
+            "Monitoring Setup",
+            "Rollback Plan"
+          ],
+          "itemCount": 2
+        },
+        "Who (Roles):": {
+          "items": [
+            "DevOps Engineer",
+            "Release Manager",
+            "Site Reliability Engineer"
+          ],
+          "itemCount": 3
+        },
+        "How (Channels):": {
+          "items": [
+            "Deployment pipelines",
+            "Release policies"
+          ],
+          "itemCount": 2
+        },
+        "🚧 Blockers:": {
+          "items": [
+            "Environment issues",
+            "Rollback triggers"
+          ],
+          "itemCount": 2
+        },
+        "🤖 Automate This:": {
+          "items": [
+            "Health checks",
+            "Zero-downtime rollouts",
+            "Release announcements"
+          ],
+          "itemCount": 3
+        },
+        "Workflow Challenges:": {
+          "items": [
+            "Monitoring alerts",
+            "Capacity planning"
+          ],
+          "itemCount": 2
+        }
+      },
+      "ownership": [
+        "DevOps",
+        "Release Manager",
+        "SRE"
+      ]
+    }
+  }
+}

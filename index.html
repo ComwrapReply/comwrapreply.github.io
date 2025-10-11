@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDLC Complete Workflow Guide</title>
+    <title>SDLC Complete Workflow Guide - GitHub Pages</title>
     <style>
         * {
             margin: 0;
@@ -115,6 +115,15 @@
             white-space: nowrap;
         }
         
+        .github-indicator {
+            background: linear-gradient(135deg, #24292e 0%, #586069 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
         
         .header {
             text-align: center;
@@ -578,18 +587,19 @@
         <div class="user-profile" id="userProfile">
             <div class="user-avatar" id="userAvatar">👤</div>
             <div class="user-info">
-                <div class="user-name" id="userName">Anonymous User</div>
-                <div class="user-email" id="userEmail">Open editing - no login required</div>
+                <div class="user-name" id="userName">GitHub User</div>
+                <div class="user-email" id="userEmail">GitHub Pages - Live hosting</div>
         </div>
             <div class="user-status" id="userStatus">
                 <div class="status-indicator" id="autoSaveStatus">💾 Auto-save: ON</div>
                 <div class="status-indicator" id="refreshStatus">🔄 Refresh: ON</div>
+                <div class="github-indicator">🐙 GITHUB</div>
         </div>
         </div>
         
         <div class="header">
-            <h1>Complete SDLC Workflow Guide</h1>
-            <p>Comprehensive guide with tools, conductors, and workflow optimizations</p>
+            <h1>Complete SDLC Workflow Guide <span class="github-indicator">GITHUB PAGES</span></h1>
+            <p>Comprehensive guide with tools, conductors, and workflow optimizations - Hosted on GitHub Pages</p>
             
             <div class="control-buttons">
                 <button class="control-btn save-btn" onclick="saveData()">💾 Save Data</button>
@@ -615,11 +625,11 @@
                 </div>
                 
     <script>
-        // Simple user info for API calls (no authentication required)
+        // Simple user info for GitHub Pages
         function getCurrentUserInfo() {
             return {
-                userEmail: 'anonymous@team.com',
-                userName: 'Anonymous User'
+                userEmail: 'github@pages.com',
+                userName: 'GitHub User'
             };
         }
         
@@ -647,10 +657,10 @@
                     // Only save if data has actually changed
                     if (dataString !== lastSavedData) {
                         console.log('🔄 Auto-saving changes...');
-                        await saveDataToCloud(currentData);
+                        await saveDataToGitHub(currentData);
                         lastSavedData = dataString;
                         pendingChanges = false;
-                        showNotification('💾 Changes saved automatically', 'success');
+                        showNotification('💾 Changes saved to GitHub', 'success');
                     }
                 } catch (error) {
                     console.log('Auto-save failed:', error);
@@ -658,37 +668,27 @@
                 } finally {
                     isAutoSaving = false;
                 }
-            }, 1000); // Reduced to 1 second for faster saves
+            }, 1000); // Auto-save every 1 second
         }
         
-        // Save data to cloud (separate from UI save)
-        async function saveDataToCloud(data) {
+        // Save data to GitHub (simplified for GitHub Pages)
+        async function saveDataToGitHub(data) {
             const userInfo = getCurrentUserInfo();
             data.userEmail = userInfo.userEmail;
             data.userName = userInfo.userName;
             
-            const response = await fetch('/.netlify/functions/save-data-simple', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
+            // For GitHub Pages, we'll save to localStorage and provide download
+            localStorage.setItem('sdlc-workflow-github-autosave', JSON.stringify(data));
             
-            if (!response.ok) {
-                throw new Error('Cloud save failed');
-            }
-            
-            return response.json();
+            return { success: true, message: 'Saved locally for GitHub Pages' };
         }
         
-        // Auto-refresh data from cloud
+        // Auto-refresh data from GitHub
         let refreshInterval = null;
         let lastRefreshTime = 0;
         
         function startAutoRefresh() {
-            // Refresh every 15 seconds to get changes from other users
-            // But only if we're not currently saving or have pending changes
+            // Refresh every 30 seconds to get changes from GitHub
             refreshInterval = setInterval(async () => {
                 // Don't refresh if we have pending changes or are currently saving
                 if (pendingChanges || isAutoSaving) {
@@ -698,18 +698,18 @@
                 
                 // Don't refresh too frequently
                 const now = Date.now();
-                if (now - lastRefreshTime < 5000) {
+                if (now - lastRefreshTime < 10000) {
                     return;
                 }
                 
                 try {
-                    console.log('🔄 Auto-refreshing data from cloud...');
+                    console.log('🔄 Auto-refreshing data from GitHub...');
                     await loadWorkflowData(true); // Skip UI update to prevent conflicts
                     lastRefreshTime = now;
                 } catch (error) {
                     console.log('Auto-refresh failed:', error);
                 }
-            }, 15000); // Increased to 15 seconds to reduce conflicts
+            }, 30000); // Refresh every 30 seconds
         }
         
         function stopAutoRefresh() {
@@ -749,26 +749,16 @@
 
         let workflowData = null;
         
-        // Load and display data from JSON
+        // Load and display data from GitHub Pages JSON
         async function loadWorkflowData(skipUIUpdate = false) {
             try {
                 if (!skipUIUpdate) {
-                    updateSyncStatus('🔄 Loading data...', 'syncing');
+                    updateSyncStatus('🔄 Loading data from GitHub Pages...', 'syncing');
                 }
-                console.log('Loading workflow data...');
+                console.log('Loading workflow data from GitHub Pages...');
                 
-                // Try to load from GitHub first, then fallback to local file
-                let response;
-                try {
-                    // Add cache-busting parameter to force fresh data (CORS-compatible)
-                    const cacheBuster = Date.now() + Math.random();
-                    response = await fetch(`https://raw.githubusercontent.com/ComwrapReply/comwrapreply.github.io/main/sdlc-workflow-new.json?v=${cacheBuster}`, {
-                        cache: 'no-cache'
-                    });
-                } catch (error) {
-                    console.log('GitHub load failed, trying local file...');
-                    response = await fetch('./sdlc-workflow-new.json?' + Date.now());
-                }
+                // Load from GitHub Pages hosted JSON file
+                const response = await fetch('./sdlc-workflow-new-copy.json?' + Date.now());
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -779,20 +769,21 @@
                 // Only update if data has actually changed
                 if (!workflowData || JSON.stringify(newData) !== JSON.stringify(workflowData)) {
                     workflowData = newData;
-                    console.log('Data loaded successfully:', workflowData);
+                    console.log('GitHub Pages data loaded successfully:', workflowData);
                     
                     // Update data summary
                     updateDataSummary(workflowData.metadata);
                 
-                // Render workflow phases
-                renderWorkflow(workflowData.phases);
+                    // Render workflow phases
+                    renderWorkflow(workflowData.phases);
+                }
                 
-                updateSyncStatus('✅ Data loaded', 'updated');
+                updateSyncStatus('✅ GitHub Pages data loaded', 'updated');
                 
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.error('Error loading GitHub Pages data:', error);
                 updateSyncStatus('❌ Load failed', 'syncing');
-                showError('Failed to load workflow data. Please check if sdlc-workflow-new.json exists.');
+                showError('Failed to load workflow data. Please check if sdlc-workflow-new copy.json exists on GitHub Pages.');
             }
         }
         
@@ -809,12 +800,13 @@
             const lastUpdated = new Date(metadata.lastAutoSave).toLocaleString();
             
             summaryDiv.innerHTML = `
-                <h3>📊 Data Summary</h3>
+                <h3>📊 Data Summary (GitHub Pages)</h3>
                 <p><strong>Total Phases:</strong> ${metadata.totalPhases}</p>
                 <p><strong>Total Categories:</strong> ${metadata.totalCategories}</p>
                 <p><strong>Total Items:</strong> ${metadata.totalItems}</p>
                 <p><strong>Last Updated:</strong> ${lastUpdated}</p>
-                <p><strong>Status:</strong> ✅ Data loaded successfully</p>
+                <p><strong>Status:</strong> ✅ GitHub Pages data loaded successfully</p>
+                <p><strong>Data Source:</strong> 🐙 sdlc-workflow-new copy.json</p>
             `;
         }
         
@@ -823,18 +815,23 @@
             container.innerHTML = '';
             
             Object.entries(phases).forEach(([phaseName, phaseData], index) => {
-                const phaseDiv = createPhaseElement(phaseName, phaseData, index + 1);
+                const phaseDiv = createPhaseElement(phaseName, phaseData, index + 1, workflowData.metadata);
                 container.appendChild(phaseDiv);
             });
         }
         
-        function createPhaseElement(phaseName, phaseData, phaseNumber) {
+        function createPhaseElement(phaseName, phaseData, phaseNumber, metadata) {
             const phaseDiv = document.createElement('div');
             phaseDiv.className = 'phase';
+            
+            const lastUpdated = metadata ? new Date(metadata.lastAutoSave).toLocaleString() : 'Unknown';
             
             let html = `
                 <div class="phase-number">${phaseNumber}</div>
                 <h3 class="phase-title">${phaseName}</h3>
+                <div style="font-size: 0.8rem; color: #666; margin-bottom: 15px; font-style: italic;">
+                    📅 Last updated: ${lastUpdated}
+                </div>
             `;
             
             // Add User Story section first (if it exists)
@@ -1068,38 +1065,6 @@
             }
         }
         
-        async function autoSave() {
-            updateSyncStatus('💾 Auto-saving...', 'syncing');
-            
-            const currentData = collectCurrentData();
-            
-            // Save to localStorage immediately
-            localStorage.setItem('sdlc-workflow-autosave', JSON.stringify(currentData));
-            
-            // Try to save to Netlify function
-            try {
-                const response = await fetch('/.netlify/functions/save-data', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(currentData)
-                });
-                
-                if (response.ok) {
-                    const result = await response.json();
-                    updateSyncStatus('✅ Saved to cloud', 'updated');
-                    console.log('Data saved to Netlify:', result);
-                } else {
-                    updateSyncStatus('💾 Saved locally', 'syncing');
-                    console.log('Cloud save failed, data saved locally only');
-                }
-            } catch (error) {
-                updateSyncStatus('💾 Saved locally', 'syncing');
-                console.log('Cloud save error:', error);
-            }
-        }
-        
         function collectCurrentData() {
             const data = {
                 metadata: {
@@ -1157,39 +1122,41 @@
         }
 
         async function saveData() {
-            updateSyncStatus('💾 Saving...', 'syncing');
+            updateSyncStatus('💾 Saving to GitHub Pages...', 'syncing');
             const data = collectCurrentData();
             
             try {
-                const result = await saveDataToCloud(data);
-                updateSyncStatus('✅ Saved to cloud', 'updated');
-                showNotification('Data saved to cloud successfully!', 'success');
-                lastSavedData = JSON.stringify(data);
-                    } catch (error) {
-                console.log('Cloud save failed, downloading JSON file instead:', error);
-                // Fallback to download
-            const jsonString = JSON.stringify(data, null, 2);
-            const blob = new Blob([jsonString], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            const link = document.createElement('a');
-            link.href = url;
-                link.download = 'sdlc-workflow-updated.json';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+                // Save to localStorage for GitHub Pages
+                localStorage.setItem('sdlc-workflow-github-save', JSON.stringify(data));
                 
-                updateSyncStatus('💾 Downloaded', 'updated');
-                showNotification('Data downloaded as JSON file!', 'success');
+                // Create downloadable JSON file
+                const jsonString = JSON.stringify(data, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'sdlc-workflow-github-updated.json';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+                updateSyncStatus('💾 Downloaded for GitHub Pages', 'updated');
+                showNotification('Data saved and downloaded for GitHub Pages!', 'success');
+                lastSavedData = JSON.stringify(data);
+            } catch (error) {
+                console.log('GitHub Pages save failed:', error);
+                updateSyncStatus('❌ Save failed', 'error');
+                showNotification('Save failed: ' + error.message, 'error');
             }
         }
         
         function syncData() {
             const data = collectCurrentData();
             updateDataSummary(data.metadata);
-            updateSyncStatus('🔄 Data synced', 'updated');
-            showNotification('Data synchronized!', 'success');
+            updateSyncStatus('🔄 Data synced on GitHub Pages', 'updated');
+            showNotification('Data synchronized on GitHub Pages!', 'success');
         }
 
         function showNotification(message, type = 'success') {
@@ -1274,15 +1241,15 @@
             
             const summaryDiv = document.getElementById('dataSummary');
             summaryDiv.innerHTML = `
-                <h3>📊 Data Summary</h3>
-                <div class="error">❌ Failed to load data</div>
+                <h3>📊 Data Summary (GitHub Pages)</h3>
+                <div class="error">❌ Failed to load GitHub Pages data</div>
             `;
         }
         
-        // Force reload from GitHub with aggressive cache busting
+        // Force reload from GitHub Pages
         function forceReloadFromGitHub() {
-            console.log('🔄 Force reloading from GitHub...');
-            updateSyncStatus('🔄 Force reloading from GitHub...', 'syncing');
+            console.log('🔄 Force reloading from GitHub Pages...');
+            updateSyncStatus('🔄 Force reloading from GitHub Pages...', 'syncing');
             
             // Clear any cached data
             if ('caches' in window) {
@@ -1293,9 +1260,9 @@
                 });
             }
             
-            // Force reload with cache busting (simplified for CORS compatibility)
+            // Force reload with cache busting
             const cacheBuster = Date.now() + Math.random() + Math.random();
-            fetch(`https://raw.githubusercontent.com/ComwrapReply/comwrapreply.github.io/main/sdlc-workflow-new.json?v=${cacheBuster}&t=${Date.now()}&r=${Math.random()}`, {
+            fetch(`./sdlc-workflow-new-copy.json?v=${cacheBuster}&t=${Date.now()}&r=${Math.random()}`, {
                 cache: 'no-cache'
             })
             .then(response => {
@@ -1311,8 +1278,8 @@
                 // Update lastSavedData to prevent conflicts
                 lastSavedData = JSON.stringify(data);
                 
-                updateSyncStatus('✅ Force reloaded from GitHub', 'updated');
-                showNotification('Data force reloaded from GitHub!', 'success');
+                updateSyncStatus('✅ Force reloaded from GitHub Pages', 'updated');
+                showNotification('Data force reloaded from GitHub Pages!', 'success');
             })
             .catch(error => {
                 console.error('❌ Force reload failed:', error);
@@ -1323,28 +1290,28 @@
 
         // Load data when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Load workflow data directly - no authentication required
+            // Load workflow data from GitHub Pages
             loadWorkflowData();
             
-            // Start auto-refresh to get changes from other users
+            // Start auto-refresh to get changes from GitHub
             startAutoRefresh();
             
             // Load autosaved data if available
-            const autosaved = localStorage.getItem('sdlc-workflow-autosave');
+            const autosaved = localStorage.getItem('sdlc-workflow-github-autosave');
             if (autosaved) {
                 try {
                     const data = JSON.parse(autosaved);
-                    console.log('Found autosaved data, applying changes...');
+                    console.log('Found GitHub Pages autosaved data, applying changes...');
                     // You could merge autosaved changes here if needed
                 } catch (e) {
-                    console.log('Could not parse autosaved data');
+                    console.log('Could not parse GitHub Pages autosaved data');
                 }
             }
             
             // Show welcome message
-            showNotification('🎉 Welcome! Changes auto-save every 1 second and refresh every 15 seconds', 'info');
+            showNotification('🎉 Welcome to GitHub Pages! Changes auto-save every 1 second and refresh every 30 seconds', 'info');
         });
     </script>
                 
 </body>
-</html>§
+</html>
