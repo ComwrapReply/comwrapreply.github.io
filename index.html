@@ -689,7 +689,7 @@
                 console.log('Loading workflow data from local file...');
                 
                 // Load from local file
-                const response = await fetch('./sdlc-workflow-new copy.json?' + Date.now());
+                const response = await fetch('./sdlc-workflow-new-copy.json?' + Date.now());
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -714,7 +714,7 @@
             } catch (error) {
                 console.error('Error loading local data:', error);
                 updateSyncStatus('❌ Load failed', 'syncing');
-                showError('Failed to load workflow data. Please check if sdlc-workflow-new copy.json exists.');
+                showError('Failed to load workflow data. Please check if sdlc-workflow-new-copy.json exists.');
             }
         }
         
@@ -737,7 +737,7 @@
                 <p><strong>Total Items:</strong> ${metadata.totalItems}</p>
                 <p><strong>Last Updated:</strong> ${lastUpdated}</p>
                 <p><strong>Status:</strong> ✅ Local data loaded successfully</p>
-                <p><strong>Data Source:</strong> 🏠 sdlc-workflow-new copy.json</p>
+                <p><strong>Data Source:</strong> 🏠 sdlc-workflow-new-copy.json</p>
             `;
         }
         
@@ -1193,7 +1193,7 @@
             
             // Force reload with cache busting
             const cacheBuster = Date.now() + Math.random() + Math.random();
-            fetch(`./sdlc-workflow-new copy.json?v=${cacheBuster}&t=${Date.now()}&r=${Math.random()}`, {
+            fetch(`./sdlc-workflow-new-copy.json?v=${cacheBuster}&t=${Date.now()}&r=${Math.random()}`, {
                 cache: 'no-cache'
             })
             .then(response => {
